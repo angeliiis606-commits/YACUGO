@@ -4,7 +4,7 @@
 const lineasData = [
     {
         id: 1,
-        nombre: "Trufi Azul A",
+        nombre: "Trufi Azul",
         horario: "6:00 am - 8:00 pm",
         frecuencia: "15 minutos",
         tarifa: "3.50 Bs.",
@@ -81,7 +81,7 @@ const lineasData = [
     },
     {
         id: 2,
-        nombre: "Trufi Azul M",
+        nombre: "Banderita Azul",
         horario: "6:00 am - 8:00 pm",
         frecuencia: "15 minutos",
         tarifa: "3.50 Bs.",
@@ -106,7 +106,7 @@ const lineasData = [
             [-22.042566, -63.6795173], [-22.0439334, -63.6799679], [-22.0442367, -63.6800483], 
             [-22.044361, -63.6801074], [-22.044453, -63.6800752], [-22.0463723, -63.6804614], 
             [-22.0472126, -63.680617], [-22.0473021, -63.6806706], [-22.0482592, -63.6808745], 
-            [-22.0482791, -63.6808128], [-22.0483139, -63.6807618], [-22.0483686, -63.6807484], 
+            [-22.0482791, -63.6808128], [-22.0483139, -63.6807606], [-22.0483686, -63.6807484], 
             [-22.0484332, -63.6807511], [-22.0493281, -63.6810327], [-22.0502728, -63.6813009], 
             [-22.0510559, -63.6813358], [-22.0511753, -63.6814029], [-22.0511081, -63.6819527], 
             [-22.0501989, -63.6817686], [-22.0501193, -63.6823828]
@@ -140,6 +140,10 @@ let mapInstance = null;
 let mapMainInstance = null;
 let lineaVista = 'ida';   
 
+// Variables para el rastreador GPS
+let watchGpsId = null; 
+let miMarcadorGps = null; 
+
 // ============================================================
 // INICIALIZACIÓN Y PANTALLAS
 // ============================================================
@@ -161,6 +165,13 @@ function showScreen(screenId) {
 }
 
 function cerrarDetalle() {
+    // Apagamos el rastreador GPS al salir
+    if (watchGpsId) {
+        navigator.geolocation.clearWatch(watchGpsId);
+        watchGpsId = null;
+    }
+    miMarcadorGps = null;
+
     if (mapInstance) { try { mapInstance.remove(); } catch (e) {} mapInstance = null; }
     showScreen('lineasScreen');
 }
@@ -190,7 +201,6 @@ function abrirDetalle(id) {
     document.getElementById('detalleTitulo').textContent = lineaActual.nombre;
     showScreen('detalleScreen');
     
-    // Restauramos el color original del icono de sync
     const iconoSync = document.getElementById('iconoVuelta');
     if(iconoSync) iconoSync.style.color = '#c5e16a';
 
@@ -241,7 +251,7 @@ function mostrarRecorrido() {
     html += '</div>';
     
     document.getElementById('recorridoContent').innerHTML = html;
-    document.getElementById('recorridoTituloHeader').textContent = "Recorrido";
+    document.getElementById('recorridoTituloHeader').textContent = "Recorrido (Ida)";
     showScreen('recorridoScreen');
 }
 
@@ -251,7 +261,7 @@ function cerrarRecorrido() {
 }
 
 // ============================================================
-// BOTÓN RUTA DE VUELTA (Solo cambia el mapa y el color del icono)
+// BOTÓN RUTA DE VUELTA
 // ============================================================
 function mostrarVuelta() {
     if (!lineaActual) return;
@@ -260,11 +270,11 @@ function mostrarVuelta() {
     if (lineaVista === 'ida') {
         lineaVista = 'vuelta';
         mostrarMapa(lineaActual.rutaVuelta, '#e74c3c');
-        if (iconoSync) iconoSync.style.color = '#e74c3c'; // Se pone rojo
+        if (iconoSync) iconoSync.style.color = '#e74c3c'; 
     } else {
         lineaVista = 'ida';
         mostrarMapa(lineaActual.rutaIda, '#2e86c1');
-        if (iconoSync) iconoSync.style.color = '#c5e16a'; // Vuelve a su color
+        if (iconoSync) iconoSync.style.color = '#c5e16a'; 
     }
 }
 
@@ -281,7 +291,6 @@ function mostrarMapa(coordenadas, color) {
     
     const polyline = L.polyline(coordenadas, { color: color, weight: 5, opacity: 0.9 }).addTo(mapInstance);
     
-    // Iconos sin cuadrados
     L.marker(coordenadas[0], { icon: L.divIcon({ html: '🟢', iconSize: [28, 28], className: 'custom-icon' }) }).addTo(mapInstance);
     L.marker(coordenadas[coordenadas.length - 1], { icon: L.divIcon({ html: '🔴', iconSize: [28, 28], className: 'custom-icon' }) }).addTo(mapInstance);
     
@@ -294,18 +303,53 @@ function ubicarme() {
         const ubi = [pos.coords.latitude, pos.coords.longitude];
         if (mapMainInstance) { 
             mapMainInstance.setView(ubi, 16); 
-            L.marker(ubi, { icon: L.divIcon({ html: '📍', className: 'custom-icon', iconSize: [30, 30] }) }).addTo(mapMainInstance).bindPopup('¡Aquí estás!').openPopup(); 
+            const iconoGps = L.divIcon({
+                className: 'custom-icon',
+                html: '<div class="user-location-dot"></div>',
+                iconSize: [20, 20]
+            });
+            L.marker(ubi, { icon: iconoGps }).addTo(mapMainInstance).bindPopup('¡Aquí estás!').openPopup(); 
         }
     });
 }
 
+// 👇 NUEVA FUNCIÓN DE GPS CON RASTREO EN TIEMPO REAL 👇
 function ubicarmeLinea() {
     if (!navigator.geolocation || !mapInstance) return;
-    navigator.geolocation.getCurrentPosition(function(pos) {
-        const ubi = [pos.coords.latitude, pos.coords.longitude];
-        mapInstance.setView(ubi, 17); 
-        L.marker(ubi, { icon: L.divIcon({ html: '📍', className: 'custom-icon', iconSize: [30, 30] }) }).addTo(mapInstance).bindPopup('¡Aquí estás!').openPopup();
-    });
+    
+    const btn = document.getElementById('btnUbicarmeLinea');
+    if (!btn) return;
+    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
+
+    if (watchGpsId) {
+        navigator.geolocation.clearWatch(watchGpsId);
+    }
+
+    watchGpsId = navigator.geolocation.watchPosition(
+        function(pos) {
+            const ubi = [pos.coords.latitude, pos.coords.longitude];
+            
+            if (!miMarcadorGps) {
+                const iconoGps = L.divIcon({
+                    className: 'custom-icon',
+                    html: '<div class="user-location-dot"></div>',
+                    iconSize: [20, 20]
+                });
+                
+                miMarcadorGps = L.marker(ubi, { icon: iconoGps }).addTo(mapInstance);
+                mapInstance.setView(ubi, 17);
+            } else {
+                miMarcadorGps.setLatLng(ubi);
+            }
+            
+            btn.innerHTML = '<i class="fas fa-crosshairs"></i>';
+        },
+        function(error) {
+            alert("No se pudo rastrear tu ubicación. Revisa el GPS.");
+            btn.innerHTML = '<i class="fas fa-crosshairs"></i>';
+        },
+        { enableHighAccuracy: true, maximumAge: 0, timeout: 10000 }
+    );
 }
 
 function ubicarmeMicro() {}
