@@ -1,0 +1,135 @@
+/* ========================================== */
+/* ESTILOS GENERALES */
+/* ========================================== */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif; height: 100vh; overflow: hidden; background: #f0f4f8; }
+.screen { display: none; height: 100vh; width: 100vw; flex-direction: column; position: absolute; top: 0; left: 0; background: #f0f4f8; }
+.screen.active { display: flex; }
+
+/* ========================================== */
+/* PANTALLA PRINCIPAL - MAPA DE FONDO */
+/* ========================================== */
+#mainScreen { position: relative; }
+#mainScreen #mapMain { width: 100%; height: 100%; position: absolute; top: 0; left: 0; z-index: 1; }
+.header-main { position: absolute; top: 0; left: 0; right: 0; z-index: 10; padding: 16px 20px 12px; display: flex; align-items: center; justify-content: space-between; background: transparent; color: white; text-shadow: 0 2px 8px rgba(0,0,0,0.3); }
+.header-main .logo { font-size: 20px; font-weight: 700; display: flex; align-items: center; gap: 10px; }
+.header-main .logo i { font-size: 24px; }
+.header-main .subtitle { font-size: 13px; opacity: 0.8; font-weight: 300; }
+
+.main-buttons { position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%); z-index: 10; display: flex; gap: 16px; width: 90%; max-width: 400px; justify-content: center; }
+.btn-main { flex: 1; color: white; border: none; padding: 16px 20px; font-size: 18px; font-weight: 700; border-radius: 50px; cursor: pointer; box-shadow: 0 4px 20px rgba(0,0,0,0.2); transition: transform 0.2s; display: flex; align-items: center; justify-content: center; gap: 10px; letter-spacing: 1px; min-width: 120px; }
+.btn-main.trufi { background: linear-gradient(135deg, #16a085, #1abc9c); }
+.btn-main.micro { background: linear-gradient(135deg, #d35400, #f39c12); }
+
+.header { background: linear-gradient(135deg, #1a5276, #2e86c1); color: white; padding: 16px 16px 12px; display: flex; align-items: center; gap: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.2); flex-shrink: 0; z-index: 10; min-height: 56px; }
+.header .back-btn { background: rgba(255,255,255,0.2); border: none; color: white; font-size: 18px; width: 36px; height: 36px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+.header h1 { font-size: 18px; font-weight: 600; flex: 1; }
+.header.micro-header { background: linear-gradient(135deg, #1a7a3a, #27ae60); }
+
+.content { flex: 1; display: flex; flex-direction: column; overflow: hidden; position: relative; background: #f0f4f8; }
+.search-box { background: white; border-radius: 12px; padding: 0 16px; display: flex; align-items: center; gap: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); margin: 12px 16px 12px; flex-shrink: 0; }
+.search-box i { color: #6c757d; font-size: 18px; }
+.search-box input { border: none; outline: none; padding: 14px 0; font-size: 16px; flex: 1; background: transparent; }
+.list-container { flex: 1; overflow-y: auto; padding: 0 16px 20px; }
+.item-card { background: white; border-radius: 12px; padding: 14px 18px; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; transition: transform 0.2s; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+.item-card:hover { transform: translateX(4px); }
+.item-card .nombre { font-size: 17px; font-weight: 600; color: #1a2a3a; display: flex; align-items: center; gap: 10px; }
+.item-card .nombre i.linea-icon { color: #2e86c1; }
+.item-card .nombre i.micro-icon { color: #27ae60; }
+.item-card .badge { background: #2e86c1; color: white; padding: 2px 10px; border-radius: 20px; font-size: 11px; font-weight: 600; }
+.item-card .badge.micro-badge { background: #27ae60; }
+.item-card .icono { color: #adb5bd; font-size: 14px; }
+.no-resultados { text-align: center; padding: 40px 20px; color: #6c757d; }
+
+/* ========================================== */
+/* PANTALLA DE DETALLE (MAPAS) */
+/* ========================================== */
+#mapContainer, #mapContainerMicro { flex: 1; min-height: 0; position: relative; background: #e8ecf1; }
+#map, #mapMicro { width: 100%; height: 100%; position: absolute; top: 0; left: 0; z-index: 1; }
+
+/* ========================================== */
+/* PANTALLA DE DATOS / RECORRIDO */
+/* ========================================== */
+.data-content { background: white; padding: 24px; overflow-y: auto; }
+.data-header-info { display: flex; align-items: center; gap: 16px; margin-bottom: 30px; border-bottom: 1px solid #eee; padding-bottom: 20px; }
+.data-icon-box { font-size: 40px; color: #27ae60; }
+.data-header-info h2 { font-size: 24px; color: #1a2a3a; font-weight: 700; }
+.data-row { display: flex; margin-bottom: 16px; font-size: 16px; color: #333; }
+.data-row.border-bottom { padding-bottom: 16px; border-bottom: 1px solid #eee; margin-bottom: 24px; }
+.data-label { font-weight: 600; width: 110px; flex-shrink: 0; color: #1a5276; }
+.data-value { flex: 1; }
+.data-value div { margin-bottom: 6px; text-align: right; }
+
+/* LISTA DE PARADAS (RECORRIDO) */
+.stops-list { display: flex; flex-direction: column; gap: 0; padding-top: 10px; }
+.stop-row { display: flex; gap: 16px; min-height: 60px; }
+.stop-indicator { display: flex; flex-direction: column; align-items: center; width: 24px; flex-shrink: 0; }
+.stop-dot { width: 16px; height: 16px; border-radius: 50%; background: #2e86c1; border: 3px solid #bbdefb; z-index: 2; margin-top: 4px; }
+.stop-line { width: 3px; background: #e0e0e0; flex: 1; margin-top: -2px; margin-bottom: -2px; }
+.stop-row:last-child .stop-line { display: none; }
+.stop-info { flex: 1; padding-bottom: 24px; }
+.stop-name { font-size: 16px; font-weight: 600; color: #1a2a3a; margin-bottom: 4px; }
+
+/* ========================================== */
+/* NUEVA BARRA DE NAVEGACIÓN INFERIOR (TIPO CRUZERO) */
+/* ========================================== */
+.cruzero-nav-bar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #0d3b2e;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 18px 0 22px 0;
+    z-index: 1000;
+    border-radius: 20px 20px 0 0;
+    box-shadow: 0 -4px 15px rgba(0,0,0,0.2);
+}
+
+.nav-btn {
+    background: transparent;
+    border: none;
+    color: #c5e16a;
+    font-size: 26px;
+    cursor: pointer;
+    transition: transform 0.2s, color 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+}
+
+.nav-btn:hover {
+    transform: scale(1.1);
+    color: #ffffff;
+}
+
+.nav-btn:active {
+    transform: scale(0.9);
+}
+
+/* ========================================== */
+/* BOTÓN UBICARME Y SPLASH */
+/* ========================================== */
+.btn-ubicarme { position: absolute; bottom: 110px; right: 20px; z-index: 20; width: 56px; height: 56px; border-radius: 50%; background: #2e86c1; color: white; border: none; box-shadow: 0 4px 12px rgba(0,0,0,0.3); font-size: 24px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+.btn-ubicarme.btn-ubicarme-detail { bottom: 90px; right: 20px; z-index: 1000; }
+
+#splashScreen { display: flex; justify-content: center; align-items: center; background: linear-gradient(135deg, #1a5276, #2e86c1); color: white; z-index: 999; transition: opacity 0.8s ease; }
+#splashScreen.fade-out { opacity: 0; pointer-events: none; }
+.splash-content { text-align: center; padding: 20px; }
+
+/* AQUÍ SE LE QUITÓ EL MARGIN-BOTTOM PARA QUE QUEDE CENTRADO */
+.splash-logo { 
+    width: 150px; 
+    height: 150px; 
+    border-radius: 20px; 
+    box-shadow: 0 8px 30px rgba(0,0,0,0.3); 
+    background: white; 
+    padding: 10px; 
+}
+
+/* QUITA LOS CUADRADOS DE LOS ICONOS DEL MAPA */
+.custom-icon { background: none; border: none; font-size: 26px; line-height: 26px; text-align: center; }
