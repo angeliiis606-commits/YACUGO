@@ -7,16 +7,52 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial
 .screen.active { display: flex; }
 
 /* ========================================== */
-/* PANTALLA PRINCIPAL - MAPA DE FONDO */
+/* PANTALLA PRINCIPAL - MAPA DE FONDO Y HEADER */
 /* ========================================== */
 #mainScreen { position: relative; }
 #mainScreen #mapMain { width: 100%; height: 100%; position: absolute; top: 0; left: 0; z-index: 1; }
+
+/* EL NUEVO ENCABEZADO TIPO APP */
+.app-header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: linear-gradient(135deg, #0d3b2e, #1a7a3a);
+    color: white;
+    display: flex;
+    align-items: center;
+    padding: 15px 20px;
+    z-index: 1000;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+.header-logo {
+    background: rgba(255, 255, 255, 0.2);
+    width: 45px;
+    height: 45px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    color: #c5e16a;
+    margin-right: 15px;
+}
+
+.header-text { flex: 1; }
+.header-text h1 { font-size: 20px; font-weight: 800; letter-spacing: 1px; margin: 0; line-height: 1.2; }
+.header-text p { font-size: 12px; margin: 0; opacity: 0.8; font-weight: 300; }
+.header-actions { font-size: 20px; color: white; opacity: 0.8; }
 
 .main-buttons { position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%); z-index: 10; display: flex; gap: 16px; width: 90%; max-width: 400px; justify-content: center; }
 .btn-main { flex: 1; color: white; border: none; padding: 16px 20px; font-size: 18px; font-weight: 700; border-radius: 50px; cursor: pointer; box-shadow: 0 4px 20px rgba(0,0,0,0.2); transition: transform 0.2s; display: flex; align-items: center; justify-content: center; gap: 10px; letter-spacing: 1px; min-width: 120px; }
 .btn-main.trufi { background: linear-gradient(135deg, #16a085, #1abc9c); }
 .btn-main.micro { background: linear-gradient(135deg, #d35400, #f39c12); }
 
+/* ========================================== */
+/* HEADER PARA OTRAS PANTALLAS */
+/* ========================================== */
 .header { background: linear-gradient(135deg, #1a5276, #2e86c1); color: white; padding: 16px 16px 12px; display: flex; align-items: center; gap: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.2); flex-shrink: 0; z-index: 10; min-height: 56px; }
 .header .back-btn { background: rgba(255,255,255,0.2); border: none; color: white; font-size: 18px; width: 36px; height: 36px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; }
 .header h1 { font-size: 18px; font-weight: 600; flex: 1; }
