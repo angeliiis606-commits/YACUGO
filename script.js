@@ -140,14 +140,11 @@ let mapInstance = null;
 let mapMainInstance = null;
 let lineaVista = 'ida';   
 
-// Variables para el rastreador GPS
 let watchGpsId = null; 
 let miMarcadorGps = null; 
-let ubicacionMarkerMain = null; // Para el mapa principal
+let ubicacionMarkerMain = null; 
+let watchMainId = null; 
 
-// ============================================================
-// INICIALIZACIÓN Y PANTALLAS
-// ============================================================
 function initMainMap() {
     if (typeof L === 'undefined') return;
     const center = [-22.015, -63.678];
@@ -176,9 +173,6 @@ function cerrarDetalle() {
     showScreen('lineasScreen');
 }
 
-// ============================================================
-// LÓGICA DE LÍNEAS
-// ============================================================
 function renderizarLineas() {
     const container = document.getElementById('lineasList');
     container.innerHTML = lineasData.map(l => `
@@ -207,9 +201,6 @@ function abrirDetalle(id) {
     setTimeout(() => { mostrarMapa(lineaActual.rutaIda, '#2e86c1'); }, 150);
 }
 
-// ============================================================
-// PANTALLA DE DATOS
-// ============================================================
 function mostrarDatos() {
     if (!lineaActual) return;
     document.getElementById('datosContent').innerHTML = `
@@ -227,9 +218,6 @@ function mostrarDatos() {
 }
 function cerrarDatos() { showScreen('detalleScreen'); }
 
-// ============================================================
-// PANTALLA DE RECORRIDO
-// ============================================================
 function mostrarRecorrido() {
     if (!lineaActual) return;
     mostrarMapa(lineaActual.rutaIda, '#2e86c1');
@@ -254,15 +242,11 @@ function mostrarRecorrido() {
     document.getElementById('recorridoTituloHeader').textContent = "Recorrido (Ida)";
     showScreen('recorridoScreen');
 }
-
 function cerrarRecorrido() {
     showScreen('detalleScreen');
     setTimeout(() => { if (mapInstance) mapInstance.invalidateSize(); }, 200);
 }
 
-// ============================================================
-// BOTÓN RUTA DE VUELTA
-// ============================================================
 function mostrarVuelta() {
     if (!lineaActual) return;
     const iconoSync = document.getElementById('iconoVuelta');
@@ -278,9 +262,6 @@ function mostrarVuelta() {
     }
 }
 
-// ============================================================
-// MAPA Y GPS
-// ============================================================
 function mostrarMapa(coordenadas, color) {
     if (typeof L === 'undefined' || !coordenadas) return;
     if (mapInstance) { try { mapInstance.remove(); } catch (e) {} mapInstance = null; }
@@ -297,7 +278,7 @@ function mostrarMapa(coordenadas, color) {
     setTimeout(() => { if (mapInstance) { mapInstance.invalidateSize(); mapInstance.fitBounds(polyline.getBounds(), { padding: [40, 40] }); } }, 200);
 }
 
-// 👇 CORRECCIÓN AQUÍ: Botón GPS del mapa principal 👇
+// GPS Rápido para el inicio
 function ubicarme() {
     if (!navigator.geolocation) {
         alert("Tu navegador no soporta geolocalización.");
@@ -306,12 +287,14 @@ function ubicarme() {
     const btn = document.getElementById('btnUbicarme');
     if (btn) btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
 
-    navigator.geolocation.getCurrentPosition(
+    if (watchMainId) navigator.geolocation.clearWatch(watchMainId);
+    
+    watchMainId = navigator.geolocation.watchPosition(
         function(pos) {
             const ubi = [pos.coords.latitude, pos.coords.longitude];
             if (mapMainInstance) { 
                 if (ubicacionMarkerMain) {
-                    mapMainInstance.removeLayer(ubicacionMarkerMain); // Borra el punto anterior
+                    mapMainInstance.removeLayer(ubicacionMarkerMain); 
                 }
                 mapMainInstance.setView(ubi, 16); 
                 const iconoGps = L.divIcon({
@@ -321,17 +304,21 @@ function ubicarme() {
                 });
                 ubicacionMarkerMain = L.marker(ubi, { icon: iconoGps }).addTo(mapMainInstance).bindPopup('¡Aquí estás!').openPopup(); 
             }
+            navigator.geolocation.clearWatch(watchMainId);
+            watchMainId = null;
             if (btn) btn.innerHTML = '<i class="fas fa-crosshairs"></i>';
         },
         function(error) {
             alert("No se pudo obtener la ubicación. Asegúrate de tener el GPS encendido.");
             if (btn) btn.innerHTML = '<i class="fas fa-crosshairs"></i>';
+            navigator.geolocation.clearWatch(watchMainId);
+            watchMainId = null;
         },
-        { enableHighAccuracy: true, timeout: 10000, maximumAge: 0 }
+        { enableHighAccuracy: true, timeout: 5000, maximumAge: 30000 }
     );
 }
 
-// 👇 Botón GPS dentro de la ruta (El que ya te funcionaba) 👇
+// GPS de Rastreo para la ruta
 function ubicarmeLinea() {
     if (!navigator.geolocation || !mapInstance) return;
     
@@ -372,9 +359,6 @@ function ubicarmeLinea() {
 
 function ubicarmeMicro() {}
 
-// ============================================================
-// INICIO DE LA APP
-// ============================================================
 document.addEventListener('DOMContentLoaded', function() {
     try { initMainMap(); } catch(e) {}
     renderizarLineas();
