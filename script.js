@@ -357,6 +357,16 @@ function ubicarmeLinea() {
 
 function ubicarmeMicro() {}
 
+// 👇 FUNCIONES PARA LA PANTALLA DE CONTACTO 👇
+function abrirContacto() {
+    showScreen('contactoScreen');
+}
+
+function cerrarContacto() {
+    showScreen('mainScreen');
+    setTimeout(() => { if (mapMainInstance) mapMainInstance.invalidateSize(); }, 300);
+}
+
 document.addEventListener('DOMContentLoaded', function() {
     try { initMainMap(); } catch(e) {}
     renderizarLineas();
