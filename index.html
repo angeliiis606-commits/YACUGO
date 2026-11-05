@@ -20,7 +20,7 @@
 <!-- PANTALLA PRINCIPAL -->
 <div id="mainScreen" class="screen">
     
-    <!-- NUEVO ENCABEZADO ESTILO APP -->
+    <!-- ENCABEZADO ESTILO APP -->
     <div class="app-header">
         <div class="header-logo">
             <i class="fas fa-bus"></i>
@@ -29,8 +29,9 @@
             <h1>YACUGO</h1>
             <p>Tu transporte en Yacuiba</p>
         </div>
-        <div class="header-actions">
-            <i class="fas fa-bell"></i>
+        <!-- BOTÓN DE 3 PUNTITOS -->
+        <div class="header-actions" onclick="abrirContacto()" style="cursor: pointer; padding: 5px;">
+            <i class="fas fa-ellipsis-v"></i>
         </div>
     </div>
 
@@ -118,6 +119,51 @@
     </div>
     <div class="content data-content">
         <div id="recorridoContent"></div>
+    </div>
+</div>
+
+<!-- 👇 NUEVA PANTALLA DE CONTACTO 👇 -->
+<div id="contactoScreen" class="screen">
+    <div class="header">
+        <button class="back-btn" onclick="cerrarContacto()"><i class="fas fa-arrow-left"></i></button>
+        <h1>Contacto y Ayuda</h1>
+        <div style="width:36px;"></div>
+    </div>
+    <div class="content data-content" style="padding-top: 15px;">
+        <div class="data-header-info">
+            <div class="data-icon-box" style="color: #2e86c1;"><i class="fas fa-headset"></i></div>
+            <h2>¿Necesitas ayuda?</h2>
+        </div>
+        <p style="margin-bottom: 25px; color: #555; font-size: 15px; line-height: 1.5;">
+            Comunícate con nosotros para reportar errores en las rutas, sugerencias o cualquier duda sobre la aplicación YACUGO.
+        </p>
+
+        <!-- BOTÓN WHATSAPP -->
+        <a href="https://wa.me/59170000000" target="_blank" class="contact-card">
+            <i class="fab fa-whatsapp" style="color: #25D366;"></i>
+            <div>
+                <h3>WhatsApp</h3>
+                <p>+591 700-00000</p> <!-- CAMBIA ESTE NÚMERO POR EL TUYO -->
+            </div>
+        </a>
+
+        <!-- BOTÓN LLAMADA -->
+        <a href="tel:+59170000000" class="contact-card">
+            <i class="fas fa-phone-alt" style="color: #2e86c1;"></i>
+            <div>
+                <h3>Llamar</h3>
+                <p>+591 700-00000</p> <!-- CAMBIA ESTE NÚMERO POR EL TUYO -->
+            </div>
+        </a>
+
+        <!-- BOTÓN CORREO -->
+        <a href="mailto:contacto@yacugo.com" class="contact-card">
+            <i class="fas fa-envelope" style="color: #e74c3c;"></i>
+            <div>
+                <h3>Correo Electrónico</h3>
+                <p>contacto@yacugo.com</p> <!-- CAMBIA ESTE CORREO POR EL TUYO -->
+            </div>
+        </a>
     </div>
 </div>
 
