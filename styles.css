@@ -7,12 +7,11 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial
 .screen.active { display: flex; }
 
 /* ========================================== */
-/* PANTALLA PRINCIPAL - MAPA DE FONDO Y HEADER */
+/* PANTALLA PRINCIPAL - MAPA Y HEADER */
 /* ========================================== */
 #mainScreen { position: relative; }
 #mainScreen #mapMain { width: 100%; height: 100%; position: absolute; top: 0; left: 0; z-index: 1; }
 
-/* EL NUEVO ENCABEZADO TIPO APP */
 .app-header {
     position: absolute;
     top: 0;
@@ -27,23 +26,11 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial
     box-shadow: 0 4px 10px rgba(0,0,0,0.3);
 }
 
-.header-logo {
-    background: rgba(255, 255, 255, 0.2);
-    width: 45px;
-    height: 45px;
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 22px;
-    color: #c5e16a;
-    margin-right: 15px;
-}
-
+.header-logo { background: rgba(255, 255, 255, 0.2); width: 45px; height: 45px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 22px; color: #c5e16a; margin-right: 15px; }
 .header-text { flex: 1; }
 .header-text h1 { font-size: 20px; font-weight: 800; letter-spacing: 1px; margin: 0; line-height: 1.2; }
 .header-text p { font-size: 12px; margin: 0; opacity: 0.8; font-weight: 300; }
-.header-actions { font-size: 20px; color: white; opacity: 0.8; }
+.header-actions { font-size: 22px; color: white; opacity: 0.9; }
 
 .main-buttons { position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%); z-index: 10; display: flex; gap: 16px; width: 90%; max-width: 400px; justify-content: center; }
 .btn-main { flex: 1; color: white; border: none; padding: 16px 20px; font-size: 18px; font-weight: 700; border-radius: 50px; cursor: pointer; box-shadow: 0 4px 20px rgba(0,0,0,0.2); transition: transform 0.2s; display: flex; align-items: center; justify-content: center; gap: 10px; letter-spacing: 1px; min-width: 120px; }
@@ -80,7 +67,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial
 #map, #mapMicro { width: 100%; height: 100%; position: absolute; top: 0; left: 0; z-index: 1; }
 
 /* ========================================== */
-/* PANTALLA DE DATOS / RECORRIDO */
+/* PANTALLA DE DATOS / RECORRIDO / CONTACTO */
 /* ========================================== */
 .data-content { background: white; padding: 24px; overflow-y: auto; }
 .data-header-info { display: flex; align-items: center; gap: 16px; margin-bottom: 30px; border-bottom: 1px solid #eee; padding-bottom: 20px; }
@@ -91,6 +78,40 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial
 .data-label { font-weight: 600; width: 110px; flex-shrink: 0; color: #1a5276; }
 .data-value { flex: 1; }
 .data-value div { margin-bottom: 6px; text-align: right; }
+
+/* TARJETAS DE CONTACTO */
+.contact-card {
+    display: flex;
+    align-items: center;
+    background: #f8f9fa;
+    border: 1px solid #e9ecef;
+    border-radius: 12px;
+    padding: 15px;
+    margin-bottom: 15px;
+    text-decoration: none;
+    color: #333;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+.contact-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+.contact-card i {
+    margin-right: 20px;
+    font-size: 30px;
+    width: 40px;
+    text-align: center;
+}
+.contact-card h3 {
+    margin: 0;
+    font-size: 16px;
+    color: #1a2a3a;
+}
+.contact-card p {
+    margin: 0;
+    font-size: 14px;
+    color: #6c757d;
+}
 
 /* LISTA DE PARADAS (RECORRIDO) */
 .stops-list { display: flex; flex-direction: column; gap: 0; padding-top: 10px; }
@@ -103,7 +124,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial
 .stop-name { font-size: 16px; font-weight: 600; color: #1a2a3a; margin-bottom: 4px; }
 
 /* ========================================== */
-/* NUEVA BARRA DE NAVEGACIÓN INFERIOR (TIPO CRUZERO) */
+/* BARRA DE NAVEGACIÓN INFERIOR (TIPO CRUZERO) */
 /* ========================================== */
 .cruzero-nav-bar {
     position: absolute;
@@ -119,21 +140,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial
     border-radius: 20px 20px 0 0;
     box-shadow: 0 -4px 15px rgba(0,0,0,0.2);
 }
-
-.nav-btn {
-    background: transparent;
-    border: none;
-    color: #c5e16a;
-    font-size: 26px;
-    cursor: pointer;
-    transition: transform 0.2s, color 0.2s;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 60px;
-    height: 60px;
-}
-
+.nav-btn { background: transparent; border: none; color: #c5e16a; font-size: 26px; cursor: pointer; transition: transform 0.2s, color 0.2s; display: flex; align-items: center; justify-content: center; width: 60px; height: 60px; }
 .nav-btn:hover { transform: scale(1.1); color: #ffffff; }
 .nav-btn:active { transform: scale(0.9); }
 
@@ -151,30 +158,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial
 /* QUITA LOS CUADRADOS DE LOS ICONOS DEL MAPA */
 .custom-icon { background: none; border: none; font-size: 26px; line-height: 26px; text-align: center; }
 
-/* ========================================== */
-/* PUNTO AZUL DE GPS CON PULSO (COMO GOOGLE MAPS) */
-/* ========================================== */
-.user-location-dot {
-    width: 20px;
-    height: 20px;
-    background-color: #2e86c1;
-    border: 3px solid white;
-    border-radius: 50%;
-    box-shadow: 0 0 10px rgba(0,0,0,0.5);
-    position: relative;
-}
-
-.user-location-dot::after {
-    content: '';
-    position: absolute;
-    top: -10px; left: -10px; right: -10px; bottom: -10px;
-    border-radius: 50%;
-    border: 3px solid #2e86c1;
-    opacity: 0.5;
-    animation: pulse-ring 1.5s infinite;
-}
-
-@keyframes pulse-ring {
-    0% { transform: scale(0.5); opacity: 0.8; }
-    100% { transform: scale(1.5); opacity: 0; }
-}
+/* PUNTO AZUL DE GPS CON PULSO */
+.user-location-dot { width: 20px; height: 20px; background-color: #2e86c1; border: 3px solid white; border-radius: 50%; box-shadow: 0 0 10px rgba(0,0,0,0.5); position: relative; }
+.user-location-dot::after { content: ''; position: absolute; top: -10px; left: -10px; right: -10px; bottom: -10px; border-radius: 50%; border: 3px solid #2e86c1; opacity: 0.5; animation: pulse-ring 1.5s infinite; }
+@keyframes pulse-ring { 0% { transform: scale(0.5); opacity: 0.8; } 100% { transform: scale(1.5); opacity: 0; } }
