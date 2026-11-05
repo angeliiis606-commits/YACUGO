@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Trufi Yacuiba</title>
+    <title>YACUGO</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <link rel="stylesheet" href="styles.css" />
@@ -19,6 +19,21 @@
 
 <!-- PANTALLA PRINCIPAL -->
 <div id="mainScreen" class="screen">
+    
+    <!-- NUEVO ENCABEZADO ESTILO APP -->
+    <div class="app-header">
+        <div class="header-logo">
+            <i class="fas fa-bus"></i>
+        </div>
+        <div class="header-text">
+            <h1>YACUGO</h1>
+            <p>Tu transporte en Yacuiba</p>
+        </div>
+        <div class="header-actions">
+            <i class="fas fa-bell"></i>
+        </div>
+    </div>
+
     <div id="mapMain"></div>
     <button id="btnUbicarme" class="btn-ubicarme" onclick="ubicarme()"><i class="fas fa-crosshairs"></i></button>
     
@@ -73,23 +88,16 @@
             <button id="btnUbicarmeLinea" class="btn-ubicarme btn-ubicarme-detail" onclick="ubicarmeLinea()"><i class="fas fa-crosshairs"></i></button>
         </div>
 
-        <!-- BARRA DE NAVEGACIÓN TIPO CRUZERO -->
         <div class="cruzero-nav-bar" id="bottomPanel">
-            <button class="nav-btn" onclick="mostrarDatos()">
-                <i class="fas fa-clipboard-list"></i>
-            </button>
-            <button class="nav-btn" onclick="mostrarVuelta()">
-                <i class="fas fa-sync-alt" id="iconoVuelta"></i>
-            </button>
-            <button class="nav-btn" onclick="mostrarRecorrido()">
-                <i class="fas fa-map-marked-alt"></i>
-            </button>
+            <button class="nav-btn" onclick="mostrarDatos()"><i class="fas fa-clipboard-list"></i></button>
+            <button class="nav-btn" onclick="mostrarVuelta()"><i class="fas fa-sync-alt" id="iconoVuelta"></i></button>
+            <button class="nav-btn" onclick="mostrarRecorrido()"><i class="fas fa-map-marked-alt"></i></button>
         </div>
         <div id="infoContainer" style="display:none;"></div>
     </div>
 </div>
 
-<!-- NUEVA PANTALLA DE DATOS -->
+<!-- PANTALLA DE DATOS -->
 <div id="datosScreen" class="screen">
     <div class="header">
         <button class="back-btn" onclick="cerrarDatos()"><i class="fas fa-arrow-left"></i></button>
@@ -101,7 +109,7 @@
     </div>
 </div>
 
-<!-- NUEVA PANTALLA DE RECORRIDO -->
+<!-- PANTALLA DE RECORRIDO -->
 <div id="recorridoScreen" class="screen">
     <div class="header">
         <button class="back-btn" onclick="cerrarRecorrido()"><i class="fas fa-arrow-left"></i></button>
@@ -126,17 +134,10 @@
             <button id="btnUbicarmeMicro" class="btn-ubicarme btn-ubicarme-detail" onclick="ubicarmeMicro()"><i class="fas fa-crosshairs"></i></button>
         </div>
         
-        <!-- BARRA DE NAVEGACIÓN TIPO CRUZERO (MICROS) -->
         <div class="cruzero-nav-bar" id="bottomPanelMicro">
-            <button class="nav-btn" onclick="mostrarDatosMicro()">
-                <i class="fas fa-clipboard-list"></i>
-            </button>
-            <button class="nav-btn" onclick="mostrarVueltaMicro()">
-                <i class="fas fa-sync-alt" id="iconoVueltaMicro"></i>
-            </button>
-            <button class="nav-btn" onclick="mostrarRecorridoMicro()">
-                <i class="fas fa-map-marked-alt"></i>
-            </button>
+            <button class="nav-btn" onclick="mostrarDatosMicro()"><i class="fas fa-clipboard-list"></i></button>
+            <button class="nav-btn" onclick="mostrarVueltaMicro()"><i class="fas fa-sync-alt" id="iconoVueltaMicro"></i></button>
+            <button class="nav-btn" onclick="mostrarRecorridoMicro()"><i class="fas fa-map-marked-alt"></i></button>
         </div>
         <div id="infoContainerMicro" style="display:none;"></div>
     </div>
