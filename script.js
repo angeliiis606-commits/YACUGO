@@ -278,7 +278,6 @@ function mostrarMapa(coordenadas, color) {
     setTimeout(() => { if (mapInstance) { mapInstance.invalidateSize(); mapInstance.fitBounds(polyline.getBounds(), { padding: [40, 40] }); } }, 200);
 }
 
-// GPS Rápido para el inicio
 function ubicarme() {
     if (!navigator.geolocation) {
         alert("Tu navegador no soporta geolocalización.");
@@ -318,7 +317,6 @@ function ubicarme() {
     );
 }
 
-// GPS de Rastreo para la ruta
 function ubicarmeLinea() {
     if (!navigator.geolocation || !mapInstance) return;
     
