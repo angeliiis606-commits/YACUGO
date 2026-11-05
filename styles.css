@@ -102,14 +102,8 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial
     height: 60px;
 }
 
-.nav-btn:hover {
-    transform: scale(1.1);
-    color: #ffffff;
-}
-
-.nav-btn:active {
-    transform: scale(0.9);
-}
+.nav-btn:hover { transform: scale(1.1); color: #ffffff; }
+.nav-btn:active { transform: scale(0.9); }
 
 /* ========================================== */
 /* BOTÓN UBICARME Y SPLASH */
@@ -120,16 +114,35 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial
 #splashScreen { display: flex; justify-content: center; align-items: center; background: linear-gradient(135deg, #1a5276, #2e86c1); color: white; z-index: 999; transition: opacity 0.8s ease; }
 #splashScreen.fade-out { opacity: 0; pointer-events: none; }
 .splash-content { text-align: center; padding: 20px; }
-
-/* AQUÍ SE LE QUITÓ EL MARGIN-BOTTOM PARA QUE QUEDE CENTRADO */
-.splash-logo { 
-    width: 150px; 
-    height: 150px; 
-    border-radius: 20px; 
-    box-shadow: 0 8px 30px rgba(0,0,0,0.3); 
-    background: white; 
-    padding: 10px; 
-}
+.splash-logo { width: 150px; height: 150px; border-radius: 20px; box-shadow: 0 8px 30px rgba(0,0,0,0.3); background: white; padding: 10px; }
 
 /* QUITA LOS CUADRADOS DE LOS ICONOS DEL MAPA */
 .custom-icon { background: none; border: none; font-size: 26px; line-height: 26px; text-align: center; }
+
+/* ========================================== */
+/* PUNTO AZUL DE GPS CON PULSO (COMO GOOGLE MAPS) */
+/* ========================================== */
+.user-location-dot {
+    width: 20px;
+    height: 20px;
+    background-color: #2e86c1;
+    border: 3px solid white;
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    position: relative;
+}
+
+.user-location-dot::after {
+    content: '';
+    position: absolute;
+    top: -10px; left: -10px; right: -10px; bottom: -10px;
+    border-radius: 50%;
+    border: 3px solid #2e86c1;
+    opacity: 0.5;
+    animation: pulse-ring 1.5s infinite;
+}
+
+@keyframes pulse-ring {
+    0% { transform: scale(0.5); opacity: 0.8; }
+    100% { transform: scale(1.5); opacity: 0; }
+}
