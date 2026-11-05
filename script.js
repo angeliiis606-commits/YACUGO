@@ -106,7 +106,7 @@ const lineasData = [
             [-22.042566, -63.6795173], [-22.0439334, -63.6799679], [-22.0442367, -63.6800483], 
             [-22.044361, -63.6801074], [-22.044453, -63.6800752], [-22.0463723, -63.6804614], 
             [-22.0472126, -63.680617], [-22.0473021, -63.6806706], [-22.0482592, -63.6808745], 
-            [-22.0482791, -63.6808128], [-22.0483139, -63.6807606], [-22.0483686, -63.6807484], 
+            [-22.0482791, -63.6808128], [-22.0483139, -63.6807618], [-22.0483686, -63.6807484], 
             [-22.0484332, -63.6807511], [-22.0493281, -63.6810327], [-22.0502728, -63.6813009], 
             [-22.0510559, -63.6813358], [-22.0511753, -63.6814029], [-22.0511081, -63.6819527], 
             [-22.0501989, -63.6817686], [-22.0501193, -63.6823828]
@@ -143,6 +143,7 @@ let lineaVista = 'ida';
 // Variables para el rastreador GPS
 let watchGpsId = null; 
 let miMarcadorGps = null; 
+let ubicacionMarkerMain = null; // Para el mapa principal
 
 // ============================================================
 // INICIALIZACIÓN Y PANTALLAS
@@ -165,7 +166,6 @@ function showScreen(screenId) {
 }
 
 function cerrarDetalle() {
-    // Apagamos el rastreador GPS al salir
     if (watchGpsId) {
         navigator.geolocation.clearWatch(watchGpsId);
         watchGpsId = null;
@@ -297,23 +297,41 @@ function mostrarMapa(coordenadas, color) {
     setTimeout(() => { if (mapInstance) { mapInstance.invalidateSize(); mapInstance.fitBounds(polyline.getBounds(), { padding: [40, 40] }); } }, 200);
 }
 
+// 👇 CORRECCIÓN AQUÍ: Botón GPS del mapa principal 👇
 function ubicarme() {
-    if (!navigator.geolocation) return;
-    navigator.geolocation.getCurrentPosition(function(pos) {
-        const ubi = [pos.coords.latitude, pos.coords.longitude];
-        if (mapMainInstance) { 
-            mapMainInstance.setView(ubi, 16); 
-            const iconoGps = L.divIcon({
-                className: 'custom-icon',
-                html: '<div class="user-location-dot"></div>',
-                iconSize: [20, 20]
-            });
-            L.marker(ubi, { icon: iconoGps }).addTo(mapMainInstance).bindPopup('¡Aquí estás!').openPopup(); 
-        }
-    });
+    if (!navigator.geolocation) {
+        alert("Tu navegador no soporta geolocalización.");
+        return;
+    }
+    const btn = document.getElementById('btnUbicarme');
+    if (btn) btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
+
+    navigator.geolocation.getCurrentPosition(
+        function(pos) {
+            const ubi = [pos.coords.latitude, pos.coords.longitude];
+            if (mapMainInstance) { 
+                if (ubicacionMarkerMain) {
+                    mapMainInstance.removeLayer(ubicacionMarkerMain); // Borra el punto anterior
+                }
+                mapMainInstance.setView(ubi, 16); 
+                const iconoGps = L.divIcon({
+                    className: 'custom-icon',
+                    html: '<div class="user-location-dot"></div>',
+                    iconSize: [20, 20]
+                });
+                ubicacionMarkerMain = L.marker(ubi, { icon: iconoGps }).addTo(mapMainInstance).bindPopup('¡Aquí estás!').openPopup(); 
+            }
+            if (btn) btn.innerHTML = '<i class="fas fa-crosshairs"></i>';
+        },
+        function(error) {
+            alert("No se pudo obtener la ubicación. Asegúrate de tener el GPS encendido.");
+            if (btn) btn.innerHTML = '<i class="fas fa-crosshairs"></i>';
+        },
+        { enableHighAccuracy: true, timeout: 10000, maximumAge: 0 }
+    );
 }
 
-// 👇 NUEVA FUNCIÓN DE GPS CON RASTREO EN TIEMPO REAL 👇
+// 👇 Botón GPS dentro de la ruta (El que ya te funcionaba) 👇
 function ubicarmeLinea() {
     if (!navigator.geolocation || !mapInstance) return;
     
