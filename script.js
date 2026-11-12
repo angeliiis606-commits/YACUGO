@@ -4,7 +4,7 @@
 const lineasData = [
     {
         id: 1,
-        nombre: "Trufi Azul",
+        nombre: "Trufi Azul "A"",
         horario: "6:00 am - 8:00 pm",
         frecuencia: "15 minutos",
         tarifa: "3.50 Bs.",
@@ -81,7 +81,7 @@ const lineasData = [
     },
     {
         id: 2,
-        nombre: "Banderita Azul",
+        nombre: "Trufi Azul "M"",
         horario: "6:00 am - 8:00 pm",
         frecuencia: "15 minutos",
         tarifa: "3.50 Bs.",
@@ -239,7 +239,7 @@ function mostrarRecorrido() {
     html += '</div>';
     
     document.getElementById('recorridoContent').innerHTML = html;
-    document.getElementById('recorridoTituloHeader').textContent = "Recorrido (Ida)";
+    document.getElementById('recorridoTituloHeader').textContent = "Recorrido";
     showScreen('recorridoScreen');
 }
 function cerrarRecorrido() {
