@@ -4,7 +4,7 @@
 const lineasData = [
     {
         id: 1,
-        nombre: "Trufi Azul "A"",
+        nombre: "Trufi Azul A",
         horario: "6:00 am - 8:00 pm",
         frecuencia: "15 minutos",
         tarifa: "3.50 Bs.",
@@ -81,7 +81,7 @@ const lineasData = [
     },
     {
         id: 2,
-        nombre: "Trufi Azul "M"",
+        nombre: "Trufi Azul M",
         horario: "6:00 am - 8:00 pm",
         frecuencia: "15 minutos",
         tarifa: "3.50 Bs.",
