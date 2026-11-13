@@ -132,19 +132,51 @@ const lineasData = [
     }
 ];
 
-const microsData = [];
+// ============================================================
+// DATOS DE LOS MICROS
+// ============================================================
+const microsData = [
+    {
+        id: 1,
+        nombre: "Micro 1",
+        horario: "6:00 am - 8:00 pm",
+        frecuencia: "15 minutos",
+        tarifa: "3.50 Bs.",
+        niños: "Menores de 4 años no pagan",
+        tipo: "micro",
+        // Paradas extraídas del CSV
+        paradasIda: ["Parada 1 (1ro de Mayo)", "Parada 2 (1ro de Mayo)"],
+        paradasVuelta: ["Parada 2 (1ro de Mayo)", "Parada 1 (1ro de Mayo)"],
+        rutaIda: [
+            [-22.0491277584535, -63.6820722458592], // Parada 1
+            [-21.907122311233, -63.6294254751378]   // Parada 2
+        ],
+        rutaVuelta: [
+            [-21.907122311233, -63.6294254751378],  // Parada 2
+            [-22.0491277584535, -63.6820722458592]  // Parada 1
+        ]
+    }
+];
 
+// ============================================================
+// VARIABLES GLOBALES
+// ============================================================
 let lineaActual = null;
 let microActual = null;
 let mapInstance = null;
+let mapMicroInstance = null;
 let mapMainInstance = null;
 let lineaVista = 'ida';   
+let microVista = 'ida';
 
 let watchGpsId = null; 
 let miMarcadorGps = null; 
 let ubicacionMarkerMain = null; 
 let watchMainId = null; 
 
+// ============================================================
+// LÓGICA DE PANTALLAS
+// ============================================================
 function initMainMap() {
     if (typeof L === 'undefined') return;
     const center = [-22.015, -63.678];
@@ -158,21 +190,29 @@ function showScreen(screenId) {
     if (target) target.classList.add('active');
     
     if (screenId === 'lineasScreen') renderizarLineas();
+    if (screenId === 'microsScreen') renderizarMicros();
     if (screenId === 'mainScreen' && mapMainInstance) setTimeout(() => mapMainInstance.invalidateSize(), 300);
     if (screenId === 'detalleScreen' && mapInstance) setTimeout(() => mapInstance.invalidateSize(), 300);
+    if (screenId === 'detalleMicroScreen' && mapMicroInstance) setTimeout(() => mapMicroInstance.invalidateSize(), 300);
 }
 
 function cerrarDetalle() {
-    if (watchGpsId) {
-        navigator.geolocation.clearWatch(watchGpsId);
-        watchGpsId = null;
-    }
+    if (watchGpsId) { navigator.geolocation.clearWatch(watchGpsId); watchGpsId = null; }
     miMarcadorGps = null;
-
     if (mapInstance) { try { mapInstance.remove(); } catch (e) {} mapInstance = null; }
     showScreen('lineasScreen');
 }
 
+function cerrarDetalleMicro() {
+    if (watchGpsId) { navigator.geolocation.clearWatch(watchGpsId); watchGpsId = null; }
+    miMarcadorGps = null;
+    if (mapMicroInstance) { try { mapMicroInstance.remove(); } catch (e) {} mapMicroInstance = null; }
+    showScreen('microsScreen');
+}
+
+// ============================================================
+// RENDERIZAR LISTAS
+// ============================================================
 function renderizarLineas() {
     const container = document.getElementById('lineasList');
     container.innerHTML = lineasData.map(l => `
@@ -185,8 +225,30 @@ function renderizarLineas() {
         </div>
     `).join('');
 }
-function filtrarLineas() { renderizarLineas(); }
 
+function renderizarMicros() {
+    const container = document.getElementById('microsList');
+    if (microsData.length === 0) {
+        container.innerHTML = `<div class="no-resultados"><i class="fas fa-bus"></i><p>No hay micros registrados</p></div>`;
+        return;
+    }
+    container.innerHTML = microsData.map(m => `
+        <div class="item-card" onclick="abrirDetalleMicro(${m.id})">
+            <span class="nombre"><i class="fas fa-bus micro-icon"></i>${m.nombre}</span>
+            <div style="display:flex;align-items:center;gap:10px;">
+                <span class="badge micro-badge">${m.paradasIda.length} paradas</span>
+                <span class="icono"><i class="fas fa-chevron-right"></i></span>
+            </div>
+        </div>
+    `).join('');
+}
+
+function filtrarLineas() { renderizarLineas(); }
+function filtrarMicros() { renderizarMicros(); }
+
+// ============================================================
+// LÓGICA DE DETALLES
+// ============================================================
 function abrirDetalle(id) {
     lineaActual = lineasData.find(l => l.id === id);
     if (!lineaActual) return;
@@ -198,9 +260,26 @@ function abrirDetalle(id) {
     const iconoSync = document.getElementById('iconoVuelta');
     if(iconoSync) iconoSync.style.color = '#c5e16a';
 
-    setTimeout(() => { mostrarMapa(lineaActual.rutaIda, '#2e86c1'); }, 150);
+    setTimeout(() => { mostrarMapa(lineaActual.rutaIda, '#2e86c1', 'map'); }, 150);
 }
 
+function abrirDetalleMicro(id) {
+    microActual = microsData.find(m => m.id === id);
+    if (!microActual) return;
+    
+    microVista = 'ida';
+    document.getElementById('detalleMicroTitulo').textContent = microActual.nombre;
+    showScreen('detalleMicroScreen');
+    
+    const iconoSync = document.getElementById('iconoVueltaMicro');
+    if(iconoSync) iconoSync.style.color = '#c5e16a';
+
+    setTimeout(() => { mostrarMapa(microActual.rutaIda, '#27ae60', 'mapMicro'); }, 150);
+}
+
+// ============================================================
+// PANTALLAS DE DATOS Y RECORRIDO (LÍNEAS)
+// ============================================================
 function mostrarDatos() {
     if (!lineaActual) return;
     document.getElementById('datosContent').innerHTML = `
@@ -220,7 +299,7 @@ function cerrarDatos() { showScreen('detalleScreen'); }
 
 function mostrarRecorrido() {
     if (!lineaActual) return;
-    mostrarMapa(lineaActual.rutaIda, '#2e86c1');
+    mostrarMapa(lineaActual.rutaIda, '#2e86c1', 'map');
     
     let html = '<div class="stops-list">';
     lineaActual.paradasIda.forEach((parada) => {
@@ -230,16 +309,14 @@ function mostrarRecorrido() {
                     <div class="stop-dot" style="background: #2e86c1; border-color: #bbdefb;"></div>
                     <div class="stop-line"></div>
                 </div>
-                <div class="stop-info">
-                    <div class="stop-name">${parada}</div>
-                </div>
+                <div class="stop-info"><div class="stop-name">${parada}</div></div>
             </div>
         `;
     });
     html += '</div>';
     
     document.getElementById('recorridoContent').innerHTML = html;
-    document.getElementById('recorridoTituloHeader').textContent = "Recorrido";
+    document.getElementById('recorridoTituloHeader').textContent = "Recorrido (Ida)";
     showScreen('recorridoScreen');
 }
 function cerrarRecorrido() {
@@ -253,122 +330,91 @@ function mostrarVuelta() {
 
     if (lineaVista === 'ida') {
         lineaVista = 'vuelta';
-        mostrarMapa(lineaActual.rutaVuelta, '#e74c3c');
+        mostrarMapa(lineaActual.rutaVuelta, '#e74c3c', 'map');
         if (iconoSync) iconoSync.style.color = '#e74c3c'; 
     } else {
         lineaVista = 'ida';
-        mostrarMapa(lineaActual.rutaIda, '#2e86c1');
+        mostrarMapa(lineaActual.rutaIda, '#2e86c1', 'map');
         if (iconoSync) iconoSync.style.color = '#c5e16a'; 
     }
 }
 
-function mostrarMapa(coordenadas, color) {
+// ============================================================
+// PANTALLAS DE DATOS Y RECORRIDO (MICROS)
+// ============================================================
+function mostrarDatosMicro() {
+    if (!microActual) return;
+    document.getElementById('datosContent').innerHTML = `
+        <div class="data-header-info">
+            <div class="data-icon-box" style="color:#f39c12;"><i class="fas fa-shuttle-van"></i></div>
+            <h2>${microActual.nombre}</h2>
+        </div>
+        <div class="data-row"><div class="data-label">Horario:</div><div class="data-value">${microActual.horario}</div></div>
+        <div class="data-row border-bottom"><div class="data-label">Frecuencia:</div><div class="data-value">${microActual.frecuencia}</div></div>
+        <div class="data-row"><div class="data-label">Tarifa:</div><div class="data-value"><div>General: ${microActual.tarifa}</div></div></div>
+        <div class="data-row border-bottom"><div class="data-label">Niños:</div><div class="data-value">${microActual.niños}</div></div>
+    `;
+    document.getElementById('datosTituloHeader').textContent = "Datos del Micro";
+    showScreen('datosScreen');
+}
+
+function mostrarRecorridoMicro() {
+    if (!microActual) return;
+    mostrarMapa(microActual.rutaIda, '#27ae60', 'mapMicro');
+    
+    let html = '<div class="stops-list">';
+    microActual.paradasIda.forEach((parada) => {
+        html += `
+            <div class="stop-row">
+                <div class="stop-indicator">
+                    <div class="stop-dot" style="background: #27ae60; border-color: #a9dfbf;"></div>
+                    <div class="stop-line"></div>
+                </div>
+                <div class="stop-info"><div class="stop-name">${parada}</div></div>
+            </div>
+        `;
+    });
+    html += '</div>';
+    
+    document.getElementById('recorridoContent').innerHTML = html;
+    document.getElementById('recorridoTituloHeader').textContent = "Recorrido (Ida)";
+    showScreen('recorridoScreen');
+}
+
+function mostrarVueltaMicro() {
+    if (!microActual) return;
+    const iconoSync = document.getElementById('iconoVueltaMicro');
+
+    if (microVista === 'ida') {
+        microVista = 'vuelta';
+        mostrarMapa(microActual.rutaVuelta, '#f39c12', 'mapMicro');
+        if (iconoSync) iconoSync.style.color = '#f39c12'; 
+    } else {
+        microVista = 'ida';
+        mostrarMapa(microActual.rutaIda, '#27ae60', 'mapMicro');
+        if (iconoSync) iconoSync.style.color = '#c5e16a'; 
+    }
+}
+
+function cerrarRecorridoMicro() {
+    showScreen('detalleMicroScreen');
+    setTimeout(() => { if (mapMicroInstance) mapMicroInstance.invalidateSize(); }, 200);
+}
+
+// ============================================================
+// MAPAS Y GPS
+// ============================================================
+function mostrarMapa(coordenadas, color, mapaId) {
     if (typeof L === 'undefined' || !coordenadas) return;
-    if (mapInstance) { try { mapInstance.remove(); } catch (e) {} mapInstance = null; }
+    
+    let instanciaMapa = mapaId === 'map' ? mapInstance : mapMicroInstance;
+    if (instanciaMapa) { try { instanciaMapa.remove(); } catch (e) {} }
     
     const center = [coordenadas.reduce((s, c) => s + c[0], 0) / coordenadas.length, coordenadas.reduce((s, c) => s + c[1], 0) / coordenadas.length];
-    mapInstance = L.map('map', { zoomControl: false }).setView(center, 15);
-    L.tileLayer('https://mt1.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', { maxZoom: 20, subdomains: ['mt0', 'mt1', 'mt2', 'mt3'] }).addTo(mapInstance);
+    instanciaMapa = L.map(mapaId, { zoomControl: false }).setView(center, 15);
+    L.tileLayer('https://mt1.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', { maxZoom: 20, subdomains: ['mt0', 'mt1', 'mt2', 'mt3'] }).addTo(instanciaMapa);
     
-    const polyline = L.polyline(coordenadas, { color: color, weight: 5, opacity: 0.9 }).addTo(mapInstance);
+    const polyline = L.polyline(coordenadas, { color: color, weight: 5, opacity: 0.9 }).addTo(instanciaMapa);
     
-    L.marker(coordenadas[0], { icon: L.divIcon({ html: '🟢', iconSize: [28, 28], className: 'custom-icon' }) }).addTo(mapInstance);
-    L.marker(coordenadas[coordenadas.length - 1], { icon: L.divIcon({ html: '🔴', iconSize: [28, 28], className: 'custom-icon' }) }).addTo(mapInstance);
-    
-    setTimeout(() => { if (mapInstance) { mapInstance.invalidateSize(); mapInstance.fitBounds(polyline.getBounds(), { padding: [40, 40] }); } }, 200);
-}
-
-function ubicarme() {
-    if (!navigator.geolocation) {
-        alert("Tu navegador no soporta geolocalización.");
-        return;
-    }
-    const btn = document.getElementById('btnUbicarme');
-    if (btn) btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
-
-    if (watchMainId) navigator.geolocation.clearWatch(watchMainId);
-    
-    watchMainId = navigator.geolocation.watchPosition(
-        function(pos) {
-            const ubi = [pos.coords.latitude, pos.coords.longitude];
-            if (mapMainInstance) { 
-                if (ubicacionMarkerMain) {
-                    mapMainInstance.removeLayer(ubicacionMarkerMain); 
-                }
-                mapMainInstance.setView(ubi, 16); 
-                const iconoGps = L.divIcon({
-                    className: 'custom-icon',
-                    html: '<div class="user-location-dot"></div>',
-                    iconSize: [20, 20]
-                });
-                ubicacionMarkerMain = L.marker(ubi, { icon: iconoGps }).addTo(mapMainInstance).bindPopup('¡Aquí estás!').openPopup(); 
-            }
-            navigator.geolocation.clearWatch(watchMainId);
-            watchMainId = null;
-            if (btn) btn.innerHTML = '<i class="fas fa-crosshairs"></i>';
-        },
-        function(error) {
-            alert("No se pudo obtener la ubicación. Asegúrate de tener el GPS encendido.");
-            if (btn) btn.innerHTML = '<i class="fas fa-crosshairs"></i>';
-            navigator.geolocation.clearWatch(watchMainId);
-            watchMainId = null;
-        },
-        { enableHighAccuracy: true, timeout: 5000, maximumAge: 30000 }
-    );
-}
-
-function ubicarmeLinea() {
-    if (!navigator.geolocation || !mapInstance) return;
-    
-    const btn = document.getElementById('btnUbicarmeLinea');
-    if (!btn) return;
-    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
-
-    if (watchGpsId) {
-        navigator.geolocation.clearWatch(watchGpsId);
-    }
-
-    watchGpsId = navigator.geolocation.watchPosition(
-        function(pos) {
-            const ubi = [pos.coords.latitude, pos.coords.longitude];
-            
-            if (!miMarcadorGps) {
-                const iconoGps = L.divIcon({
-                    className: 'custom-icon',
-                    html: '<div class="user-location-dot"></div>',
-                    iconSize: [20, 20]
-                });
-                
-                miMarcadorGps = L.marker(ubi, { icon: iconoGps }).addTo(mapInstance);
-                mapInstance.setView(ubi, 17);
-            } else {
-                miMarcadorGps.setLatLng(ubi);
-            }
-            
-            btn.innerHTML = '<i class="fas fa-crosshairs"></i>';
-        },
-        function(error) {
-            alert("No se pudo rastrear tu ubicación. Revisa el GPS.");
-            btn.innerHTML = '<i class="fas fa-crosshairs"></i>';
-        },
-        { enableHighAccuracy: true, maximumAge: 0, timeout: 10000 }
-    );
-}
-
-function ubicarmeMicro() {}
-
-// 👇 FUNCIONES PARA LA PANTALLA DE CONTACTO 👇
-function abrirContacto() {
-    showScreen('contactoScreen');
-}
-
-function cerrarContacto() {
-    showScreen('mainScreen');
-    setTimeout(() => { if (mapMainInstance) mapMainInstance.invalidateSize(); }, 300);
-}
-
-document.addEventListener('DOMContentLoaded', function() {
-    try { initMainMap(); } catch(e) {}
-    renderizarLineas();
-    setTimeout(() => { document.getElementById('splashScreen').classList.add('fade-out'); setTimeout(() => showScreen('mainScreen'), 200); }, 800);
-});
+    L.marker(coordenadas[0], { icon: L.divIcon({ html: '🟢', iconSize: [28, 28], className: 'custom-icon' }) }).addTo(instanciaMapa);
+    L.marker(coordenadas[coordenadas.length - 1], { icon: L.divIcon({ html: '🔴', iconSize: [28, 28], className: 'custom
