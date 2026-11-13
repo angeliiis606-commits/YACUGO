@@ -144,7 +144,6 @@ const microsData = [
         tarifa: "3.50 Bs.",
         niños: "Menores de 4 años no pagan",
         tipo: "micro",
-        // Paradas extraídas del CSV
         paradasIda: ["Parada 1 (1ro de Mayo)", "Parada 2 (1ro de Mayo)"],
         paradasVuelta: ["Parada 2 (1ro de Mayo)", "Parada 1 (1ro de Mayo)"],
         rutaIda: [
@@ -417,4 +416,84 @@ function mostrarMapa(coordenadas, color, mapaId) {
     const polyline = L.polyline(coordenadas, { color: color, weight: 5, opacity: 0.9 }).addTo(instanciaMapa);
     
     L.marker(coordenadas[0], { icon: L.divIcon({ html: '🟢', iconSize: [28, 28], className: 'custom-icon' }) }).addTo(instanciaMapa);
-    L.marker(coordenadas[coordenadas.length - 1], { icon: L.divIcon({ html: '🔴', iconSize: [28, 28], className: 'custom
+    L.marker(coordenadas[coordenadas.length - 1], { icon: L.divIcon({ html: '🔴', iconSize: [28, 28], className: 'custom-icon' }) }).addTo(instanciaMapa);
+    
+    setTimeout(() => { if (instanciaMapa) { instanciaMapa.invalidateSize(); instanciaMapa.fitBounds(polyline.getBounds(), { padding: [40, 40] }); } }, 200);
+    
+    if (mapaId === 'map') mapInstance = instanciaMapa;
+    else mapMicroInstance = instanciaMapa;
+}
+
+function ubicarme() {
+    if (!navigator.geolocation) { alert("GPS no soportado."); return; }
+    const btn = document.getElementById('btnUbicarme');
+    if (btn) btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
+
+    if (watchMainId) navigator.geolocation.clearWatch(watchMainId);
+    
+    watchMainId = navigator.geolocation.watchPosition(
+        function(pos) {
+            const ubi = [pos.coords.latitude, pos.coords.longitude];
+            if (mapMainInstance) { 
+                if (ubicacionMarkerMain) mapMainInstance.removeLayer(ubicacionMarkerMain);
+                mapMainInstance.setView(ubi, 16); 
+                const iconoGps = L.divIcon({ className: 'custom-icon', html: '<div class="user-location-dot"></div>', iconSize: [20, 20] });
+                ubicacionMarkerMain = L.marker(ubi, { icon: iconoGps }).addTo(mapMainInstance).bindPopup('¡Aquí estás!').openPopup(); 
+            }
+            navigator.geolocation.clearWatch(watchMainId);
+            watchMainId = null;
+            if (btn) btn.innerHTML = '<i class="fas fa-crosshairs"></i>';
+        },
+        function(error) {
+            alert("Error al obtener ubicación.");
+            if (btn) btn.innerHTML = '<i class="fas fa-crosshairs"></i>';
+            navigator.geolocation.clearWatch(watchMainId);
+            watchMainId = null;
+        },
+        { enableHighAccuracy: true, timeout: 5000, maximumAge: 30000 }
+    );
+}
+
+function ubicarmeLinea() {
+    if (!navigator.geolocation || !mapInstance) return;
+    const btn = document.getElementById('btnUbicarmeLinea');
+    if (!btn) return;
+    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
+
+    if (watchGpsId) navigator.geolocation.clearWatch(watchGpsId);
+
+    watchGpsId = navigator.geolocation.watchPosition(
+        function(pos) {
+            const ubi = [pos.coords.latitude, pos.coords.longitude];
+            if (!miMarcadorGps) {
+                const iconoGps = L.divIcon({ className: 'custom-icon', html: '<div class="user-location-dot"></div>', iconSize: [20, 20] });
+                miMarcadorGps = L.marker(ubi, { icon: iconoGps }).addTo(mapInstance);
+                mapInstance.setView(ubi, 17);
+            } else {
+                miMarcadorGps.setLatLng(ubi);
+            }
+            btn.innerHTML = '<i class="fas fa-crosshairs"></i>';
+        },
+        function(error) {
+            alert("Error de GPS.");
+            btn.innerHTML = '<i class="fas fa-crosshairs"></i>';
+        },
+        { enableHighAccuracy: true, maximumAge: 0, timeout: 10000 }
+    );
+}
+
+function ubicarmeMicro() {}
+
+// FUNCIONES DE CONTACTO
+function abrirContacto() { showScreen('contactoScreen'); }
+function cerrarContacto() {
+    showScreen('mainScreen');
+    setTimeout(() => { if (mapMainInstance) mapMainInstance.invalidateSize(); }, 300);
+}
+
+// INICIO
+document.addEventListener('DOMContentLoaded', function() {
+    try { initMainMap(); } catch(e) {}
+    renderizarLineas();
+    setTimeout(() => { document.getElementById('splashScreen').classList.add('fade-out'); setTimeout(() => showScreen('mainScreen'), 200); }, 800);
+});
