@@ -342,11 +342,8 @@ let mapMicroInstance = null;
 let mapMainInstance = null;
 let lineaVista = 'ida';   
 let microVista = 'ida';
-
-// MEMORIA PARA LOS BOTONES DE REGRESO
 let origenDatos = 'trufi'; 
 let origenRecorrido = 'trufi'; 
-
 let watchGpsId = null; 
 let miMarcadorGps = null; 
 let ubicacionMarkerMain = null; 
@@ -385,9 +382,6 @@ function cerrarDetalleMicro() {
     showScreen('microsScreen');
 }
 
-// ============================================================
-// RENDERIZAR LISTAS
-// ============================================================
 function renderizarLineas() {
     const container = document.getElementById('lineasList');
     container.innerHTML = lineasData.map(l => `
@@ -421,40 +415,28 @@ function renderizarMicros() {
 function filtrarLineas() { renderizarLineas(); }
 function filtrarMicros() { renderizarMicros(); }
 
-// ============================================================
-// LÓGICA DE DETALLES
-// ============================================================
 function abrirDetalle(id) {
     lineaActual = lineasData.find(l => l.id === id);
     if (!lineaActual) return;
-    
     lineaVista = 'ida';
     document.getElementById('detalleTitulo').textContent = lineaActual.nombre;
     showScreen('detalleScreen');
-    
     const iconoSync = document.getElementById('iconoVuelta');
     if(iconoSync) iconoSync.style.color = '#c5e16a';
-
-    setTimeout(() => { mostrarMapa(lineaActual.rutaIda, '#27ae60'); }, 150); // VERDE para IDA
+    setTimeout(() => { mostrarMapa(lineaActual.rutaIda, '#27ae60'); }, 150);
 }
 
 function abrirDetalleMicro(id) {
     microActual = microsData.find(m => m.id === id);
     if (!microActual) return;
-    
     microVista = 'ida';
     document.getElementById('detalleMicroTitulo').textContent = microActual.nombre;
     showScreen('detalleMicroScreen');
-    
     const iconoSync = document.getElementById('iconoVueltaMicro');
     if(iconoSync) iconoSync.style.color = '#c5e16a';
-
-    setTimeout(() => { mostrarMapaMicro(microActual.rutaIda, '#27ae60'); }, 150); // VERDE para IDA
+    setTimeout(() => { mostrarMapaMicro(microActual.rutaIda, '#27ae60'); }, 150);
 }
 
-// ============================================================
-// PANTALLAS DE DATOS Y RECORRIDO (LÍNEAS)
-// ============================================================
 function mostrarDatos() {
     origenDatos = 'trufi'; 
     if (!lineaActual) return;
@@ -475,8 +457,6 @@ function mostrarDatos() {
 function mostrarRecorrido() {
     origenRecorrido = 'trufi'; 
     if (!lineaActual) return;
-    // NO RECREAR EL MAPA AQUÍ.
-    
     let html = '<div class="stops-list">';
     lineaActual.paradasIda.forEach((parada) => {
         html += `
@@ -490,7 +470,6 @@ function mostrarRecorrido() {
         `;
     });
     html += '</div>';
-    
     document.getElementById('recorridoContent').innerHTML = html;
     document.getElementById('recorridoTituloHeader').textContent = "Recorrido (Ida)";
     showScreen('recorridoScreen');
@@ -499,21 +478,17 @@ function mostrarRecorrido() {
 function mostrarVuelta() {
     if (!lineaActual) return;
     const iconoSync = document.getElementById('iconoVuelta');
-
     if (lineaVista === 'ida') {
         lineaVista = 'vuelta';
-        mostrarMapa(lineaActual.rutaVuelta, '#e74c3c'); // ROJO para VUELTA
+        mostrarMapa(lineaActual.rutaVuelta, '#e74c3c');
         if (iconoSync) iconoSync.style.color = '#e74c3c'; 
     } else {
         lineaVista = 'ida';
-        mostrarMapa(lineaActual.rutaIda, '#27ae60'); // VERDE para IDA
+        mostrarMapa(lineaActual.rutaIda, '#27ae60');
         if (iconoSync) iconoSync.style.color = '#c5e16a'; 
     }
 }
 
-// ============================================================
-// PANTALLAS DE DATOS Y RECORRIDO (MICROS)
-// ============================================================
 function mostrarDatosMicro() {
     origenDatos = 'micro'; 
     if (!microActual) return;
@@ -534,8 +509,6 @@ function mostrarDatosMicro() {
 function mostrarRecorridoMicro() {
     origenRecorrido = 'micro'; 
     if (!microActual) return;
-    // NO RECREAR EL MAPA AQUÍ.
-    
     let html = '<div class="stops-list">';
     microActual.paradasIda.forEach((parada) => {
         html += `
@@ -549,7 +522,6 @@ function mostrarRecorridoMicro() {
         `;
     });
     html += '</div>';
-    
     document.getElementById('recorridoContent').innerHTML = html;
     document.getElementById('recorridoTituloHeader').textContent = "Recorrido del Micro (Ida)";
     showScreen('recorridoScreen');
@@ -558,21 +530,17 @@ function mostrarRecorridoMicro() {
 function mostrarVueltaMicro() {
     if (!microActual) return;
     const iconoSync = document.getElementById('iconoVueltaMicro');
-
     if (microVista === 'ida') {
         microVista = 'vuelta';
-        mostrarMapaMicro(microActual.rutaVuelta, '#e74c3c'); // ROJO para VUELTA
+        mostrarMapaMicro(microActual.rutaVuelta, '#e74c3c');
         if (iconoSync) iconoSync.style.color = '#e74c3c'; 
     } else {
         microVista = 'ida';
-        mostrarMapaMicro(microActual.rutaIda, '#27ae60'); // VERDE para IDA
+        mostrarMapaMicro(microActual.rutaIda, '#27ae60');
         if (iconoSync) iconoSync.style.color = '#c5e16a'; 
     }
 }
 
-// ============================================================
-// BOTONES DE REGRESO CORREGIDOS
-// ============================================================
 function cerrarDatos() { 
     if (origenDatos === 'micro') {
         showScreen('detalleMicroScreen');
@@ -593,51 +561,35 @@ function cerrarRecorrido() {
     }
 }
 
-// ============================================================
-// MAPAS
-// ============================================================
 function mostrarMapa(coordenadas, color) {
     if (typeof L === 'undefined' || !coordenadas) return;
     if (mapInstance) { try { mapInstance.remove(); } catch (e) {} mapInstance = null; }
-    
     const center = [coordenadas.reduce((s, c) => s + c[0], 0) / coordenadas.length, coordenadas.reduce((s, c) => s + c[1], 0) / coordenadas.length];
     mapInstance = L.map('map', { zoomControl: false }).setView(center, 15);
     L.tileLayer('https://mt1.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', { maxZoom: 20, subdomains: ['mt0', 'mt1', 'mt2', 'mt3'] }).addTo(mapInstance);
-    
     const polyline = L.polyline(coordenadas, { color: color, weight: 5, opacity: 0.9 }).addTo(mapInstance);
-    
     L.marker(coordenadas[0], { icon: L.divIcon({ html: '🟢', iconSize: [28, 28], className: 'custom-icon' }) }).addTo(mapInstance);
     L.marker(coordenadas[coordenadas.length - 1], { icon: L.divIcon({ html: '🔴', iconSize: [28, 28], className: 'custom-icon' }) }).addTo(mapInstance);
-    
     setTimeout(() => { if (mapInstance) { mapInstance.invalidateSize(); mapInstance.fitBounds(polyline.getBounds(), { padding: [40, 40] }); } }, 300);
 }
 
 function mostrarMapaMicro(coordenadas, color) {
     if (typeof L === 'undefined' || !coordenadas) return;
     if (mapMicroInstance) { try { mapMicroInstance.remove(); } catch (e) {} mapMicroInstance = null; }
-    
     const center = [coordenadas.reduce((s, c) => s + c[0], 0) / coordenadas.length, coordenadas.reduce((s, c) => s + c[1], 0) / coordenadas.length];
     mapMicroInstance = L.map('mapMicro', { zoomControl: false }).setView(center, 15);
     L.tileLayer('https://mt1.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', { maxZoom: 20, subdomains: ['mt0', 'mt1', 'mt2', 'mt3'] }).addTo(mapMicroInstance);
-    
     const polyline = L.polyline(coordenadas, { color: color, weight: 5, opacity: 0.9 }).addTo(mapMicroInstance);
-    
     L.marker(coordenadas[0], { icon: L.divIcon({ html: '🟢', iconSize: [28, 28], className: 'custom-icon' }) }).addTo(mapMicroInstance);
     L.marker(coordenadas[coordenadas.length - 1], { icon: L.divIcon({ html: '🔴', iconSize: [28, 28], className: 'custom-icon' }) }).addTo(mapMicroInstance);
-    
     setTimeout(() => { if (mapMicroInstance) { mapMicroInstance.invalidateSize(); mapMicroInstance.fitBounds(polyline.getBounds(), { padding: [40, 40] }); } }, 300);
 }
 
-// ============================================================
-// GPS
-// ============================================================
 function ubicarme() {
     if (!navigator.geolocation) { alert("GPS no soportado."); return; }
     const btn = document.getElementById('btnUbicarme');
     if (btn) btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
-
     if (watchMainId) navigator.geolocation.clearWatch(watchMainId);
-    
     watchMainId = navigator.geolocation.watchPosition(
         function(pos) {
             const ubi = [pos.coords.latitude, pos.coords.longitude];
@@ -666,9 +618,7 @@ function ubicarmeLinea() {
     const btn = document.getElementById('btnUbicarmeLinea');
     if (!btn) return;
     btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
-
     if (watchGpsId) navigator.geolocation.clearWatch(watchGpsId);
-
     watchGpsId = navigator.geolocation.watchPosition(
         function(pos) {
             const ubi = [pos.coords.latitude, pos.coords.longitude];
@@ -697,34 +647,22 @@ function cerrarContacto() {
     setTimeout(() => { if (mapMainInstance) mapMainInstance.invalidateSize(); }, 300);
 }
 
-document.addEventListener('DOMContentLoaded', function() {
-    try { initMainMap(); } catch(e) {}
-    renderizarLineas();
-    renderizarMicros(); 
-    setTimeout(() => { document.getElementById('splashScreen').classList.add('fade-out'); setTimeout(() => showScreen('mainScreen'), 200); }, 800);
-});
-
 
 // ============================================================
-// PLANIFICADOR DE VIAJE YACUGO — v2 (trufi que pasa cerca de MÍ)
+// PLANIFICADOR DE VIAJE — DOS BOTONES (TRUFI / MICRO)
 // ============================================================
-
-const MAX_DIST_TRUFI = 8000;
+const MAX_DIST_TRUFI = 4000;
 const MAX_DIST_DEST  = 8000;
 
-// Distancia haversine en metros
 function haversine(lat1, lon1, lat2, lon2) {
     const R = 6371000;
     const toRad = d => d * Math.PI / 180;
     const dLat = toRad(lat2 - lat1);
     const dLon = toRad(lon2 - lon1);
-    const a = Math.sin(dLat/2)**2 +
-              Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) *
-              Math.sin(dLon/2)**2;
+    const a = Math.sin(dLat/2)**2 + Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) * Math.sin(dLon/2)**2;
     return 2 * R * Math.asin(Math.sqrt(a));
 }
 
-// Punto más cercano en un segmento [a→b] al punto p
 function closestPointOnSegment(p, a, b) {
     const lat0 = (a[0] + b[0]) / 2;
     const rad = lat0 * Math.PI / 180;
@@ -737,13 +675,9 @@ function closestPointOnSegment(p, a, b) {
     t = Math.max(0, Math.min(1, t));
     const cx = ax + t*dx, cy = ay + t*dy;
     const clng = cx / Math.cos(rad);
-    return {
-        point: [cy, clng],
-        distance: haversine(p[0], p[1], cy, clng)
-    };
+    return { point: [cy, clng], distance: haversine(p[0], p[1], cy, clng) };
 }
 
-// Punto más cercano sobre una ruta entera
 function findClosestOnRoute(route, target) {
     let best = null;
     for (let i = 0; i < route.length - 1; i++) {
@@ -755,7 +689,6 @@ function findClosestOnRoute(route, target) {
     return best;
 }
 
-// Geocodificar texto → coordenadas con Nominatim
 async function geocodificar(query) {
     const viewbox = '-63.72,-21.96,-63.62,-22.05';
     const url = `https://nominatim.openstreetmap.org/search?format=json&limit=5&countrycodes=bo&viewbox=${viewbox}&bounded=1&q=${encodeURIComponent(query)}`;
@@ -763,66 +696,51 @@ async function geocodificar(query) {
     return await res.json();
 }
 
-// Buscar coincidencias en las paradas locales (offline)
 function buscarEnParadas(query) {
-    const q = query.toLowerCase()
-        .normalize('NFD').replace(/[\u0300-\u036f]/g, '').trim();
-    for (const linea of lineasData) {
-        for (let i = 0; i < linea.paradasIda.length; i++) {
-            const p = linea.paradasIda[i].toLowerCase()
-                .normalize('NFD').replace(/[\u0300-\u036f]/g, '');
-            if (p.includes(q) || q.includes(p)) {
-                return { linea, tipo: 'ida', paradaIdx: i, nombre: linea.paradasIda[i] };
-            }
+    const q = query.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').trim();
+    const todos = [...lineasData.map(l => ({ ...l, _cat: 'trufi' })), ...microsData.map(m => ({ ...m, _cat: 'micro' }))];
+    for (const v of todos) {
+        for (let i = 0; i < v.paradasIda.length; i++) {
+            const p = v.paradasIda[i].toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+            if (p.includes(q) || q.includes(p)) return { linea: v, tipo: 'ida', paradaIdx: i, nombre: v.paradasIda[i] };
         }
-        for (let i = 0; i < linea.paradasVuelta.length; i++) {
-            const p = linea.paradasVuelta[i].toLowerCase()
-                .normalize('NFD').replace(/[\u0300-\u036f]/g, '');
-            if (p.includes(q) || q.includes(p)) {
-                return { linea, tipo: 'vuelta', paradaIdx: i, nombre: linea.paradasVuelta[i] };
-            }
+        for (let i = 0; i < v.paradasVuelta.length; i++) {
+            const p = v.paradasVuelta[i].toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+            if (p.includes(q) || q.includes(p)) return { linea: v, tipo: 'vuelta', paradaIdx: i, nombre: v.paradasVuelta[i] };
         }
     }
     return null;
 }
 
-// ============================================================
-// FUNCIÓN PRINCIPAL: buscar trufi que pasa cerca de mí
-// ============================================================
-async function planificarViaje() {
+async function planificarViaje(tipo = 'trufi') {
     const destinoTxt = document.getElementById('inputDestino').value.trim();
-    const btn = document.getElementById('btnBuscarViaje');
+    const btn = tipo === 'micro' ? document.getElementById('btnBuscarMicro') : document.getElementById('btnBuscarTrufi');
+    const otroBtn = tipo === 'micro' ? document.getElementById('btnBuscarTrufi') : document.getElementById('btnBuscarMicro');
+    const textoOriginal = tipo === 'micro' ? '<i class="fas fa-shuttle-van"></i> Buscar micro' : '<i class="fas fa-bus"></i> Buscar trufi';
 
-    if (!destinoTxt) {
-        alert('Escribe a dónde quieres ir (ej: "Plaza Principal", "Mercado Obrero", "Hospital Regional").');
-        return;
-    }
-    if (!navigator.geolocation) {
-        alert('GPS no disponible en tu dispositivo.');
-        return;
-    }
+    if (!destinoTxt) { alert('Escribe a dónde quieres ir (ej: "Plaza Principal", "Mercado Obrero", "Hospital Regional", "Parada 1").'); return; }
+    if (!navigator.geolocation) { alert('GPS no disponible en tu dispositivo.'); return; }
 
-    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Obteniendo ubicación...';
+    btn.disabled = true;
+    otroBtn.disabled = true;
+    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Ubicando...';
 
     navigator.geolocation.getCurrentPosition(async (pos) => {
         const userPos = [pos.coords.latitude, pos.coords.longitude];
         document.getElementById('inputOrigen').value = '📍 Mi ubicación actual';
         btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Buscando destino...';
 
-        let destPos = null;
-        let destNombre = destinoTxt;
-
-        // 1° INTENTO: buscar en paradas locales
+        let destPos = null, destNombre = destinoTxt;
         const matchLocal = buscarEnParadas(destinoTxt);
 
         if (matchLocal) {
             const coords = matchLocal.tipo === 'ida' ? matchLocal.linea.rutaIda : matchLocal.linea.rutaVuelta;
-            const numParadas = matchLocal.tipo === 'ida' ? matchLocal.linea.paradasIda.length : matchLocal.linea.paradasVuelta.length;
-            const paso = Math.max(1, Math.floor(coords.length / (numParadas + 1)));
+            const numP = matchLocal.tipo === 'ida' ? matchLocal.linea.paradasIda.length : matchLocal.linea.paradasVuelta.length;
+            const paso = Math.max(1, Math.floor(coords.length / (numP + 1)));
             const idx = Math.min(coords.length - 1, (matchLocal.paradaIdx + 1) * paso);
             destPos = coords[idx];
             destNombre = matchLocal.nombre;
-            console.log('📍 Parada local:', matchLocal.nombre, '→ coords:', destPos);
+            console.log('📍 Parada local:', matchLocal.nombre, '→', destPos);
         } else {
             try {
                 btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Buscando dirección...';
@@ -830,261 +748,203 @@ async function planificarViaje() {
                 if (res && res.length > 0) {
                     destPos = [parseFloat(res[0].lat), parseFloat(res[0].lon)];
                     destNombre = res[0].display_name.split(',')[0];
-                    console.log('🌐 Geocodificado:', destNombre, '→ coords:', destPos);
+                    console.log('🌐 Geocodificado:', destNombre, '→', destPos);
                 }
-            } catch (e) {
-                console.warn('Nominatim falló:', e);
-            }
+            } catch (e) { console.warn('Nominatim falló:', e); }
         }
 
         if (!destPos) {
+            btn.disabled = false; otroBtn.disabled = false;
+            btn.innerHTML = textoOriginal;
             document.getElementById('tripInfo').style.display = 'block';
             document.getElementById('tripInfo').innerHTML = `
                 <div style="text-align:center;padding:10px;">
                     <i class="fas fa-search" style="font-size:32px;color:#e67e22;margin-bottom:10px;"></i>
                     <h3 style="color:#1a2a3a;font-size:15px;margin-bottom:8px;">No encontramos ese destino</h3>
-                    <p style="font-size:13px;color:#555;line-height:1.5;">
-                        Intenta con nombres de paradas conocidas como:<br>
-                        <b>Plaza Principal, Mercado Obrero, Hospital Regional, Terminal de Buses, Mercado Central</b>
-                    </p>
-                    <button onclick="limpiarViaje()" style="margin-top:12px;width:100%;background:#e74c3c;color:white;border:none;padding:10px;border-radius:8px;font-size:13px;cursor:pointer;">
-                        <i class="fas fa-times"></i> Cerrar
-                    </button>
+                    <p style="font-size:13px;color:#555;">Prueba con: Plaza Principal, Mercado Obrero, Hospital Regional, Terminal de Buses, Mercado Central, Parada 1</p>
+                    <button onclick="limpiarViaje()" style="margin-top:12px;width:100%;background:#e74c3c;color:white;border:none;padding:10px;border-radius:8px;cursor:pointer;">Cerrar</button>
                 </div>
             `;
-            btn.innerHTML = '<i class="fas fa-search"></i> Buscar trufi';
             return;
         }
 
-        btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Evaluando trufis...';
+        btn.innerHTML = `<i class="fas fa-spinner fa-spin"></i> Evaluando ${tipo === 'micro' ? 'micros' : 'trufis'}...`;
+        const vehiculos = tipo === 'micro' ? microsData.map(m => ({ ...m, _cat: 'micro' })) : lineasData.map(l => ({ ...l, _cat: 'trufi' }));
+
+        if (vehiculos.length === 0) {
+            btn.disabled = false; otroBtn.disabled = false;
+            btn.innerHTML = textoOriginal;
+            document.getElementById('tripInfo').style.display = 'block';
+            document.getElementById('tripInfo').innerHTML = `<div style="text-align:center;padding:20px;"><p>No hay ${tipo === 'micro' ? 'micros' : 'trufis'} registrados.</p><button onclick="limpiarViaje()" style="margin-top:12px;width:100%;background:#e74c3c;color:white;border:none;padding:10px;border-radius:8px;cursor:pointer;">Cerrar</button></div>`;
+            return;
+        }
 
         const candidatos = [];
         let masCercana = null;
 
-        for (const linea of lineasData) {
-            const variantes = [
-                { tipo: 'ida',    coords: linea.rutaIda    },
-                { tipo: 'vuelta', coords: linea.rutaVuelta }
-            ];
-
-            for (const v of variantes) {
+        for (const linea of vehiculos) {
+            for (const v of [{ tipo: 'ida', coords: linea.rutaIda }, { tipo: 'vuelta', coords: linea.rutaVuelta }]) {
                 const userC = findClosestOnRoute(v.coords, userPos);
                 if (!userC) continue;
-
-                if (!masCercana || userC.distance < masCercana.distancia) {
-                    masCercana = { linea, tipo: v.tipo, distancia: userC.distance };
-                }
-
+                if (!masCercana || userC.distance < masCercana.distancia) masCercana = { linea, tipo: v.tipo, distancia: userC.distance };
                 if (userC.distance > MAX_DIST_TRUFI) continue;
-
                 const destC = findClosestOnRoute(v.coords, destPos);
                 if (!destC || destC.distance > MAX_DIST_DEST) continue;
-
                 if (userC.segmentIndex >= destC.segmentIndex) continue;
 
                 let routeDist = 0;
                 if (userC.segmentIndex === destC.segmentIndex) {
                     routeDist = haversine(userC.point[0], userC.point[1], destC.point[0], destC.point[1]);
                 } else {
-                    routeDist += haversine(userC.point[0], userC.point[1],
-                                           v.coords[userC.segmentIndex + 1][0],
-                                           v.coords[userC.segmentIndex + 1][1]);
+                    routeDist += haversine(userC.point[0], userC.point[1], v.coords[userC.segmentIndex + 1][0], v.coords[userC.segmentIndex + 1][1]);
                     for (let i = userC.segmentIndex + 1; i < destC.segmentIndex; i++) {
-                        routeDist += haversine(v.coords[i][0], v.coords[i][1],
-                                               v.coords[i + 1][0], v.coords[i + 1][1]);
+                        routeDist += haversine(v.coords[i][0], v.coords[i][1], v.coords[i+1][0], v.coords[i+1][1]);
                     }
-                    routeDist += haversine(v.coords[destC.segmentIndex][0],
-                                           v.coords[destC.segmentIndex][1],
-                                           destC.point[0], destC.point[1]);
+                    routeDist += haversine(v.coords[destC.segmentIndex][0], v.coords[destC.segmentIndex][1], destC.point[0], destC.point[1]);
                 }
-
-                candidatos.push({
-                    linea, tipo: v.tipo, coords: v.coords,
-                    userC, destC, routeDist,
-                    distHastaMiTrufi: userC.distance,
-                    distHastaDestino: destC.distance,
-                    total: userC.distance + routeDist + destC.distance
-                });
+                candidatos.push({ linea, tipo: v.tipo, coords: v.coords, userC, destC, routeDist,
+                    distHastaMiTrufi: userC.distance, distHastaDestino: destC.distance,
+                    total: userC.distance + routeDist + destC.distance });
             }
         }
 
-        btn.innerHTML = '<i class="fas fa-search"></i> Buscar trufi';
+        btn.disabled = false; otroBtn.disabled = false;
+        btn.innerHTML = textoOriginal;
 
         if (candidatos.length === 0) {
-            let mensajeDiag = '';
-            if (masCercana) {
-                mensajeDiag = `La trufi más cercana a ti es <b>${masCercana.linea.nombre}</b> (${masCercana.tipo}), pero pasa a <b>${Math.round(masCercana.distancia)} m</b> de tu ubicación (el límite es ${MAX_DIST_TRUFI} m).`;
-            }
+            let diag = masCercana ? `Lo más cercano a ti es <b>${masCercana.linea.nombre}</b> (${masCercana.tipo}), pero pasa a <b>${Math.round(masCercana.distancia)} m</b> de tu ubicación (el límite es ${MAX_DIST_TRUFI} m).` : '';
             document.getElementById('tripInfo').style.display = 'block';
             document.getElementById('tripInfo').innerHTML = `
                 <div style="text-align:center;padding:10px;">
                     <i class="fas fa-exclamation-triangle" style="font-size:32px;color:#e67e22;margin-bottom:10px;"></i>
-                    <h3 style="color:#1a2a3a;font-size:15px;margin-bottom:8px;">Ninguna trufi cumple los requisitos</h3>
+                    <h3 style="color:#1a2a3a;font-size:15px;margin-bottom:8px;">Ningún ${tipo === 'micro' ? 'micro' : 'trufi'} cumple los requisitos</h3>
                     <p style="font-size:13px;color:#555;line-height:1.5;">
-                        No encontramos trufis a menos de <b>${MAX_DIST_TRUFI} m</b> de ti que lleguen a <b>${destNombre}</b>.<br><br>
-                        ${mensajeDiag ? `<b>🔍 Diagnóstico:</b><br>${mensajeDiag}<br><br>` : ''}
-                        🚶 Acércate a una avenida principal o a una parada conocida y vuelve a intentar.
+                        No encontramos ${tipo === 'micro' ? 'micros' : 'trufis'} a menos de <b>${MAX_DIST_TRUFI} m</b> de ti que lleguen a <b>${destNombre}</b>.<br><br>
+                        ${diag ? `<b>🔍 Diagnóstico:</b><br>${diag}<br><br>` : ''}
+                        🚶 Acércate a una avenida principal o a una parada conocida y vuelve a intentar.<br><br>
+                        💡 <b>Prueba con el otro botón</b> (${tipo === 'micro' ? 'trufi' : 'micro'}) por si pasa más cerca.
                     </p>
-                    <button onclick="limpiarViaje()" style="margin-top:12px;width:100%;background:#e74c3c;color:white;border:none;padding:10px;border-radius:8px;font-size:13px;cursor:pointer;">
-                        <i class="fas fa-times"></i> Cerrar
-                    </button>
+                    <button onclick="limpiarViaje()" style="margin-top:12px;width:100%;background:#e74c3c;color:white;border:none;padding:10px;border-radius:8px;cursor:pointer;">Cerrar</button>
                 </div>
             `;
             return;
         }
 
         candidatos.sort((a, b) => a.total - b.total);
-        const top = candidatos.slice(0, 3);
-
-        dibujarViaje(userPos, destPos, top, destNombre);
+        dibujarViaje(userPos, destPos, candidatos.slice(0, 3), destNombre);
     }, (err) => {
         alert('Activa el GPS para planificar tu viaje. Error: ' + err.message);
-        btn.innerHTML = '<i class="fas fa-search"></i> Buscar trufi';
+        btn.disabled = false; otroBtn.disabled = false;
+        btn.innerHTML = textoOriginal;
     }, { enableHighAccuracy: true, timeout: 12000 });
 }
 
-// ============================================================
-// OBTENER RUTA CAMINANDO POR CALLES REALES (OSRM)
-// ============================================================
-let _lastWalkRouteLat = null;
-let _lastWalkRouteLng = null;
-let _isFetchingWalkRoute = false;
+let _lastWalkRouteLat = null, _lastWalkRouteLng = null, _isFetchingWalkRoute = false;
 
 async function obtenerRutaCaminando(origen, destino) {
-    const url = `https://router.project-osrm.org/route/v1/foot/${origen[1]},${origen[0]};${destino[1]},${destino[0]}?overview=full&geometries=geojson`;
+    const o = `${origen[1]},${origen[0]}`, d = `${destino[1]},${destino[0]}`;
+    const perfiles = ['foot', 'driving'];
+    const promesas = perfiles.map(p => 
+        fetch(`https://router.project-osrm.org/route/v1/${p}/${o};${d}?overview=full&geometries=geojson&alternatives=3`)
+            .then(r => r.json())
+            .then(d => (d.code === 'Ok' && d.routes) ? d.routes : [])
+            .catch(() => [])
+    );
     try {
-        const res = await fetch(url);
-        const data = await res.json();
-        if (data.code === 'Ok' && data.routes && data.routes.length > 0) {
-            const coords = data.routes[0].geometry.coordinates.map(c => [c[1], c[0]]);
-            return { coords, distance: data.routes[0].distance };
-        }
+        const res = await Promise.all(promesas);
+        const todas = res.flat();
+        if (todas.length === 0) return { coords: [origen, destino], distance: null };
+        todas.sort((a, b) => a.distance - b.distance);
+        const mejor = todas[0];
+        console.log(`🛣️ Rutas evaluadas: ${todas.length}. Elegida: ${Math.round(mejor.distance)} m`);
+        return { coords: mejor.geometry.coordinates.map(c => [c[1], c[0]]), distance: mejor.distance };
     } catch (e) {
-        console.warn('OSRM falló, usando línea recta:', e);
+        return { coords: [origen, destino], distance: null };
     }
-    return { coords: [origen, destino], distance: null };
 }
 
-// ============================================================
-// DIBUJAR EL VIAJE EN EL MAPA (con GPS en vivo y guía por calles)
-// ============================================================
 async function dibujarViaje(userPos, destPos, candidatos, destNombre) {
     if (!mapMainInstance) return;
-
     if (window.viajeLayers) window.viajeLayers.forEach(l => mapMainInstance.removeLayer(l));
     window.viajeLayers = [];
 
     const mejor = candidatos[0];
+    const esMicro = mejor.linea._cat === 'micro';
+    const color = esMicro ? '#f39c12' : '#16a085';
+    const icono = esMicro ? '🚐' : '🚌';
+    const etiqueta = esMicro ? 'MICRO' : 'TRUFI';
 
-    const iconoUser = L.divIcon({ className:'custom-icon', html:'<div class="user-location-dot"></div>', iconSize:[20,20] });
-    const iconoDest = L.divIcon({ className:'custom-icon', html:'<div style="font-size:32px;line-height:32px;">📍</div>', iconSize:[32,32] });
-    const iconoSubida = L.divIcon({ className:'custom-icon', html:'<div style="font-size:20px;line-height:36px;background:#16a085;color:white;border-radius:50%;width:36px;height:36px;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,0.3);">✋</div>', iconSize:[36,36] });
-
-    const mUser = L.marker(userPos, { icon: iconoUser }).addTo(mapMainInstance).bindPopup('Estás aquí');
-    const mDest = L.marker(destPos, { icon: iconoDest }).addTo(mapMainInstance).bindPopup('Destino: ' + destNombre);
+    const mUser = L.marker(userPos, { icon: L.divIcon({ className:'custom-icon', html:'<div class="user-location-dot"></div>', iconSize:[20,20] }) }).addTo(mapMainInstance).bindPopup('Estás aquí');
+    const mDest = L.marker(destPos, { icon: L.divIcon({ className:'custom-icon', html:'<div style="font-size:32px;line-height:32px;">📍</div>', iconSize:[32,32] }) }).addTo(mapMainInstance).bindPopup('Destino: ' + destNombre);
     window.viajeLayers.push(mUser, mDest);
 
     const puntoSubida = mejor.userC.point;
-    const mSubida = L.marker(puntoSubida, { icon: iconoSubida })
-        .addTo(mapMainInstance)
-        .bindPopup(`<b>🚌 Aquí pasa la trufi</b><br>Levántale la mano cuando la veas.<br>Está a ${Math.round(mejor.distHastaMiTrufi)} m de ti.`);
+    const mSubida = L.marker(puntoSubida, { icon: L.divIcon({ className:'custom-icon', html:`<div style="font-size:20px;line-height:36px;background:${color};color:white;border-radius:50%;width:36px;height:36px;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,0.3);">✋</div>`, iconSize:[36,36] }) }).addTo(mapMainInstance).bindPopup(`<b>${icono} Aquí pasa ${esMicro ? 'el micro' : 'la trufi'}</b><br>Levántale la mano.<br>Está a ${Math.round(mejor.distHastaMiTrufi)} m de ti.`);
     window.viajeLayers.push(mSubida);
 
-    // Línea VERDE de la trufi
     const seg = [mejor.userC.point];
     if (mejor.userC.segmentIndex < mejor.destC.segmentIndex) {
-        for (let i = mejor.userC.segmentIndex + 1; i <= mejor.destC.segmentIndex; i++) {
-            seg.push(mejor.coords[i]);
-        }
+        for (let i = mejor.userC.segmentIndex + 1; i <= mejor.destC.segmentIndex; i++) seg.push(mejor.coords[i]);
     }
     seg.push(mejor.destC.point);
 
-    const trufiLine = L.polyline(seg, {
-        color: '#16a085', weight: 7, opacity: 0.9
-    }).addTo(mapMainInstance).bindPopup('Recorrido de la trufi: ' + mejor.linea.nombre);
+    const trufiLine = L.polyline(seg, { color, weight: 7, opacity: 0.9 }).addTo(mapMainInstance).bindPopup(`Recorrido: ${mejor.linea.nombre}`);
     window.viajeLayers.push(trufiLine);
 
-    const bounds = L.latLngBounds([userPos, destPos, ...seg]);
-    mapMainInstance.fitBounds(bounds, { padding: [60, 60] });
+    mapMainInstance.fitBounds(L.latLngBounds([userPos, destPos, ...seg]), { padding: [60, 60] });
 
-    // 🟠 LÍNEAS NARANJAS CON RUTEO POR CALLES REALES
     let walkLine = null;
-
     if (mejor.distHastaMiTrufi > 10) {
-        const ruta1 = await obtenerRutaCaminando(userPos, puntoSubida);
-        walkLine = L.polyline(ruta1.coords, {
-            color: '#f39c12',
-            weight: 6,
-            dashArray: '10,8',
-            opacity: 1
-        }).addTo(mapMainInstance).bindPopup(`Camina por estas calles (${Math.round(ruta1.distance || mejor.distHastaMiTrufi)} m)`);
+        const r = await obtenerRutaCaminando(userPos, puntoSubida);
+        walkLine = L.polyline(r.coords, { color: '#f39c12', weight: 6, dashArray: '10,8', opacity: 1 }).addTo(mapMainInstance).bindPopup(`Camina por estas calles (${Math.round(r.distance || mejor.distHastaMiTrufi)} m)`);
         window.viajeLayers.push(walkLine);
-        _lastWalkRouteLat = userPos[0];
-        _lastWalkRouteLng = userPos[1];
+        _lastWalkRouteLat = userPos[0]; _lastWalkRouteLng = userPos[1];
     }
-
     if (mejor.distHastaDestino > 20) {
-        const ruta2 = await obtenerRutaCaminando(mejor.destC.point, destPos);
-        const walk2Line = L.polyline(ruta2.coords, {
-            color: '#f39c12', weight: 5, dashArray: '10,8', opacity: 1
-        }).addTo(mapMainInstance).bindPopup(`Camina por estas calles (${Math.round(ruta2.distance || mejor.distHastaDestino)} m)`);
-        window.viajeLayers.push(walk2Line);
+        const r = await obtenerRutaCaminando(mejor.destC.point, destPos);
+        window.viajeLayers.push(L.polyline(r.coords, { color: '#f39c12', weight: 5, dashArray: '10,8', opacity: 1 }).addTo(mapMainInstance).bindPopup(`Camina por estas calles (${Math.round(r.distance || mejor.distHastaDestino)} m)`));
     }
 
-    // 📡 GPS EN VIVO
-    if (window.watchViajeId) {
-        navigator.geolocation.clearWatch(window.watchViajeId);
-        window.watchViajeId = null;
-    }
+    if (window.watchViajeId) navigator.geolocation.clearWatch(window.watchViajeId);
     window.watchViajeId = navigator.geolocation.watchPosition(
-        async function(pos) {
+        async (pos) => {
             const nueva = [pos.coords.latitude, pos.coords.longitude];
             if (mUser) mUser.setLatLng(nueva);
-
             if (walkLine && mejor.distHastaMiTrufi > 10 && !_isFetchingWalkRoute) {
-                const movido = haversine(nueva[0], nueva[1], _lastWalkRouteLat, _lastWalkRouteLng);
-                if (movido > 50) {
+                if (haversine(nueva[0], nueva[1], _lastWalkRouteLat, _lastWalkRouteLng) > 50) {
                     _isFetchingWalkRoute = true;
-                    const rutaNueva = await obtenerRutaCaminando(nueva, puntoSubida);
-                    walkLine.setLatLngs(rutaNueva.coords);
-                    _lastWalkRouteLat = nueva[0];
-                    _lastWalkRouteLng = nueva[1];
+                    const r = await obtenerRutaCaminando(nueva, puntoSubida);
+                    walkLine.setLatLngs(r.coords);
+                    _lastWalkRouteLat = nueva[0]; _lastWalkRouteLng = nueva[1];
                     _isFetchingWalkRoute = false;
                 }
             }
-        },
-        null,
-        { enableHighAccuracy: true, maximumAge: 3000, timeout: 15000 }
+        }, null, { enableHighAccuracy: true, maximumAge: 3000, timeout: 15000 }
     );
 
-    // 🎨 PANEL DE RESULTADO
     const fmt = m => m > 1000 ? (m/1000).toFixed(1) + ' km' : Math.round(m) + ' m';
-
-    let msgTrufi;
-    if (mejor.distHastaMiTrufi < 30) {
-        msgTrufi = '¡Pasa casi por tu puerta! Levántale la mano 🚌✋';
-    } else if (mejor.distHastaMiTrufi < 120) {
-        msgTrufi = `La trufi pasa a <b>${fmt(mejor.distHastaMiTrufi)}</b> de ti`;
-    } else {
-        msgTrufi = `Camina <b>${fmt(mejor.distHastaMiTrufi)}</b> siguiendo la línea naranja hasta donde pasa la trufi`;
-    }
+    let msgVehiculo;
+    if (mejor.distHastaMiTrufi < 30) msgVehiculo = `¡Pasa casi por tu puerta! Levántale la mano ${icono}✋`;
+    else if (mejor.distHastaMiTrufi < 120) msgVehiculo = `Pasa a <b>${fmt(mejor.distHastaMiTrufi)}</b> de ti`;
+    else msgVehiculo = `Camina <b>${fmt(mejor.distHastaMiTrufi)}</b> siguiendo la línea naranja`;
 
     let alternativasHTML = '';
     if (candidatos.length > 1) {
-        alternativasHTML = '<div style="margin-top:10px;padding-top:8px;border-top:1px solid #eee;font-size:12px;color:#666;">' +
-            '<b>Otras opciones:</b><br>' +
-            candidatos.slice(1).map(c =>
-                `• ${c.linea.nombre} <span style="color:#16a085;">(${c.tipo})</span> — pasa a ${fmt(c.distHastaMiTrufi)} de ti`
-            ).join('<br>') +
-            '</div>';
+        alternativasHTML = '<div style="margin-top:10px;padding-top:8px;border-top:1px solid #eee;font-size:12px;color:#666;"><b>Otras opciones:</b><br>' +
+            candidatos.slice(1).map(c => {
+                const esMicroAlt = c.linea._cat === 'micro';
+                const iconoAlt = esMicroAlt ? '🚐' : '🚌';
+                const colorAlt = esMicroAlt ? '#f39c12' : '#16a085';
+                return `${iconoAlt} ${c.linea.nombre} <span style="color:${colorAlt};font-weight:700;">(${esMicroAlt ? 'MICRO' : 'TRUFI'})</span> — pasa a ${fmt(c.distHastaMiTrufi)} de ti`;
+            }).join('<br>') + '</div>';
     }
 
     const panel = document.getElementById('tripInfo');
     panel.innerHTML = `
         <div class="trip-panel-header">
-            <i class="fas fa-bus" style="color:#16a085;font-size:20px;"></i>
+            <span style="font-size:22px;">${icono}</span>
             <strong>${mejor.linea.nombre}</strong>
-            <span class="badge-linea">${mejor.tipo.toUpperCase()}</span>
+            <span class="badge-linea" style="background:${color};">${etiqueta}</span>
             <button onclick="toggleMinimizarViaje()" class="btn-toggle-panel" title="Minimizar">
                 <i class="fas fa-chevron-down"></i>
             </button>
@@ -1092,8 +952,8 @@ async function dibujarViaje(userPos, destPos, candidatos, destNombre) {
         <div class="trip-panel-body">
             <div style="font-size:13px;color:#555;line-height:1.7;">
                 🚏 <b>No tienes que ir a ninguna parada:</b><br>
-                <span style="display:block;margin-left:18px;margin-bottom:8px;">${msgTrufi}</span>
-                🚌 Viaja <b>${fmt(mejor.routeDist)}</b> en la trufi<br>
+                <span style="display:block;margin-left:18px;margin-bottom:8px;">${msgVehiculo}</span>
+                ${icono} Viaja <b>${fmt(mejor.routeDist)}</b> en ${esMicro ? 'el micro' : 'la trufi'}<br>
                 🚶 Baja y camina <b>${fmt(mejor.distHastaDestino)}</b> hasta el destino<br>
                 <hr style="border:none;border-top:1px solid #eee;margin:8px 0;">
                 <span style="font-size:14px;color:#1a2a3a;"><b>Total estimado:</b> ${fmt(mejor.total)} · Tarifa: ${mejor.linea.tarifa}</span>
@@ -1108,21 +968,13 @@ async function dibujarViaje(userPos, destPos, candidatos, destNombre) {
     panel.style.display = 'block';
 }
 
-// ============================================================
-// LIMPIAR EL VIAJE
-// ============================================================
 function limpiarViaje() {
-    if (window.watchViajeId) {
-        navigator.geolocation.clearWatch(window.watchViajeId);
-        window.watchViajeId = null;
-    }
+    if (window.watchViajeId) { navigator.geolocation.clearWatch(window.watchViajeId); window.watchViajeId = null; }
     if (window.viajeLayers && mapMainInstance) {
         window.viajeLayers.forEach(l => mapMainInstance.removeLayer(l));
         window.viajeLayers = [];
     }
-    _lastWalkRouteLat = null;
-    _lastWalkRouteLng = null;
-    _isFetchingWalkRoute = false;
+    _lastWalkRouteLat = null; _lastWalkRouteLng = null; _isFetchingWalkRoute = false;
     const panel = document.getElementById('tripInfo');
     panel.style.display = 'none';
     panel.classList.remove('minimizado');
@@ -1130,9 +982,16 @@ function limpiarViaje() {
     document.getElementById('inputOrigen').value = '';
 }
 
-// ============================================================
-// MINIMIZAR / EXPANDIR PANEL DE VIAJE
-// ============================================================
 function toggleMinimizarViaje() {
     document.getElementById('tripInfo').classList.toggle('minimizado');
 }
+
+// ============================================================
+// INICIO
+// ============================================================
+document.addEventListener('DOMContentLoaded', function() {
+    try { initMainMap(); } catch(e) {}
+    renderizarLineas();
+    renderizarMicros(); 
+    setTimeout(() => { document.getElementById('splashScreen').classList.add('fade-out'); setTimeout(() => showScreen('mainScreen'), 200); }, 800);
+});
