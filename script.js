@@ -456,7 +456,7 @@ function abrirDetalleMicro(id) {
 // PANTALLAS DE DATOS Y RECORRIDO (LÍNEAS)
 // ============================================================
 function mostrarDatos() {
-    origenDatos = 'trufi'; // Guardamos que venimos de un trufi
+    origenDatos = 'trufi'; 
     if (!lineaActual) return;
     document.getElementById('datosContent').innerHTML = `
         <div class="data-header-info">
@@ -473,9 +473,9 @@ function mostrarDatos() {
 }
 
 function mostrarRecorrido() {
-    origenRecorrido = 'trufi'; // Guardamos que venimos de un trufi
+    origenRecorrido = 'trufi'; 
     if (!lineaActual) return;
-    mostrarMapa(lineaActual.rutaIda, '#27ae60');
+    // NO RECREAR EL MAPA AQUÍ. Dejamos que el mapa de atrás siga vivo.
     
     let html = '<div class="stops-list">';
     lineaActual.paradasIda.forEach((parada) => {
@@ -515,7 +515,7 @@ function mostrarVuelta() {
 // PANTALLAS DE DATOS Y RECORRIDO (MICROS)
 // ============================================================
 function mostrarDatosMicro() {
-    origenDatos = 'micro'; // Guardamos que venimos de un micro
+    origenDatos = 'micro'; 
     if (!microActual) return;
     document.getElementById('datosContent').innerHTML = `
         <div class="data-header-info">
@@ -532,9 +532,9 @@ function mostrarDatosMicro() {
 }
 
 function mostrarRecorridoMicro() {
-    origenRecorrido = 'micro'; // Guardamos que venimos de un micro
+    origenRecorrido = 'micro'; 
     if (!microActual) return;
-    mostrarMapaMicro(microActual.rutaIda, '#27ae60');
+    // NO RECREAR EL MAPA AQUÍ.
     
     let html = '<div class="stops-list">';
     microActual.paradasIda.forEach((parada) => {
@@ -576,20 +576,20 @@ function mostrarVueltaMicro() {
 function cerrarDatos() { 
     if (origenDatos === 'micro') {
         showScreen('detalleMicroScreen');
-        setTimeout(() => { if (mapMicroInstance) mapMicroInstance.invalidateSize(); }, 200);
+        setTimeout(() => { if (mapMicroInstance) mapMicroInstance.invalidateSize(); }, 300);
     } else {
         showScreen('detalleScreen');
-        setTimeout(() => { if (mapInstance) mapInstance.invalidateSize(); }, 200);
+        setTimeout(() => { if (mapInstance) mapInstance.invalidateSize(); }, 300);
     }
 }
 
 function cerrarRecorrido() {
     if (origenRecorrido === 'micro') {
         showScreen('detalleMicroScreen');
-        setTimeout(() => { if (mapMicroInstance) mapMicroInstance.invalidateSize(); }, 200);
+        setTimeout(() => { if (mapMicroInstance) mapMicroInstance.invalidateSize(); }, 300);
     } else {
         showScreen('detalleScreen');
-        setTimeout(() => { if (mapInstance) mapInstance.invalidateSize(); }, 200);
+        setTimeout(() => { if (mapInstance) mapInstance.invalidateSize(); }, 300);
     }
 }
 
@@ -609,7 +609,7 @@ function mostrarMapa(coordenadas, color) {
     L.marker(coordenadas[0], { icon: L.divIcon({ html: '🟢', iconSize: [28, 28], className: 'custom-icon' }) }).addTo(mapInstance);
     L.marker(coordenadas[coordenadas.length - 1], { icon: L.divIcon({ html: '🔴', iconSize: [28, 28], className: 'custom-icon' }) }).addTo(mapInstance);
     
-    setTimeout(() => { if (mapInstance) { mapInstance.invalidateSize(); mapInstance.fitBounds(polyline.getBounds(), { padding: [40, 40] }); } }, 200);
+    setTimeout(() => { if (mapInstance) { mapInstance.invalidateSize(); mapInstance.fitBounds(polyline.getBounds(), { padding: [40, 40] }); } }, 300);
 }
 
 function mostrarMapaMicro(coordenadas, color) {
@@ -625,7 +625,7 @@ function mostrarMapaMicro(coordenadas, color) {
     L.marker(coordenadas[0], { icon: L.divIcon({ html: '🟢', iconSize: [28, 28], className: 'custom-icon' }) }).addTo(mapMicroInstance);
     L.marker(coordenadas[coordenadas.length - 1], { icon: L.divIcon({ html: '🔴', iconSize: [28, 28], className: 'custom-icon' }) }).addTo(mapMicroInstance);
     
-    setTimeout(() => { if (mapMicroInstance) { mapMicroInstance.invalidateSize(); mapMicroInstance.fitBounds(polyline.getBounds(), { padding: [40, 40] }); } }, 200);
+    setTimeout(() => { if (mapMicroInstance) { mapMicroInstance.invalidateSize(); mapMicroInstance.fitBounds(polyline.getBounds(), { padding: [40, 40] }); } }, 300);
 }
 
 // ============================================================
