@@ -162,3 +162,142 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial
 .user-location-dot { width: 20px; height: 20px; background-color: #2e86c1; border: 3px solid white; border-radius: 50%; box-shadow: 0 0 10px rgba(0,0,0,0.5); position: relative; }
 .user-location-dot::after { content: ''; position: absolute; top: -10px; left: -10px; right: -10px; bottom: -10px; border-radius: 50%; border: 3px solid #2e86c1; opacity: 0.5; animation: pulse-ring 1.5s infinite; }
 @keyframes pulse-ring { 0% { transform: scale(0.5); opacity: 0.8; } 100% { transform: scale(1.5); opacity: 0; } }
+
+/* ========================================== */
+/* PLANIFICADOR DE VIAJE */
+/* ========================================== */
+.trip-planner {
+    position: absolute;
+    top: 85px;
+    left: 16px;
+    right: 16px;
+    background: white;
+    border-radius: 16px;
+    padding: 10px;
+    z-index: 1000;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.trip-field {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #f5f7fa;
+    border-radius: 10px;
+    padding: 8px 12px;
+}
+
+.trip-field input {
+    border: none;
+    outline: none;
+    background: transparent;
+    flex: 1;
+    font-size: 14px;
+    padding: 4px 0;
+    font-family: inherit;
+}
+
+.trip-field i { font-size: 16px; width: 18px; }
+
+#btnBuscarViaje {
+    background: linear-gradient(135deg, #16a085, #1abc9c);
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 14px;
+    cursor: pointer;
+    letter-spacing: 0.5px;
+}
+
+#tripInfo {
+    display: none;
+    position: absolute;
+    bottom: 140px;
+    left: 16px;
+    right: 16px;
+    background: white;
+    border-radius: 14px;
+    padding: 14px;
+    z-index: 1000;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    animation: slideUp 0.3s ease;
+    max-height: 60vh;
+    overflow-y: auto;
+}
+
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ========================================== */
+/* PANEL DE VIAJE MINIMIZABLE */
+/* ========================================== */
+.trip-panel-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+    margin-bottom: 10px;
+}
+
+.trip-panel-header strong {
+    flex: 1;
+    font-size: 15px;
+    color: #1a2a3a;
+}
+
+.trip-panel-header .badge-linea {
+    background: #16a085;
+    color: white;
+    padding: 2px 10px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.btn-toggle-panel {
+    background: #eef2f5;
+    border: none;
+    color: #1a5276;
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    transition: transform 0.25s ease, background 0.2s;
+}
+
+.btn-toggle-panel:hover { background: #d6e4ee; }
+
+.trip-panel-body {
+    overflow: hidden;
+    max-height: 400px;
+    transition: max-height 0.35s ease, opacity 0.25s ease, margin 0.25s;
+    opacity: 1;
+}
+
+#tripInfo.minimizado .trip-panel-body {
+    max-height: 0;
+    opacity: 0;
+    margin: 0;
+}
+
+#tripInfo.minimizado .trip-panel-header {
+    padding-bottom: 0;
+    border-bottom: none;
+    margin-bottom: 0;
+}
+
+#tripInfo.minimizado .btn-toggle-panel i {
+    transform: rotate(180deg);
+}
