@@ -133,37 +133,209 @@ const lineasData = [
 ];
 
 // ============================================================
-// DATOS DE LOS MICROS
+// DATOS DE LOS MICROS (¡AQUÍ ESTÁ EL NUEVO MICRO 1!)
 // ============================================================
 const microsData = [
     {
         id: 1,
-        nombre: "Micro 1",
+        nombre: "Linea 1 Micros",
         horario: "6:00 am - 8:00 pm",
         frecuencia: "15 minutos",
         tarifa: "3.50 Bs.",
         niños: "Menores de 4 años no pagan",
         tipo: "micro",
-        paradasIda: ["Parada 1 (1ro de Mayo)", "Parada 2 (1ro de Mayo)"],
-        paradasVuelta: ["Parada 2 (1ro de Mayo)", "Parada 1 (1ro de Mayo)"],
+        // Paradas extraídas de tu archivo CSV
+        paradasIda: ["Parada 1 (1ro de mayo)", "Parada 2 (1ro de mayo)"],
+        paradasVuelta: ["Parada 2 (1ro de mayo)", "Parada 1 (1ro de mayo)"],
         rutaIda: [
-            [-22.0491277584535, -63.6820722458592], // Parada 1
-            [-21.907122311233, -63.6294254751378]   // Parada 2
+            [-22.049121, -63.682053], [-22.049101, -63.682164], [-22.04908, -63.682233], [-22.048927, -63.682219], 
+            [-22.048651, -63.682163], [-22.048383, -63.682102], [-22.048059, -63.682028], [-22.047465, -63.681902], 
+            [-22.046711, -63.6818], [-22.046453, -63.681745], [-22.046292, -63.681673], [-22.046152, -63.681564], 
+            [-22.045964, -63.6814], [-22.045682, -63.681185], [-22.045365, -63.68092], [-22.045075, -63.680692], 
+            [-22.044839, -63.680521], [-22.04445, -63.680214], [-22.044132, -63.679948], [-22.043866, -63.679753], 
+            [-22.043631, -63.679597], [-22.0434, -63.679527], [-22.0431, -63.679481], [-22.042773, -63.679456], 
+            [-22.042431, -63.679412], [-22.042086, -63.679352], [-22.041495, -63.679282], [-22.040763, -63.679172], 
+            [-22.039944, -63.679064], [-22.03903, -63.678943], [-22.037849, -63.678789], [-22.037071, -63.678693], 
+            [-22.036035, -63.678532], [-22.034682, -63.678368], [-22.033538, -63.678226], [-22.032438, -63.678073], 
+            [-22.031403, -63.67795], [-22.030457, -63.677825], [-22.029608, -63.677718], [-22.028606, -63.677567], 
+            [-22.027653, -63.677466], [-22.026522, -63.677326], [-22.025419, -63.677155], [-22.024602, -63.677038], 
+            [-22.023878, -63.676913], [-22.023161, -63.676833], [-22.023034, -63.676852], [-22.022891, -63.676821], 
+            [-22.022628, -63.676707], [-22.022474, -63.676653], [-22.022386, -63.676651], [-22.022353, -63.676688], 
+            [-22.022297, -63.676779], [-22.022229, -63.676863], [-22.022105, -63.676945], [-22.021938, -63.676994], 
+            [-22.021671, -63.676971], [-22.021367, -63.676895], [-22.02107, -63.676806], [-22.020813, -63.676701], 
+            [-22.020435, -63.676544], [-22.019966, -63.676334], [-22.019589, -63.676197], [-22.019191, -63.676047], 
+            [-22.018513, -63.675724], [-22.017967, -63.675515], [-22.017598, -63.675374], [-22.017108, -63.675169], 
+            [-22.016829, -63.675064], [-22.016769, -63.675064], [-22.016712, -63.675141], [-22.01665, -63.675304], 
+            [-22.016439, -63.675925], [-22.016237, -63.676531], [-22.015981, -63.677311], [-22.015826, -63.677786], 
+            [-22.015734, -63.67805], [-22.015707, -63.678085], [-22.015651, -63.678083], [-22.015527, -63.678029], 
+            [-22.01503, -63.677835], [-22.014575, -63.677644], [-22.014106, -63.677472], [-22.013572, -63.677282], 
+            [-22.013343, -63.677173], [-22.012986, -63.677008], [-22.012616, -63.676825], [-22.012223, -63.676603], 
+            [-22.011702, -63.676296], [-22.011435, -63.676137], [-22.011092, -63.67588], [-22.010714, -63.6756], 
+            [-22.010323, -63.675365], [-22.009777, -63.675077], [-22.009254, -63.674804], [-22.008945, -63.674634], 
+            [-22.008899, -63.674597], [-22.008885, -63.674536], [-22.00891, -63.674451], [-22.008994, -63.67426], 
+            [-22.009306, -63.673586], [-22.009526, -63.673028], [-22.009663, -63.672732], [-22.009788, -63.672432], 
+            [-22.00984, -63.672314], [-22.009853, -63.672235], [-22.009829, -63.67218], [-22.009715, -63.672127], 
+            [-22.00933, -63.671966], [-22.008913, -63.671795], [-22.008446, -63.671588], [-22.007879, -63.67135], 
+            [-22.00734, -63.671128], [-22.006677, -63.67084], [-22.005966, -63.670544], [-22.005405, -63.670308], 
+            [-22.004775, -63.670046], [-22.004278, -63.66985], [-22.004219, -63.669875], [-22.004178, -63.669954], 
+            [-22.004135, -63.670039], [-22.004099, -63.670112], [-22.004029, -63.670131], [-22.003944, -63.670097], 
+            [-22.00383, -63.670041], [-22.003659, -63.669962], [-22.003397, -63.669832], [-22.003271, -63.669769], 
+            [-22.003206, -63.66975], [-22.003144, -63.669779], [-22.003038, -63.670019], [-22.002934, -63.670254], 
+            [-22.002763, -63.670637], [-22.002594, -63.671007], [-22.002461, -63.671322], [-22.002293, -63.671702], 
+            [-22.00219, -63.671922], [-22.002066, -63.672201], [-22.00201, -63.672321], [-22.001993, -63.672373], 
+            [-22.002007, -63.672441], [-22.002086, -63.672505], [-22.002186, -63.672553], [-22.002305, -63.672608], 
+            [-22.002831, -63.67287], [-22.003201, -63.673068], [-22.00344, -63.673197], [-22.003696, -63.673319], 
+            [-22.003732, -63.673348], [-22.00374, -63.673419], [-22.003697, -63.673531], [-22.00354, -63.673857], 
+            [-22.003507, -63.67392], [-22.003461, -63.673933], [-22.0034, -63.673933], [-22.003335, -63.673962], 
+            [-22.003225, -63.674176], [-22.002953, -63.674809], [-22.002811, -63.675108], [-22.00263, -63.675489], 
+            [-22.002529, -63.675729], [-22.002451, -63.67592], [-22.002413, -63.675958], [-22.002361, -63.675976], 
+            [-22.002261, -63.675948], [-22.002096, -63.675867], [-22.001822, -63.675705], [-22.001468, -63.675544], 
+            [-22.001183, -63.675392], [-22.001034, -63.675317], [-22.000916, -63.675268], [-22.000873, -63.675277], 
+            [-22.000821, -63.675327], [-22.000703, -63.675576], [-22.000603, -63.675826], [-22.000521, -63.676024], 
+            [-22.000467, -63.676151], [-22.00043, -63.676199], [-22.000373, -63.676216], [-22.000249, -63.676158], 
+            [-22.000059, -63.676065], [-21.999792, -63.67592], [-21.999514, -63.675772], [-21.999225, -63.675626], 
+            [-21.998883, -63.675444], [-21.998411, -63.675189], [-21.997661, -63.674801], [-21.997024, -63.674461], 
+            [-21.996147, -63.673983], [-21.995959, -63.673885], [-21.995628, -63.673735], [-21.995361, -63.673607], 
+            [-21.995178, -63.67351], [-21.995064, -63.673409], [-21.99496, -63.673314], [-21.994849, -63.67325], 
+            [-21.994712, -63.673251], [-21.99456, -63.673303], [-21.994369, -63.673304], [-21.993841, -63.673228], 
+            [-21.993178, -63.673171], [-21.992549, -63.673156], [-21.992083, -63.673121], [-21.991749, -63.673089], 
+            [-21.991446, -63.673047], [-21.991101, -63.672973], [-21.990731, -63.672872], [-21.990443, -63.672773], 
+            [-21.990206, -63.67265], [-21.990003, -63.672495], [-21.989832, -63.672392], [-21.98963, -63.672356], 
+            [-21.989381, -63.672324], [-21.989155, -63.672233], [-21.988897, -63.672127], [-21.98853, -63.671966], 
+            [-21.988196, -63.671813], [-21.987919, -63.671694], [-21.987622, -63.671563], [-21.98735, -63.671458], 
+            [-21.986924, -63.671266], [-21.986543, -63.671092], [-21.986228, -63.670961], [-21.985822, -63.670784], 
+            [-21.985314, -63.670578], [-21.984712, -63.670317], [-21.984222, -63.670116], [-21.983803, -63.669947], 
+            [-21.983372, -63.669758], [-21.982949, -63.669575], [-21.982466, -63.669378], [-21.981969, -63.669168], 
+            [-21.981496, -63.668957], [-21.98094, -63.668726], [-21.980371, -63.668496], [-21.97984, -63.66827], 
+            [-21.979372, -63.668062], [-21.97891, -63.667876], [-21.978612, -63.66774], [-21.978301, -63.667605], 
+            [-21.977956, -63.66745], [-21.977519, -63.667261], [-21.976996, -63.667041], [-21.976553, -63.666853], 
+            [-21.976035, -63.666628], [-21.975543, -63.666424], [-21.97504, -63.666206], [-21.974527, -63.665994], 
+            [-21.97405, -63.665782], [-21.973625, -63.665614], [-21.973226, -63.665431], [-21.972844, -63.665271], 
+            [-21.97231, -63.665061], [-21.971716, -63.664791], [-21.971238, -63.664589], [-21.970716, -63.664371], 
+            [-21.970183, -63.664147], [-21.969677, -63.663918], [-21.9694, -63.663797], [-21.969151, -63.663671], 
+            [-21.969011, -63.663555], [-21.968858, -63.663439], [-21.968705, -63.663395], [-21.96851, -63.663367], 
+            [-21.968194, -63.663282], [-21.967353, -63.662925], [-21.966643, -63.662624], [-21.966059, -63.662374], 
+            [-21.96561, -63.662198], [-21.965096, -63.662003], [-21.964438, -63.661718], [-21.963656, -63.661386], 
+            [-21.962693, -63.660982], [-21.961782, -63.660589], [-21.961069, -63.660285], [-21.960384, -63.659988], 
+            [-21.959653, -63.659667], [-21.95896, -63.659358], [-21.958216, -63.659027], [-21.957434, -63.658672], 
+            [-21.956831, -63.65838], [-21.956092, -63.658005], [-21.955457, -63.657707], [-21.954744, -63.657357], 
+            [-21.954144, -63.657059], [-21.953685, -63.656831], [-21.953218, -63.656611], [-21.95288, -63.656448], 
+            [-21.952577, -63.656301], [-21.952126, -63.65608], [-21.951653, -63.655849], [-21.951167, -63.655616], 
+            [-21.950705, -63.655396], [-21.950218, -63.655158], [-21.949791, -63.65494], [-21.949384, -63.654724], 
+            [-21.948945, -63.654505], [-21.948421, -63.654246], [-21.947867, -63.653995], [-21.947405, -63.65378], 
+            [-21.94707, -63.653622], [-21.946617, -63.653403], [-21.946132, -63.653165], [-21.945763, -63.652984], 
+            [-21.945299, -63.652771], [-21.944844, -63.652546], [-21.94432, -63.652289], [-21.943886, -63.652071], 
+            [-21.943443, -63.651854], [-21.942948, -63.65161], [-21.942363, -63.651331], [-21.941733, -63.651023], 
+            [-21.941216, -63.650767], [-21.940675, -63.650517], [-21.940106, -63.650225], [-21.939331, -63.649865], 
+            [-21.938799, -63.649611], [-21.938521, -63.649474], [-21.938083, -63.649261], [-21.93763, -63.649045], 
+            [-21.936988, -63.648731], [-21.936342, -63.64842], [-21.935656, -63.648091], [-21.93496, -63.647752], 
+            [-21.934374, -63.647462], [-21.933746, -63.647156], [-21.933104, -63.646843], [-21.932511, -63.646559], 
+            [-21.931739, -63.646197], [-21.931242, -63.64597], [-21.930669, -63.645718], [-21.930118, -63.645492], 
+            [-21.929447, -63.645244], [-21.928798, -63.645004], [-21.928232, -63.644812], [-21.927682, -63.644618], 
+            [-21.927068, -63.644398], [-21.926654, -63.64425], [-21.926173, -63.644074], [-21.925514, -63.64384], 
+            [-21.924798, -63.643583], [-21.92428, -63.643401], [-21.923827, -63.643243], [-21.923383, -63.643079], 
+            [-21.922913, -63.642919], [-21.922444, -63.642744], [-21.921959, -63.642578], [-21.921425, -63.642387], 
+            [-21.920769, -63.642153], [-21.920004, -63.641886], [-21.919229, -63.641614], [-21.918646, -63.641413], 
+            [-21.91814, -63.641227], [-21.917663, -63.641045], [-21.917169, -63.640869], [-21.91671, -63.640712], 
+            [-21.916151, -63.640521], [-21.915785, -63.640391], [-21.915408, -63.640261], [-21.914715, -63.640029], 
+            [-21.914199, -63.639836], [-21.913705, -63.639654], [-21.913197, -63.639469], [-21.912671, -63.639276], 
+            [-21.912055, -63.639061], [-21.911456, -63.63885], [-21.910887, -63.638662], [-21.910157, -63.638386], 
+            [-21.909753, -63.638246], [-21.909309, -63.638097], [-21.908764, -63.637897], [-21.908248, -63.637664], 
+            [-21.90773, -63.637414], [-21.907286, -63.637153], [-21.906796, -63.636823], [-21.906358, -63.6365], 
+            [-21.906003, -63.63623], [-21.90569, -63.635967], [-21.905261, -63.635575], [-21.904933, -63.635292], 
+            [-21.904497, -63.634908], [-21.903835, -63.634337], [-21.903682, -63.634213], [-21.903663, -63.634103], 
+            [-21.90366, -63.633966], [-21.903855, -63.633719], [-21.904156, -63.633373], [-21.904336, -63.633134], 
+            [-21.904547, -63.632852], [-21.904732, -63.632624], [-21.90491, -63.632394], [-21.905122, -63.632119], 
+            [-21.905393, -63.631727], [-21.905662, -63.631381], [-21.905905, -63.631043], [-21.906346, -63.630432], 
+            [-21.906616, -63.630055], [-21.90689, -63.629694], [-21.90701, -63.629548]
         ],
         rutaVuelta: [
-            [-21.907122311233, -63.6294254751378],  // Parada 2
-            [-22.0491277584535, -63.6820722458592]  // Parada 1
+            [-21.90711, -63.629463], [-21.906983, -63.629392], [-21.906823, -63.629617], [-21.905645, -63.631258], 
+            [-21.904938, -63.632226], [-21.904842, -63.632442], [-21.9039, -63.633619], [-21.903534, -63.634047], 
+            [-21.903506, -63.634125], [-21.903635, -63.634269], [-21.903944, -63.634531], [-21.904533, -63.635037], 
+            [-21.90555, -63.63588], [-21.906268, -63.636494], [-21.906812, -63.636895], [-21.907294, -63.637206], 
+            [-21.907723, -63.637452], [-21.908103, -63.637647], [-21.908511, -63.637829], [-21.90891, -63.637991], 
+            [-21.909241, -63.638115], [-21.909583, -63.638238], [-21.910011, -63.638385], [-21.910395, -63.63853], 
+            [-21.91075, -63.638654], [-21.911141, -63.638791], [-21.911436, -63.63889], [-21.911805, -63.639016], 
+            [-21.912373, -63.639213], [-21.912898, -63.639401], [-21.913277, -63.639544], [-21.913651, -63.639676], 
+            [-21.91467, -63.640048], [-21.91523, -63.640235], [-21.915462, -63.640319], [-21.915802, -63.640446], 
+            [-21.91625, -63.640592], [-21.916817, -63.640786], [-21.917478, -63.641006], [-21.918593, -63.641422], 
+            [-21.919426, -63.641721], [-21.920731, -63.642175], [-21.922344, -63.642747], [-21.924442, -63.64349], 
+            [-21.92629, -63.644161], [-21.92803, -63.644773], [-21.929175, -63.645183], [-21.929884, -63.64544], 
+            [-21.930535, -63.645697], [-21.931065, -63.645927], [-21.931414, -63.646082], [-21.931798, -63.646258], 
+            [-21.932317, -63.646506], [-21.932752, -63.646714], [-21.933167, -63.646913], [-21.933507, -63.647073], 
+            [-21.9343, -63.647462], [-21.934706, -63.647661], [-21.934994, -63.647801], [-21.935486, -63.64804], 
+            [-21.935934, -63.648261], [-21.936335, -63.64845], [-21.937166, -63.648855], [-21.937757, -63.649146], 
+            [-21.938461, -63.649478], [-21.939003, -63.649748], [-21.93936, -63.649921], [-21.939906, -63.650172], 
+            [-21.940441, -63.650434], [-21.940816, -63.650614], [-21.941165, -63.650788], [-21.941677, -63.651033], 
+            [-21.942132, -63.651255], [-21.942605, -63.651477], [-21.942982, -63.651667], [-21.943544, -63.651942], 
+            [-21.944042, -63.652188], [-21.944358, -63.652348], [-21.945045, -63.652681], [-21.945613, -63.65295], 
+            [-21.946131, -63.653212], [-21.94655, -63.653415], [-21.947256, -63.653744], [-21.947949, -63.654073], 
+            [-21.948345, -63.654252], [-21.949065, -63.654604], [-21.949701, -63.65493], [-21.950132, -63.655156], 
+            [-21.950762, -63.655459], [-21.951455, -63.655804], [-21.951913, -63.656016], [-21.952757, -63.656425], 
+            [-21.953594, -63.656824], [-21.954302, -63.657173], [-21.955099, -63.657572], [-21.955715, -63.65786], 
+            [-21.956504, -63.65824], [-21.957145, -63.65856], [-21.957784, -63.65887], [-21.958553, -63.659209], 
+            [-21.959273, -63.659523], [-21.960035, -63.659863], [-21.960727, -63.66017], [-21.961533, -63.660521], 
+            [-21.962099, -63.660765], [-21.962873, -63.661093], [-21.963482, -63.661347], [-21.964286, -63.661694], 
+            [-21.964975, -63.661995], [-21.965475, -63.662236], [-21.9664, -63.662647], [-21.967352, -63.66305], 
+            [-21.968252, -63.663437], [-21.968506, -63.663616], [-21.968661, -63.663752], [-21.968864, -63.663807], 
+            [-21.969114, -63.663848], [-21.96946, -63.663946], [-21.970791, -63.664518], [-21.972441, -63.665225], 
+            [-21.974891, -63.666263], [-21.976424, -63.666941], [-21.977615, -63.667439], [-21.979311, -63.668167], 
+            [-21.98123, -63.668967], [-21.982744, -63.669613], [-21.98439, -63.670332], [-21.985783, -63.670933], 
+            [-21.987533, -63.67167], [-21.988981, -63.672285], [-21.989485, -63.672525], [-21.989664, -63.672668], 
+            [-21.989809, -63.672738], [-21.990093, -63.672773], [-21.990348, -63.672849], [-21.990687, -63.67298], 
+            [-21.99101, -63.673069], [-21.991318, -63.673154], [-21.991584, -63.673199], [-21.991812, -63.673225], 
+            [-21.992006, -63.673245], [-21.992735, -63.673268], [-21.993186, -63.67328], [-21.993522, -63.673309], 
+            [-21.993819, -63.673343], [-21.994108, -63.673384], [-21.994404, -63.673462], [-21.99454, -63.673526], 
+            [-21.994642, -63.673609], [-21.994727, -63.673692], [-21.994915, -63.673707], [-21.995059, -63.673668], 
+            [-21.995267, -63.673709], [-21.995391, -63.673741], [-21.995652, -63.673846], [-21.995945, -63.673988], 
+            [-21.99616, -63.674088], [-21.996408, -63.674225], [-21.996638, -63.674357], [-21.996885, -63.674471], 
+            [-21.997205, -63.674649], [-21.99756, -63.674843], [-21.997809, -63.674977], [-21.99807, -63.675116], 
+            [-21.998358, -63.675272], [-21.998614, -63.675412], [-21.998913, -63.675561], [-21.999238, -63.675745], 
+            [-21.999512, -63.675891], [-21.999925, -63.676118], [-22.000266, -63.676292], [-22.000523, -63.676425], 
+            [-22.000804, -63.676575], [-22.001074, -63.676709], [-22.00113, -63.676703], [-22.001202, -63.676579], 
+            [-22.001308, -63.676327], [-22.001625, -63.675631], [-22.001915, -63.674949], [-22.002252, -63.674206], 
+            [-22.002512, -63.673635], [-22.002585, -63.673555], [-22.002643, -63.673498], [-22.002786, -63.673118], 
+            [-22.00291, -63.672796], [-22.003281, -63.671984], [-22.003483, -63.671513], [-22.003771, -63.670894], 
+            [-22.004111, -63.67016], [-22.004176, -63.67001], [-22.004222, -63.669978], [-22.004334, -63.669999], 
+            [-22.004526, -63.67009], [-22.005271, -63.670407], [-22.006048, -63.670732], [-22.006791, -63.67103], 
+            [-22.007519, -63.671332], [-22.008284, -63.671643], [-22.008581, -63.671779], [-22.008831, -63.67188], 
+            [-22.008875, -63.671938], [-22.008856, -63.67205], [-22.008806, -63.672158], [-22.008697, -63.672428], 
+            [-22.008531, -63.672801], [-22.008349, -63.673204], [-22.008102, -63.673721], [-22.007717, -63.67459], 
+            [-22.007525, -63.675023], [-22.0075, -63.675102], [-22.007496, -63.675206], [-22.007565, -63.675265], 
+            [-22.008103, -63.675525], [-22.009021, -63.67597], [-22.009953, -63.676454], [-22.010725, -63.676875], 
+            [-22.011451, -63.677248], [-22.012066, -63.677556], [-22.012991, -63.678019], [-22.013742, -63.678369], 
+            [-22.014036, -63.678483], [-22.014119, -63.678509], [-22.014184, -63.678492], [-22.014216, -63.678445], 
+            [-22.014258, -63.678346], [-22.014477, -63.677702], [-22.014712, -63.677068], [-22.014908, -63.676467], 
+            [-22.014963, -63.676384], [-22.01507, -63.676393], [-22.015635, -63.676627], [-22.01615, -63.676848], 
+            [-22.016991, -63.677193], [-22.017813, -63.677549], [-22.018538, -63.677844], [-22.01912, -63.678068], 
+            [-22.019707, -63.678268], [-22.01978, -63.678274], [-22.01983, -63.678174], [-22.019893, -63.678009], 
+            [-22.020137, -63.677365], [-22.020377, -63.676762], [-22.020423, -63.676685], [-22.020467, -63.676662], 
+            [-22.020548, -63.676678], [-22.020667, -63.676735], [-22.020912, -63.676851], [-22.021091, -63.676922], 
+            [-22.021324, -63.677016], [-22.021754, -63.677144], [-22.022083, -63.677236], [-22.022481, -63.677376], 
+            [-22.02269, -63.677446], [-22.022756, -63.677444], [-22.022813, -63.677393], [-22.022869, -63.677264], 
+            [-22.02292, -63.677153], [-22.022983, -63.677138], [-22.023125, -63.677164], [-22.023467, -63.677268], 
+            [-22.023844, -63.677376], [-22.024246, -63.677458], [-22.02447, -63.677494], [-22.024585, -63.677483], 
+            [-22.024714, -63.677412], [-22.024793, -63.677351], [-22.024928, -63.677274], [-22.025075, -63.67725], 
+            [-22.025243, -63.677271], [-22.025833, -63.677354], [-22.026459, -63.67744], [-22.027096, -63.677524], 
+            [-22.02777, -63.677618], [-22.028428, -63.677699], [-22.028987, -63.67777], [-22.029717, -63.677861], 
+            [-22.030155, -63.677922], [-22.030734, -63.677996], [-22.031242, -63.67806], [-22.032073, -63.678177], 
+            [-22.032852, -63.678272], [-22.033754, -63.678392], [-22.034607, -63.678503], [-22.035474, -63.678616], 
+            [-22.03624, -63.678735], [-22.037354, -63.678864], [-22.038439, -63.678998], [-22.039386, -63.679123], 
+            [-22.040453, -63.679257], [-22.041859, -63.679446], [-22.042271, -63.679497], [-22.042774, -63.679584], 
+            [-22.043143, -63.679699], [-22.043502, -63.679839], [-22.043953, -63.680026], [-22.044165, -63.680092], 
+            [-22.044325, -63.680108], [-22.044618, -63.680142], [-22.045198, -63.680253], [-22.04586, -63.680389], 
+            [-22.046608, -63.680529], [-22.047226, -63.680648], [-22.047657, -63.680789], [-22.048024, -63.680847], 
+            [-22.048202, -63.680886], [-22.048279, -63.680873], [-22.04831, -63.680825], [-22.048367, -63.680778], 
+            [-22.048483, -63.68079], [-22.048885, -63.680919], [-22.049287, -63.681045], [-22.049329, -63.681094], 
+            [-22.049296, -63.681302], [-22.049237, -63.681578], [-22.049168, -63.681889], [-22.04912, -63.682057]
         ]
     }
 ];
 
-// ============================================================
-// VARIABLES GLOBALES
-// ============================================================
 let lineaActual = null;
 let microActual = null;
 let mapInstance = null;
-let mapMicroInstance = null;
 let mapMainInstance = null;
 let lineaVista = 'ida';   
 let microVista = 'ida';
@@ -173,9 +345,6 @@ let miMarcadorGps = null;
 let ubicacionMarkerMain = null; 
 let watchMainId = null; 
 
-// ============================================================
-// LÓGICA DE PANTALLAS
-// ============================================================
 function initMainMap() {
     if (typeof L === 'undefined') return;
     const center = [-22.015, -63.678];
@@ -192,26 +361,19 @@ function showScreen(screenId) {
     if (screenId === 'microsScreen') renderizarMicros();
     if (screenId === 'mainScreen' && mapMainInstance) setTimeout(() => mapMainInstance.invalidateSize(), 300);
     if (screenId === 'detalleScreen' && mapInstance) setTimeout(() => mapInstance.invalidateSize(), 300);
-    if (screenId === 'detalleMicroScreen' && mapMicroInstance) setTimeout(() => mapMicroInstance.invalidateSize(), 300);
 }
 
 function cerrarDetalle() {
-    if (watchGpsId) { navigator.geolocation.clearWatch(watchGpsId); watchGpsId = null; }
+    if (watchGpsId) {
+        navigator.geolocation.clearWatch(watchGpsId);
+        watchGpsId = null;
+    }
     miMarcadorGps = null;
+
     if (mapInstance) { try { mapInstance.remove(); } catch (e) {} mapInstance = null; }
     showScreen('lineasScreen');
 }
 
-function cerrarDetalleMicro() {
-    if (watchGpsId) { navigator.geolocation.clearWatch(watchGpsId); watchGpsId = null; }
-    miMarcadorGps = null;
-    if (mapMicroInstance) { try { mapMicroInstance.remove(); } catch (e) {} mapMicroInstance = null; }
-    showScreen('microsScreen');
-}
-
-// ============================================================
-// RENDERIZAR LISTAS
-// ============================================================
 function renderizarLineas() {
     const container = document.getElementById('lineasList');
     container.innerHTML = lineasData.map(l => `
@@ -224,7 +386,11 @@ function renderizarLineas() {
         </div>
     `).join('');
 }
+function filtrarLineas() { renderizarLineas(); }
 
+// ============================================================
+// LÓGICA DE MICROS
+// ============================================================
 function renderizarMicros() {
     const container = document.getElementById('microsList');
     if (microsData.length === 0) {
@@ -242,12 +408,8 @@ function renderizarMicros() {
     `).join('');
 }
 
-function filtrarLineas() { renderizarLineas(); }
 function filtrarMicros() { renderizarMicros(); }
 
-// ============================================================
-// LÓGICA DE DETALLES
-// ============================================================
 function abrirDetalle(id) {
     lineaActual = lineasData.find(l => l.id === id);
     if (!lineaActual) return;
@@ -262,23 +424,6 @@ function abrirDetalle(id) {
     setTimeout(() => { mostrarMapa(lineaActual.rutaIda, '#2e86c1', 'map'); }, 150);
 }
 
-function abrirDetalleMicro(id) {
-    microActual = microsData.find(m => m.id === id);
-    if (!microActual) return;
-    
-    microVista = 'ida';
-    document.getElementById('detalleMicroTitulo').textContent = microActual.nombre;
-    showScreen('detalleMicroScreen');
-    
-    const iconoSync = document.getElementById('iconoVueltaMicro');
-    if(iconoSync) iconoSync.style.color = '#c5e16a';
-
-    setTimeout(() => { mostrarMapa(microActual.rutaIda, '#27ae60', 'mapMicro'); }, 150);
-}
-
-// ============================================================
-// PANTALLAS DE DATOS Y RECORRIDO (LÍNEAS)
-// ============================================================
 function mostrarDatos() {
     if (!lineaActual) return;
     document.getElementById('datosContent').innerHTML = `
@@ -308,14 +453,16 @@ function mostrarRecorrido() {
                     <div class="stop-dot" style="background: #2e86c1; border-color: #bbdefb;"></div>
                     <div class="stop-line"></div>
                 </div>
-                <div class="stop-info"><div class="stop-name">${parada}</div></div>
+                <div class="stop-info">
+                    <div class="stop-name">${parada}</div>
+                </div>
             </div>
         `;
     });
     html += '</div>';
     
     document.getElementById('recorridoContent').innerHTML = html;
-    document.getElementById('recorridoTituloHeader').textContent = "Recorrido (Ida)";
+    document.getElementById('recorridoTituloHeader').textContent = "Recorrido";
     showScreen('recorridoScreen');
 }
 function cerrarRecorrido() {
@@ -338,94 +485,27 @@ function mostrarVuelta() {
     }
 }
 
-// ============================================================
-// PANTALLAS DE DATOS Y RECORRIDO (MICROS)
-// ============================================================
-function mostrarDatosMicro() {
-    if (!microActual) return;
-    document.getElementById('datosContent').innerHTML = `
-        <div class="data-header-info">
-            <div class="data-icon-box" style="color:#f39c12;"><i class="fas fa-shuttle-van"></i></div>
-            <h2>${microActual.nombre}</h2>
-        </div>
-        <div class="data-row"><div class="data-label">Horario:</div><div class="data-value">${microActual.horario}</div></div>
-        <div class="data-row border-bottom"><div class="data-label">Frecuencia:</div><div class="data-value">${microActual.frecuencia}</div></div>
-        <div class="data-row"><div class="data-label">Tarifa:</div><div class="data-value"><div>General: ${microActual.tarifa}</div></div></div>
-        <div class="data-row border-bottom"><div class="data-label">Niños:</div><div class="data-value">${microActual.niños}</div></div>
-    `;
-    document.getElementById('datosTituloHeader').textContent = "Datos del Micro";
-    showScreen('datosScreen');
-}
-
-function mostrarRecorridoMicro() {
-    if (!microActual) return;
-    mostrarMapa(microActual.rutaIda, '#27ae60', 'mapMicro');
-    
-    let html = '<div class="stops-list">';
-    microActual.paradasIda.forEach((parada) => {
-        html += `
-            <div class="stop-row">
-                <div class="stop-indicator">
-                    <div class="stop-dot" style="background: #27ae60; border-color: #a9dfbf;"></div>
-                    <div class="stop-line"></div>
-                </div>
-                <div class="stop-info"><div class="stop-name">${parada}</div></div>
-            </div>
-        `;
-    });
-    html += '</div>';
-    
-    document.getElementById('recorridoContent').innerHTML = html;
-    document.getElementById('recorridoTituloHeader').textContent = "Recorrido (Ida)";
-    showScreen('recorridoScreen');
-}
-
-function mostrarVueltaMicro() {
-    if (!microActual) return;
-    const iconoSync = document.getElementById('iconoVueltaMicro');
-
-    if (microVista === 'ida') {
-        microVista = 'vuelta';
-        mostrarMapa(microActual.rutaVuelta, '#f39c12', 'mapMicro');
-        if (iconoSync) iconoSync.style.color = '#f39c12'; 
-    } else {
-        microVista = 'ida';
-        mostrarMapa(microActual.rutaIda, '#27ae60', 'mapMicro');
-        if (iconoSync) iconoSync.style.color = '#c5e16a'; 
-    }
-}
-
-function cerrarRecorridoMicro() {
-    showScreen('detalleMicroScreen');
-    setTimeout(() => { if (mapMicroInstance) mapMicroInstance.invalidateSize(); }, 200);
-}
-
-// ============================================================
-// MAPAS Y GPS
-// ============================================================
-function mostrarMapa(coordenadas, color, mapaId) {
+function mostrarMapa(coordenadas, color) {
     if (typeof L === 'undefined' || !coordenadas) return;
-    
-    let instanciaMapa = mapaId === 'map' ? mapInstance : mapMicroInstance;
-    if (instanciaMapa) { try { instanciaMapa.remove(); } catch (e) {} }
+    if (mapInstance) { try { mapInstance.remove(); } catch (e) {} mapInstance = null; }
     
     const center = [coordenadas.reduce((s, c) => s + c[0], 0) / coordenadas.length, coordenadas.reduce((s, c) => s + c[1], 0) / coordenadas.length];
-    instanciaMapa = L.map(mapaId, { zoomControl: false }).setView(center, 15);
-    L.tileLayer('https://mt1.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', { maxZoom: 20, subdomains: ['mt0', 'mt1', 'mt2', 'mt3'] }).addTo(instanciaMapa);
+    mapInstance = L.map('map', { zoomControl: false }).setView(center, 15);
+    L.tileLayer('https://mt1.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', { maxZoom: 20, subdomains: ['mt0', 'mt1', 'mt2', 'mt3'] }).addTo(mapInstance);
     
-    const polyline = L.polyline(coordenadas, { color: color, weight: 5, opacity: 0.9 }).addTo(instanciaMapa);
+    const polyline = L.polyline(coordenadas, { color: color, weight: 5, opacity: 0.9 }).addTo(mapInstance);
     
-    L.marker(coordenadas[0], { icon: L.divIcon({ html: '🟢', iconSize: [28, 28], className: 'custom-icon' }) }).addTo(instanciaMapa);
-    L.marker(coordenadas[coordenadas.length - 1], { icon: L.divIcon({ html: '🔴', iconSize: [28, 28], className: 'custom-icon' }) }).addTo(instanciaMapa);
+    L.marker(coordenadas[0], { icon: L.divIcon({ html: '🟢', iconSize: [28, 28], className: 'custom-icon' }) }).addTo(mapInstance);
+    L.marker(coordenadas[coordenadas.length - 1], { icon: L.divIcon({ html: '🔴', iconSize: [28, 28], className: 'custom-icon' }) }).addTo(mapInstance);
     
-    setTimeout(() => { if (instanciaMapa) { instanciaMapa.invalidateSize(); instanciaMapa.fitBounds(polyline.getBounds(), { padding: [40, 40] }); } }, 200);
-    
-    if (mapaId === 'map') mapInstance = instanciaMapa;
-    else mapMicroInstance = instanciaMapa;
+    setTimeout(() => { if (mapInstance) { mapInstance.invalidateSize(); mapInstance.fitBounds(polyline.getBounds(), { padding: [40, 40] }); } }, 200);
 }
 
 function ubicarme() {
-    if (!navigator.geolocation) { alert("GPS no soportado."); return; }
+    if (!navigator.geolocation) {
+        alert("Tu navegador no soporta geolocalización.");
+        return;
+    }
     const btn = document.getElementById('btnUbicarme');
     if (btn) btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
 
@@ -435,9 +515,15 @@ function ubicarme() {
         function(pos) {
             const ubi = [pos.coords.latitude, pos.coords.longitude];
             if (mapMainInstance) { 
-                if (ubicacionMarkerMain) mapMainInstance.removeLayer(ubicacionMarkerMain);
+                if (ubicacionMarkerMain) {
+                    mapMainInstance.removeLayer(ubicacionMarkerMain); 
+                }
                 mapMainInstance.setView(ubi, 16); 
-                const iconoGps = L.divIcon({ className: 'custom-icon', html: '<div class="user-location-dot"></div>', iconSize: [20, 20] });
+                const iconoGps = L.divIcon({
+                    className: 'custom-icon',
+                    html: '<div class="user-location-dot"></div>',
+                    iconSize: [20, 20]
+                });
                 ubicacionMarkerMain = L.marker(ubi, { icon: iconoGps }).addTo(mapMainInstance).bindPopup('¡Aquí estás!').openPopup(); 
             }
             navigator.geolocation.clearWatch(watchMainId);
@@ -445,7 +531,7 @@ function ubicarme() {
             if (btn) btn.innerHTML = '<i class="fas fa-crosshairs"></i>';
         },
         function(error) {
-            alert("Error al obtener ubicación.");
+            alert("No se pudo obtener la ubicación. Asegúrate de tener el GPS encendido.");
             if (btn) btn.innerHTML = '<i class="fas fa-crosshairs"></i>';
             navigator.geolocation.clearWatch(watchMainId);
             watchMainId = null;
@@ -456,26 +542,36 @@ function ubicarme() {
 
 function ubicarmeLinea() {
     if (!navigator.geolocation || !mapInstance) return;
+    
     const btn = document.getElementById('btnUbicarmeLinea');
     if (!btn) return;
     btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
 
-    if (watchGpsId) navigator.geolocation.clearWatch(watchGpsId);
+    if (watchGpsId) {
+        navigator.geolocation.clearWatch(watchGpsId);
+    }
 
     watchGpsId = navigator.geolocation.watchPosition(
         function(pos) {
             const ubi = [pos.coords.latitude, pos.coords.longitude];
+            
             if (!miMarcadorGps) {
-                const iconoGps = L.divIcon({ className: 'custom-icon', html: '<div class="user-location-dot"></div>', iconSize: [20, 20] });
+                const iconoGps = L.divIcon({
+                    className: 'custom-icon',
+                    html: '<div class="user-location-dot"></div>',
+                    iconSize: [20, 20]
+                });
+                
                 miMarcadorGps = L.marker(ubi, { icon: iconoGps }).addTo(mapInstance);
                 mapInstance.setView(ubi, 17);
             } else {
                 miMarcadorGps.setLatLng(ubi);
             }
+            
             btn.innerHTML = '<i class="fas fa-crosshairs"></i>';
         },
         function(error) {
-            alert("Error de GPS.");
+            alert("No se pudo rastrear tu ubicación. Revisa el GPS.");
             btn.innerHTML = '<i class="fas fa-crosshairs"></i>';
         },
         { enableHighAccuracy: true, maximumAge: 0, timeout: 10000 }
@@ -484,16 +580,451 @@ function ubicarmeLinea() {
 
 function ubicarmeMicro() {}
 
-// FUNCIONES DE CONTACTO
-function abrirContacto() { showScreen('contactoScreen'); }
+function abrirContacto() {
+    showScreen('contactoScreen');
+}
+
 function cerrarContacto() {
     showScreen('mainScreen');
     setTimeout(() => { if (mapMainInstance) mapMainInstance.invalidateSize(); }, 300);
 }
 
-// INICIO
 document.addEventListener('DOMContentLoaded', function() {
     try { initMainMap(); } catch(e) {}
     renderizarLineas();
+    renderizarMicros(); // Inicializar también los micros
     setTimeout(() => { document.getElementById('splashScreen').classList.add('fade-out'); setTimeout(() => showScreen('mainScreen'), 200); }, 800);
 });
+
+
+// ============================================================
+// PLANIFICADOR DE VIAJE YACUGO — v2 (trufi que pasa cerca de MÍ)
+// ============================================================
+
+const MAX_DIST_TRUFI = 8000;
+const MAX_DIST_DEST  = 8000;
+
+// Distancia haversine en metros
+function haversine(lat1, lon1, lat2, lon2) {
+    const R = 6371000;
+    const toRad = d => d * Math.PI / 180;
+    const dLat = toRad(lat2 - lat1);
+    const dLon = toRad(lon2 - lon1);
+    const a = Math.sin(dLat/2)**2 +
+              Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) *
+              Math.sin(dLon/2)**2;
+    return 2 * R * Math.asin(Math.sqrt(a));
+}
+
+// Punto más cercano en un segmento [a→b] al punto p
+function closestPointOnSegment(p, a, b) {
+    const lat0 = (a[0] + b[0]) / 2;
+    const rad = lat0 * Math.PI / 180;
+    const ax = a[1] * Math.cos(rad), ay = a[0];
+    const bx = b[1] * Math.cos(rad), by = b[0];
+    const px = p[1] * Math.cos(rad), py = p[0];
+    const dx = bx - ax, dy = by - ay;
+    const len2 = dx*dx + dy*dy;
+    let t = len2 === 0 ? 0 : ((px - ax)*dx + (py - ay)*dy) / len2;
+    t = Math.max(0, Math.min(1, t));
+    const cx = ax + t*dx, cy = ay + t*dy;
+    const clng = cx / Math.cos(rad);
+    return {
+        point: [cy, clng],
+        distance: haversine(p[0], p[1], cy, clng)
+    };
+}
+
+// Punto más cercano sobre una ruta entera
+function findClosestOnRoute(route, target) {
+    let best = null;
+    for (let i = 0; i < route.length - 1; i++) {
+        const r = closestPointOnSegment(target, route[i], route[i+1]);
+        if (!best || r.distance < best.distance) {
+            best = { point: r.point, distance: r.distance, segmentIndex: i };
+        }
+    }
+    return best;
+}
+
+// Geocodificar texto → coordenadas con Nominatim
+async function geocodificar(query) {
+    const viewbox = '-63.72,-21.96,-63.62,-22.05';
+    const url = `https://nominatim.openstreetmap.org/search?format=json&limit=5&countrycodes=bo&viewbox=${viewbox}&bounded=1&q=${encodeURIComponent(query)}`;
+    const res = await fetch(url, { headers: { 'Accept': 'application/json' } });
+    return await res.json();
+}
+
+// Buscar coincidencias en las paradas locales (offline)
+function buscarEnParadas(query) {
+    const q = query.toLowerCase()
+        .normalize('NFD').replace(/[\u0300-\u036f]/g, '').trim();
+    for (const linea of lineasData) {
+        for (let i = 0; i < linea.paradasIda.length; i++) {
+            const p = linea.paradasIda[i].toLowerCase()
+                .normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+            if (p.includes(q) || q.includes(p)) {
+                return { linea, tipo: 'ida', paradaIdx: i, nombre: linea.paradasIda[i] };
+            }
+        }
+        for (let i = 0; i < linea.paradasVuelta.length; i++) {
+            const p = linea.paradasVuelta[i].toLowerCase()
+                .normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+            if (p.includes(q) || q.includes(p)) {
+                return { linea, tipo: 'vuelta', paradaIdx: i, nombre: linea.paradasVuelta[i] };
+            }
+        }
+    }
+    return null;
+}
+
+// ============================================================
+// FUNCIÓN PRINCIPAL: buscar trufi que pasa cerca de mí
+// ============================================================
+async function planificarViaje() {
+    const destinoTxt = document.getElementById('inputDestino').value.trim();
+    const btn = document.getElementById('btnBuscarViaje');
+
+    if (!destinoTxt) {
+        alert('Escribe a dónde quieres ir (ej: "Plaza Principal", "Mercado Obrero", "Hospital Regional").');
+        return;
+    }
+    if (!navigator.geolocation) {
+        alert('GPS no disponible en tu dispositivo.');
+        return;
+    }
+
+    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Obteniendo ubicación...';
+
+    navigator.geolocation.getCurrentPosition(async (pos) => {
+        const userPos = [pos.coords.latitude, pos.coords.longitude];
+        document.getElementById('inputOrigen').value = '📍 Mi ubicación actual';
+        btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Buscando destino...';
+
+        let destPos = null;
+        let destNombre = destinoTxt;
+
+        // 1° INTENTO: buscar en paradas locales
+        const matchLocal = buscarEnParadas(destinoTxt);
+
+        if (matchLocal) {
+            const coords = matchLocal.tipo === 'ida' ? matchLocal.linea.rutaIda : matchLocal.linea.rutaVuelta;
+            const numParadas = matchLocal.tipo === 'ida' ? matchLocal.linea.paradasIda.length : matchLocal.linea.paradasVuelta.length;
+            const paso = Math.max(1, Math.floor(coords.length / (numParadas + 1)));
+            const idx = Math.min(coords.length - 1, (matchLocal.paradaIdx + 1) * paso);
+            destPos = coords[idx];
+            destNombre = matchLocal.nombre;
+            console.log('📍 Parada local:', matchLocal.nombre, '→ coords:', destPos);
+        } else {
+            try {
+                btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Buscando dirección...';
+                const res = await geocodificar(destinoTxt);
+                if (res && res.length > 0) {
+                    destPos = [parseFloat(res[0].lat), parseFloat(res[0].lon)];
+                    destNombre = res[0].display_name.split(',')[0];
+                    console.log('🌐 Geocodificado:', destNombre, '→ coords:', destPos);
+                }
+            } catch (e) {
+                console.warn('Nominatim falló:', e);
+            }
+        }
+
+        if (!destPos) {
+            document.getElementById('tripInfo').style.display = 'block';
+            document.getElementById('tripInfo').innerHTML = `
+                <div style="text-align:center;padding:10px;">
+                    <i class="fas fa-search" style="font-size:32px;color:#e67e22;margin-bottom:10px;"></i>
+                    <h3 style="color:#1a2a3a;font-size:15px;margin-bottom:8px;">No encontramos ese destino</h3>
+                    <p style="font-size:13px;color:#555;line-height:1.5;">
+                        Intenta con nombres de paradas conocidas como:<br>
+                        <b>Plaza Principal, Mercado Obrero, Hospital Regional, Terminal de Buses, Mercado Central</b>
+                    </p>
+                    <button onclick="limpiarViaje()" style="margin-top:12px;width:100%;background:#e74c3c;color:white;border:none;padding:10px;border-radius:8px;font-size:13px;cursor:pointer;">
+                        <i class="fas fa-times"></i> Cerrar
+                    </button>
+                </div>
+            `;
+            btn.innerHTML = '<i class="fas fa-search"></i> Buscar trufi';
+            return;
+        }
+
+        btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Evaluando trufis...';
+
+        const candidatos = [];
+        let masCercana = null;
+
+        for (const linea of lineasData) {
+            const variantes = [
+                { tipo: 'ida',    coords: linea.rutaIda    },
+                { tipo: 'vuelta', coords: linea.rutaVuelta }
+            ];
+
+            for (const v of variantes) {
+                const userC = findClosestOnRoute(v.coords, userPos);
+                if (!userC) continue;
+
+                if (!masCercana || userC.distance < masCercana.distancia) {
+                    masCercana = { linea, tipo: v.tipo, distancia: userC.distance };
+                }
+
+                if (userC.distance > MAX_DIST_TRUFI) continue;
+
+                const destC = findClosestOnRoute(v.coords, destPos);
+                if (!destC || destC.distance > MAX_DIST_DEST) continue;
+
+                if (userC.segmentIndex >= destC.segmentIndex) continue;
+
+                let routeDist = 0;
+                if (userC.segmentIndex === destC.segmentIndex) {
+                    routeDist = haversine(userC.point[0], userC.point[1], destC.point[0], destC.point[1]);
+                } else {
+                    routeDist += haversine(userC.point[0], userC.point[1],
+                                           v.coords[userC.segmentIndex + 1][0],
+                                           v.coords[userC.segmentIndex + 1][1]);
+                    for (let i = userC.segmentIndex + 1; i < destC.segmentIndex; i++) {
+                        routeDist += haversine(v.coords[i][0], v.coords[i][1],
+                                               v.coords[i + 1][0], v.coords[i + 1][1]);
+                    }
+                    routeDist += haversine(v.coords[destC.segmentIndex][0],
+                                           v.coords[destC.segmentIndex][1],
+                                           destC.point[0], destC.point[1]);
+                }
+
+                candidatos.push({
+                    linea, tipo: v.tipo, coords: v.coords,
+                    userC, destC, routeDist,
+                    distHastaMiTrufi: userC.distance,
+                    distHastaDestino: destC.distance,
+                    total: userC.distance + routeDist + destC.distance
+                });
+            }
+        }
+
+        btn.innerHTML = '<i class="fas fa-search"></i> Buscar trufi';
+
+        if (candidatos.length === 0) {
+            let mensajeDiag = '';
+            if (masCercana) {
+                mensajeDiag = `La trufi más cercana a ti es <b>${masCercana.linea.nombre}</b> (${masCercana.tipo}), pero pasa a <b>${Math.round(masCercana.distancia)} m</b> de tu ubicación (el límite es ${MAX_DIST_TRUFI} m).`;
+            }
+            document.getElementById('tripInfo').style.display = 'block';
+            document.getElementById('tripInfo').innerHTML = `
+                <div style="text-align:center;padding:10px;">
+                    <i class="fas fa-exclamation-triangle" style="font-size:32px;color:#e67e22;margin-bottom:10px;"></i>
+                    <h3 style="color:#1a2a3a;font-size:15px;margin-bottom:8px;">Ninguna trufi cumple los requisitos</h3>
+                    <p style="font-size:13px;color:#555;line-height:1.5;">
+                        No encontramos trufis a menos de <b>${MAX_DIST_TRUFI} m</b> de ti que lleguen a <b>${destNombre}</b>.<br><br>
+                        ${mensajeDiag ? `<b>🔍 Diagnóstico:</b><br>${mensajeDiag}<br><br>` : ''}
+                        🚶 Acércate a una avenida principal o a una parada conocida y vuelve a intentar.
+                    </p>
+                    <button onclick="limpiarViaje()" style="margin-top:12px;width:100%;background:#e74c3c;color:white;border:none;padding:10px;border-radius:8px;font-size:13px;cursor:pointer;">
+                        <i class="fas fa-times"></i> Cerrar
+                    </button>
+                </div>
+            `;
+            return;
+        }
+
+        candidatos.sort((a, b) => a.total - b.total);
+        const top = candidatos.slice(0, 3);
+
+        dibujarViaje(userPos, destPos, top, destNombre);
+    }, (err) => {
+        alert('Activa el GPS para planificar tu viaje. Error: ' + err.message);
+        btn.innerHTML = '<i class="fas fa-search"></i> Buscar trufi';
+    }, { enableHighAccuracy: true, timeout: 12000 });
+}
+
+// ============================================================
+// OBTENER RUTA CAMINANDO POR CALLES REALES (OSRM)
+// ============================================================
+let _lastWalkRouteLat = null;
+let _lastWalkRouteLng = null;
+let _isFetchingWalkRoute = false;
+
+async function obtenerRutaCaminando(origen, destino) {
+    const url = `https://router.project-osrm.org/route/v1/foot/${origen[1]},${origen[0]};${destino[1]},${destino[0]}?overview=full&geometries=geojson`;
+    try {
+        const res = await fetch(url);
+        const data = await res.json();
+        if (data.code === 'Ok' && data.routes && data.routes.length > 0) {
+            const coords = data.routes[0].geometry.coordinates.map(c => [c[1], c[0]]);
+            return { coords, distance: data.routes[0].distance };
+        }
+    } catch (e) {
+        console.warn('OSRM falló, usando línea recta:', e);
+    }
+    return { coords: [origen, destino], distance: null };
+}
+
+// ============================================================
+// DIBUJAR EL VIAJE EN EL MAPA (con GPS en vivo y guía por calles)
+// ============================================================
+async function dibujarViaje(userPos, destPos, candidatos, destNombre) {
+    if (!mapMainInstance) return;
+
+    if (window.viajeLayers) window.viajeLayers.forEach(l => mapMainInstance.removeLayer(l));
+    window.viajeLayers = [];
+
+    const mejor = candidatos[0];
+
+    const iconoUser = L.divIcon({ className:'custom-icon', html:'<div class="user-location-dot"></div>', iconSize:[20,20] });
+    const iconoDest = L.divIcon({ className:'custom-icon', html:'<div style="font-size:32px;line-height:32px;">📍</div>', iconSize:[32,32] });
+    const iconoSubida = L.divIcon({ className:'custom-icon', html:'<div style="font-size:20px;line-height:36px;background:#16a085;color:white;border-radius:50%;width:36px;height:36px;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,0.3);">✋</div>', iconSize:[36,36] });
+
+    const mUser = L.marker(userPos, { icon: iconoUser }).addTo(mapMainInstance).bindPopup('Estás aquí');
+    const mDest = L.marker(destPos, { icon: iconoDest }).addTo(mapMainInstance).bindPopup('Destino: ' + destNombre);
+    window.viajeLayers.push(mUser, mDest);
+
+    const puntoSubida = mejor.userC.point;
+    const mSubida = L.marker(puntoSubida, { icon: iconoSubida })
+        .addTo(mapMainInstance)
+        .bindPopup(`<b>🚌 Aquí pasa la trufi</b><br>Levántale la mano cuando la veas.<br>Está a ${Math.round(mejor.distHastaMiTrufi)} m de ti.`);
+    window.viajeLayers.push(mSubida);
+
+    // Línea VERDE de la trufi
+    const seg = [mejor.userC.point];
+    if (mejor.userC.segmentIndex < mejor.destC.segmentIndex) {
+        for (let i = mejor.userC.segmentIndex + 1; i <= mejor.destC.segmentIndex; i++) {
+            seg.push(mejor.coords[i]);
+        }
+    }
+    seg.push(mejor.destC.point);
+
+    const trufiLine = L.polyline(seg, {
+        color: '#16a085', weight: 7, opacity: 0.9
+    }).addTo(mapMainInstance).bindPopup('Recorrido de la trufi: ' + mejor.linea.nombre);
+    window.viajeLayers.push(trufiLine);
+
+    const bounds = L.latLngBounds([userPos, destPos, ...seg]);
+    mapMainInstance.fitBounds(bounds, { padding: [60, 60] });
+
+    // 🟠 LÍNEAS NARANJAS CON RUTEO POR CALLES REALES
+    let walkLine = null;
+
+    if (mejor.distHastaMiTrufi > 10) {
+        const ruta1 = await obtenerRutaCaminando(userPos, puntoSubida);
+        walkLine = L.polyline(ruta1.coords, {
+            color: '#f39c12',
+            weight: 6,
+            dashArray: '10,8',
+            opacity: 1
+        }).addTo(mapMainInstance).bindPopup(`Camina por estas calles (${Math.round(ruta1.distance || mejor.distHastaMiTrufi)} m)`);
+        window.viajeLayers.push(walkLine);
+        _lastWalkRouteLat = userPos[0];
+        _lastWalkRouteLng = userPos[1];
+    }
+
+    if (mejor.distHastaDestino > 20) {
+        const ruta2 = await obtenerRutaCaminando(mejor.destC.point, destPos);
+        const walk2Line = L.polyline(ruta2.coords, {
+            color: '#f39c12', weight: 5, dashArray: '10,8', opacity: 1
+        }).addTo(mapMainInstance).bindPopup(`Camina por estas calles (${Math.round(ruta2.distance || mejor.distHastaDestino)} m)`);
+        window.viajeLayers.push(walk2Line);
+    }
+
+    // 📡 GPS EN VIVO
+    if (window.watchViajeId) {
+        navigator.geolocation.clearWatch(window.watchViajeId);
+        window.watchViajeId = null;
+    }
+    window.watchViajeId = navigator.geolocation.watchPosition(
+        async function(pos) {
+            const nueva = [pos.coords.latitude, pos.coords.longitude];
+            if (mUser) mUser.setLatLng(nueva);
+
+            if (walkLine && mejor.distHastaMiTrufi > 10 && !_isFetchingWalkRoute) {
+                const movido = haversine(nueva[0], nueva[1], _lastWalkRouteLat, _lastWalkRouteLng);
+                if (movido > 50) {
+                    _isFetchingWalkRoute = true;
+                    const rutaNueva = await obtenerRutaCaminando(nueva, puntoSubida);
+                    walkLine.setLatLngs(rutaNueva.coords);
+                    _lastWalkRouteLat = nueva[0];
+                    _lastWalkRouteLng = nueva[1];
+                    _isFetchingWalkRoute = false;
+                }
+            }
+        },
+        null,
+        { enableHighAccuracy: true, maximumAge: 3000, timeout: 15000 }
+    );
+
+    // 🎨 PANEL DE RESULTADO
+    const fmt = m => m > 1000 ? (m/1000).toFixed(1) + ' km' : Math.round(m) + ' m';
+
+    let msgTrufi;
+    if (mejor.distHastaMiTrufi < 30) {
+        msgTrufi = '¡Pasa casi por tu puerta! Levántale la mano 🚌✋';
+    } else if (mejor.distHastaMiTrufi < 120) {
+        msgTrufi = `La trufi pasa a <b>${fmt(mejor.distHastaMiTrufi)}</b> de ti`;
+    } else {
+        msgTrufi = `Camina <b>${fmt(mejor.distHastaMiTrufi)}</b> siguiendo la línea naranja hasta donde pasa la trufi`;
+    }
+
+    let alternativasHTML = '';
+    if (candidatos.length > 1) {
+        alternativasHTML = '<div style="margin-top:10px;padding-top:8px;border-top:1px solid #eee;font-size:12px;color:#666;">' +
+            '<b>Otras opciones:</b><br>' +
+            candidatos.slice(1).map(c =>
+                `• ${c.linea.nombre} <span style="color:#16a085;">(${c.tipo})</span> — pasa a ${fmt(c.distHastaMiTrufi)} de ti`
+            ).join('<br>') +
+            '</div>';
+    }
+
+    const panel = document.getElementById('tripInfo');
+    panel.innerHTML = `
+        <div class="trip-panel-header">
+            <i class="fas fa-bus" style="color:#16a085;font-size:20px;"></i>
+            <strong>${mejor.linea.nombre}</strong>
+            <span class="badge-linea">${mejor.tipo.toUpperCase()}</span>
+            <button onclick="toggleMinimizarViaje()" class="btn-toggle-panel" title="Minimizar">
+                <i class="fas fa-chevron-down"></i>
+            </button>
+        </div>
+        <div class="trip-panel-body">
+            <div style="font-size:13px;color:#555;line-height:1.7;">
+                🚏 <b>No tienes que ir a ninguna parada:</b><br>
+                <span style="display:block;margin-left:18px;margin-bottom:8px;">${msgTrufi}</span>
+                🚌 Viaja <b>${fmt(mejor.routeDist)}</b> en la trufi<br>
+                🚶 Baja y camina <b>${fmt(mejor.distHastaDestino)}</b> hasta el destino<br>
+                <hr style="border:none;border-top:1px solid #eee;margin:8px 0;">
+                <span style="font-size:14px;color:#1a2a3a;"><b>Total estimado:</b> ${fmt(mejor.total)} · Tarifa: ${mejor.linea.tarifa}</span>
+            </div>
+            ${alternativasHTML}
+            <button onclick="limpiarViaje()" style="margin-top:10px;width:100%;background:#e74c3c;color:white;border:none;padding:10px;border-radius:8px;font-size:13px;cursor:pointer;">
+                <i class="fas fa-times"></i> Cerrar viaje
+            </button>
+        </div>
+    `;
+    panel.classList.remove('minimizado');
+    panel.style.display = 'block';
+}
+
+// ============================================================
+// LIMPIAR EL VIAJE
+// ============================================================
+function limpiarViaje() {
+    if (window.watchViajeId) {
+        navigator.geolocation.clearWatch(window.watchViajeId);
+        window.watchViajeId = null;
+    }
+    if (window.viajeLayers && mapMainInstance) {
+        window.viajeLayers.forEach(l => mapMainInstance.removeLayer(l));
+        window.viajeLayers = [];
+    }
+    _lastWalkRouteLat = null;
+    _lastWalkRouteLng = null;
+    _isFetchingWalkRoute = false;
+    const panel = document.getElementById('tripInfo');
+    panel.style.display = 'none';
+    panel.classList.remove('minimizado');
+    document.getElementById('inputDestino').value = '';
+    document.getElementById('inputOrigen').value = '';
+}
+
+// ============================================================
+// MINIMIZAR / EXPANDIR PANEL DE VIAJE
+// ============================================================
+function toggleMinimizarViaje() {
+    document.getElementById('tripInfo').classList.toggle('minimizado');
+}
