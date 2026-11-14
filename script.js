@@ -342,7 +342,10 @@ let mapMicroInstance = null;
 let mapMainInstance = null;
 let lineaVista = 'ida';   
 let microVista = 'ida';
-let origenRecorrido = 'trufi'; // Memoria para saber de dónde venimos
+
+// MEMORIA PARA LOS BOTONES DE REGRESO
+let origenDatos = 'trufi'; 
+let origenRecorrido = 'trufi'; 
 
 let watchGpsId = null; 
 let miMarcadorGps = null; 
@@ -453,6 +456,7 @@ function abrirDetalleMicro(id) {
 // PANTALLAS DE DATOS Y RECORRIDO (LÍNEAS)
 // ============================================================
 function mostrarDatos() {
+    origenDatos = 'trufi'; // Guardamos que venimos de un trufi
     if (!lineaActual) return;
     document.getElementById('datosContent').innerHTML = `
         <div class="data-header-info">
@@ -467,7 +471,6 @@ function mostrarDatos() {
     document.getElementById('datosTituloHeader').textContent = "Datos de la Línea";
     showScreen('datosScreen');
 }
-function cerrarDatos() { showScreen('detalleScreen'); }
 
 function mostrarRecorrido() {
     origenRecorrido = 'trufi'; // Guardamos que venimos de un trufi
@@ -512,6 +515,7 @@ function mostrarVuelta() {
 // PANTALLAS DE DATOS Y RECORRIDO (MICROS)
 // ============================================================
 function mostrarDatosMicro() {
+    origenDatos = 'micro'; // Guardamos que venimos de un micro
     if (!microActual) return;
     document.getElementById('datosContent').innerHTML = `
         <div class="data-header-info">
@@ -566,7 +570,19 @@ function mostrarVueltaMicro() {
     }
 }
 
-// 👇 FUNCIÓN CORREGIDA PARA QUE EL BOTÓN ATRÁS FUNCIONE 👇
+// ============================================================
+// BOTONES DE REGRESO CORREGIDOS
+// ============================================================
+function cerrarDatos() { 
+    if (origenDatos === 'micro') {
+        showScreen('detalleMicroScreen');
+        setTimeout(() => { if (mapMicroInstance) mapMicroInstance.invalidateSize(); }, 200);
+    } else {
+        showScreen('detalleScreen');
+        setTimeout(() => { if (mapInstance) mapInstance.invalidateSize(); }, 200);
+    }
+}
+
 function cerrarRecorrido() {
     if (origenRecorrido === 'micro') {
         showScreen('detalleMicroScreen');
