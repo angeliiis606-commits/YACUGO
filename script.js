@@ -332,14 +332,17 @@ const microsData = [
     }
 ];
 
-// ... (resto de tus variables y funciones se mantienen exactamente igual)
+// ============================================================
+// VARIABLES GLOBALES
+// ============================================================
 let lineaActual = null;
 let microActual = null;
 let mapInstance = null;
-let mapMicroInstance = null; // <--- Variable para el mapa del micro
+let mapMicroInstance = null; 
 let mapMainInstance = null;
 let lineaVista = 'ida';   
 let microVista = 'ida';
+let origenRecorrido = 'trufi'; // Memoria para saber de dónde venimos
 
 let watchGpsId = null; 
 let miMarcadorGps = null; 
@@ -429,7 +432,7 @@ function abrirDetalle(id) {
     const iconoSync = document.getElementById('iconoVuelta');
     if(iconoSync) iconoSync.style.color = '#c5e16a';
 
-    setTimeout(() => { mostrarMapa(lineaActual.rutaIda, '#2e86c1', 'map'); }, 150);
+    setTimeout(() => { mostrarMapa(lineaActual.rutaIda, '#27ae60'); }, 150); // VERDE para IDA
 }
 
 function abrirDetalleMicro(id) {
@@ -443,8 +446,7 @@ function abrirDetalleMicro(id) {
     const iconoSync = document.getElementById('iconoVueltaMicro');
     if(iconoSync) iconoSync.style.color = '#c5e16a';
 
-    // 👇 Llamamos a la función específica del mapa del micro
-    setTimeout(() => { mostrarMapaMicro(microActual.rutaIda, '#27ae60'); }, 150);
+    setTimeout(() => { mostrarMapaMicro(microActual.rutaIda, '#27ae60'); }, 150); // VERDE para IDA
 }
 
 // ============================================================
@@ -468,15 +470,16 @@ function mostrarDatos() {
 function cerrarDatos() { showScreen('detalleScreen'); }
 
 function mostrarRecorrido() {
+    origenRecorrido = 'trufi'; // Guardamos que venimos de un trufi
     if (!lineaActual) return;
-    mostrarMapa(lineaActual.rutaIda, '#2e86c1', 'map');
+    mostrarMapa(lineaActual.rutaIda, '#27ae60');
     
     let html = '<div class="stops-list">';
     lineaActual.paradasIda.forEach((parada) => {
         html += `
             <div class="stop-row">
                 <div class="stop-indicator">
-                    <div class="stop-dot" style="background: #2e86c1; border-color: #bbdefb;"></div>
+                    <div class="stop-dot" style="background: #27ae60; border-color: #a9dfbf;"></div>
                     <div class="stop-line"></div>
                 </div>
                 <div class="stop-info"><div class="stop-name">${parada}</div></div>
@@ -489,10 +492,6 @@ function mostrarRecorrido() {
     document.getElementById('recorridoTituloHeader').textContent = "Recorrido (Ida)";
     showScreen('recorridoScreen');
 }
-function cerrarRecorrido() {
-    showScreen('detalleScreen');
-    setTimeout(() => { if (mapInstance) mapInstance.invalidateSize(); }, 200);
-}
 
 function mostrarVuelta() {
     if (!lineaActual) return;
@@ -500,11 +499,11 @@ function mostrarVuelta() {
 
     if (lineaVista === 'ida') {
         lineaVista = 'vuelta';
-        mostrarMapa(lineaActual.rutaVuelta, '#e74c3c', 'map');
+        mostrarMapa(lineaActual.rutaVuelta, '#e74c3c'); // ROJO para VUELTA
         if (iconoSync) iconoSync.style.color = '#e74c3c'; 
     } else {
         lineaVista = 'ida';
-        mostrarMapa(lineaActual.rutaIda, '#2e86c1', 'map');
+        mostrarMapa(lineaActual.rutaIda, '#27ae60'); // VERDE para IDA
         if (iconoSync) iconoSync.style.color = '#c5e16a'; 
     }
 }
@@ -516,7 +515,7 @@ function mostrarDatosMicro() {
     if (!microActual) return;
     document.getElementById('datosContent').innerHTML = `
         <div class="data-header-info">
-            <div class="data-icon-box" style="color:#f39c12;"><i class="fas fa-shuttle-van"></i></div>
+            <div class="data-icon-box" style="color:#27ae60;"><i class="fas fa-shuttle-van"></i></div>
             <h2>${microActual.nombre}</h2>
         </div>
         <div class="data-row"><div class="data-label">Horario:</div><div class="data-value">${microActual.horario}</div></div>
@@ -529,8 +528,9 @@ function mostrarDatosMicro() {
 }
 
 function mostrarRecorridoMicro() {
+    origenRecorrido = 'micro'; // Guardamos que venimos de un micro
     if (!microActual) return;
-    mostrarMapaMicro(microActual.rutaIda, '#27ae60'); // Usa la función del micro
+    mostrarMapaMicro(microActual.rutaIda, '#27ae60');
     
     let html = '<div class="stops-list">';
     microActual.paradasIda.forEach((parada) => {
@@ -547,7 +547,7 @@ function mostrarRecorridoMicro() {
     html += '</div>';
     
     document.getElementById('recorridoContent').innerHTML = html;
-    document.getElementById('recorridoTituloHeader').textContent = "Recorrido del Micro";
+    document.getElementById('recorridoTituloHeader').textContent = "Recorrido del Micro (Ida)";
     showScreen('recorridoScreen');
 }
 
@@ -557,22 +557,28 @@ function mostrarVueltaMicro() {
 
     if (microVista === 'ida') {
         microVista = 'vuelta';
-        mostrarMapaMicro(microActual.rutaVuelta, '#f39c12'); // Usa la función del micro
-        if (iconoSync) iconoSync.style.color = '#f39c12'; 
+        mostrarMapaMicro(microActual.rutaVuelta, '#e74c3c'); // ROJO para VUELTA
+        if (iconoSync) iconoSync.style.color = '#e74c3c'; 
     } else {
         microVista = 'ida';
-        mostrarMapaMicro(microActual.rutaIda, '#27ae60'); // Usa la función del micro
+        mostrarMapaMicro(microActual.rutaIda, '#27ae60'); // VERDE para IDA
         if (iconoSync) iconoSync.style.color = '#c5e16a'; 
     }
 }
 
-function cerrarRecorridoMicro() {
-    showScreen('detalleMicroScreen');
-    setTimeout(() => { if (mapMicroInstance) mapMicroInstance.invalidateSize(); }, 200);
+// 👇 FUNCIÓN CORREGIDA PARA QUE EL BOTÓN ATRÁS FUNCIONE 👇
+function cerrarRecorrido() {
+    if (origenRecorrido === 'micro') {
+        showScreen('detalleMicroScreen');
+        setTimeout(() => { if (mapMicroInstance) mapMicroInstance.invalidateSize(); }, 200);
+    } else {
+        showScreen('detalleScreen');
+        setTimeout(() => { if (mapInstance) mapInstance.invalidateSize(); }, 200);
+    }
 }
 
 // ============================================================
-// MAPAS Y GPS
+// MAPAS
 // ============================================================
 function mostrarMapa(coordenadas, color) {
     if (typeof L === 'undefined' || !coordenadas) return;
@@ -590,7 +596,6 @@ function mostrarMapa(coordenadas, color) {
     setTimeout(() => { if (mapInstance) { mapInstance.invalidateSize(); mapInstance.fitBounds(polyline.getBounds(), { padding: [40, 40] }); } }, 200);
 }
 
-// 👇 NUEVA FUNCIÓN PARA EL MAPA DEL MICRO 👇
 function mostrarMapaMicro(coordenadas, color) {
     if (typeof L === 'undefined' || !coordenadas) return;
     if (mapMicroInstance) { try { mapMicroInstance.remove(); } catch (e) {} mapMicroInstance = null; }
@@ -607,6 +612,9 @@ function mostrarMapaMicro(coordenadas, color) {
     setTimeout(() => { if (mapMicroInstance) { mapMicroInstance.invalidateSize(); mapMicroInstance.fitBounds(polyline.getBounds(), { padding: [40, 40] }); } }, 200);
 }
 
+// ============================================================
+// GPS
+// ============================================================
 function ubicarme() {
     if (!navigator.geolocation) { alert("GPS no soportado."); return; }
     const btn = document.getElementById('btnUbicarme');
@@ -676,8 +684,6 @@ function cerrarContacto() {
 document.addEventListener('DOMContentLoaded', function() {
     try { initMainMap(); } catch(e) {}
     renderizarLineas();
-    renderizarMicros(); // Inicializamos micros al cargar
+    renderizarMicros(); 
     setTimeout(() => { document.getElementById('splashScreen').classList.add('fade-out'); setTimeout(() => showScreen('mainScreen'), 200); }, 800);
 });
-
-// ... (El resto del código del planificador de viajes se queda exactamente igual a como lo tenías) ...
