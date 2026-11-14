@@ -36,6 +36,25 @@
     </div>
 
     <div id="mapMain"></div>
+
+    <!-- NUEVO: BUSCADOR DE VIAJE -->
+    <div class="trip-planner">
+        <div class="trip-field">
+            <i class="fas fa-map-marker-alt" style="color:#e74c3c;"></i>
+            <input type="text" id="inputOrigen" placeholder="Mi ubicación" readonly>
+        </div>
+        <div class="trip-field">
+            <i class="fas fa-flag-checkered" style="color:#2e86c1;"></i>
+            <input type="text" id="inputDestino" placeholder="¿A dónde quieres ir?">
+        </div>
+        <button id="btnBuscarViaje" onclick="planificarViaje()">
+            <i class="fas fa-search"></i> Buscar trufi
+        </button>
+    </div>
+
+    <!-- NUEVO: PANEL DE RESULTADO DEL VIAJE -->
+    <div id="tripInfo"></div>
+
     <button id="btnUbicarme" class="btn-ubicarme" onclick="ubicarme()"><i class="fas fa-crosshairs"></i></button>
     
     <div class="main-buttons">
