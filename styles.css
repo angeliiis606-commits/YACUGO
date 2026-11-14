@@ -102,16 +102,8 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial
     width: 40px;
     text-align: center;
 }
-.contact-card h3 {
-    margin: 0;
-    font-size: 16px;
-    color: #1a2a3a;
-}
-.contact-card p {
-    margin: 0;
-    font-size: 14px;
-    color: #6c757d;
-}
+.contact-card h3 { margin: 0; font-size: 16px; color: #1a2a3a; }
+.contact-card p { margin: 0; font-size: 14px; color: #6c757d; }
 
 /* LISTA DE PARADAS (RECORRIDO) */
 .stops-list { display: flex; flex-direction: column; gap: 0; padding-top: 10px; }
@@ -202,16 +194,42 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial
 
 .trip-field i { font-size: 16px; width: 18px; }
 
-#btnBuscarViaje {
-    background: linear-gradient(135deg, #16a085, #1abc9c);
+/* ========================================== */
+/* BOTONES DUALES TRUFI / MICRO */
+/* ========================================== */
+.trip-buttons {
+    display: flex;
+    gap: 8px;
+}
+
+.trip-buttons button {
+    flex: 1;
     color: white;
     border: none;
-    padding: 12px;
+    padding: 12px 8px;
     border-radius: 10px;
     font-weight: 700;
-    font-size: 14px;
+    font-size: 13px;
     cursor: pointer;
-    letter-spacing: 0.5px;
+    letter-spacing: 0.3px;
+    transition: opacity 0.2s, transform 0.15s;
+}
+
+.trip-buttons button:not(:disabled):active {
+    transform: scale(0.97);
+}
+
+.trip-buttons button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.btn-buscar-trufi {
+    background: linear-gradient(135deg, #16a085, #1abc9c);
+}
+
+.btn-buscar-micro {
+    background: linear-gradient(135deg, #d35400, #f39c12);
 }
 
 #tripInfo {
