@@ -129,6 +129,132 @@ const lineasData = [
             [-21.9971833, -63.6656794], [-21.9943802, -63.6645804], [-21.991923, -63.6636309], 
             [-21.9913931, -63.6633911]
         ]
+    },
+    {
+        id: 3,
+        nombre: "Trufi Verde y Amarillo E",
+        horario: "6:00 am - 8:00 pm",
+        frecuencia: "15 minutos",
+        tarifa: "3.50 Bs.",
+        niños: "Menores de 4 años no pagan",
+        tipo: "linea",
+        paradasIda: [
+            "Inicio del recorrido (Sur)",
+            "Barrio Sur",
+            "Av. Central",
+            "Mercado Zonal",
+            "Av. Norte",
+            "Fin del recorrido (Norte)"
+        ],
+        paradasVuelta: [
+            "Inicio del recorrido (Norte)",
+            "Av. Norte",
+            "Mercado Zonal",
+            "Av. Central",
+            "Barrio Sur",
+            "Fin del recorrido (Sur)"
+        ],
+        rutaIda: [
+            [-22.0278161, -63.6740808], [-22.0251407, -63.6731103], [-22.0239101, -63.6724276],
+            [-22.0225450, -63.6719251], [-22.0223189, -63.6720373], [-22.0220884, -63.6725883],
+            [-22.0218352, -63.6732321], [-22.0211829, -63.6749979], [-22.0189472, -63.6740731],
+            [-22.0171411, -63.6733465], [-22.0145963, -63.6722661], [-22.0144765, -63.6722807],
+            [-22.0144087, -63.6723100], [-22.0143748, -63.6723904], [-22.0140832, -63.6731829],
+            [-22.0138412, -63.6738011], [-22.0131314, -63.6735036], [-22.0108563, -63.6725722],
+            [-22.0106528, -63.6729623], [-22.0097417, -63.6750354], [-22.0078269, -63.6740698],
+            [-22.0061653, -63.6732705], [-22.0052495, -63.6728487], [-22.0049366, -63.6727487],
+            [-22.0042819, -63.6723025], [-22.0038550, -63.6732946], [-22.0037239, -63.6734605],
+            [-22.0034685, -63.6739823], [-22.0032987, -63.6738994], [-22.0031291, -63.6743188],
+            [-22.0028151, -63.6751006], [-22.0023991, -63.6759979], [-22.0020369, -63.6768898],
+            [-22.0019465, -63.6770654], [-22.0011688, -63.6766411], [-21.9997101, -63.6758925],
+            [-21.9986430, -63.6753171], [-21.9968933, -63.6743832], [-21.9968187, -63.6747270],
+            [-21.9966966, -63.6755024], [-21.9966378, -63.6760169], [-21.9969747, -63.6760852]
+        ],
+        rutaVuelta: [
+            [-21.9970387, -63.6760926], [-21.9995980, -63.6764145], [-21.9996703, -63.6764047],
+            [-21.9997427, -63.6760439], [-22.0027522, -63.6775654], [-22.0074446, -63.6798575],
+            [-22.0094702, -63.6809011], [-22.0102024, -63.6812789], [-22.0117465, -63.6821236],
+            [-22.0127503, -63.6826844], [-22.0128542, -63.6825625], [-22.0130875, -63.6820163],
+            [-22.0134085, -63.6810165], [-22.0138245, -63.6797632], [-22.0141866, -63.6785674],
+            [-22.0153531, -63.6791770], [-22.0164178, -63.6797330], [-22.0175522, -63.6802597],
+            [-22.0186616, -63.6808498], [-22.0191255, -63.6799037], [-22.0200749, -63.6775872],
+            [-22.0204411, -63.6766850], [-22.0209113, -63.6768021], [-22.0215302, -63.6770654],
+            [-22.0219552, -63.6771434], [-22.0221586, -63.6772312], [-22.0221948, -63.6770752],
+            [-22.0221496, -63.6769727], [-22.0222897, -63.6768021], [-22.0223711, -63.6766509],
+            [-22.0226451, -63.6758335], [-22.0227219, -63.6755897], [-22.0234290, -63.6759506],
+            [-22.0236550, -63.6754629], [-22.0238766, -63.6747338], [-22.0240845, -63.6741847],
+            [-22.0244372, -63.6731557], [-22.0246090, -63.6727705], [-22.0270412, -63.6737409],
+            [-22.0278712, -63.6740725]
+        ]
+    },
+    {
+        id: 4,
+        nombre: "Trufi verede y amarillo P",
+        horario: "6:00 am - 8:00 pm",
+        frecuencia: "15 minutos",
+        tarifa: "3.50 Bs.",
+        niños: "Menores de 4 años no pagan",
+        tipo: "linea",
+        paradasIda: [
+            "Inicio del recorrido (Oeste)",
+            "Av. Principal",
+            "Mercado Zonal",
+            "Av. Central",
+            "Zona Norte",
+            "Fin del recorrido (Este)"
+        ],
+        paradasVuelta: [
+            "Inicio del recorrido (Este)",
+            "Zona Norte",
+            "Av. Central",
+            "Mercado Zonal",
+            "Av. Principal",
+            "Fin del recorrido (Oeste)"
+        ],
+        rutaIda: [
+            [-22.0110122, -63.6875478], [-22.0117507, -63.6877624], [-22.0120541, -63.6878563],
+            [-22.0127628, -63.6878563], [-22.0132452, -63.6878241], [-22.0133348, -63.6877892],
+            [-22.0134268, -63.6876176], [-22.0135877, -63.6871646], [-22.0136125, -63.6871431],
+            [-22.0145774, -63.6876071], [-22.0156640, -63.6881007], [-22.0166736, -63.6857698],
+            [-22.0175315, -63.6837260], [-22.0186952, -63.6808721], [-22.0192472, -63.6795578],
+            [-22.0180437, -63.6790911], [-22.0168452, -63.6785976], [-22.0157212, -63.6780826],
+            [-22.0145028, -63.6776213], [-22.0133838, -63.6771814], [-22.0124488, -63.6767147],
+            [-22.0115834, -63.6762158], [-22.0106782, -63.6755774], [-22.0114441, -63.6738394],
+            [-22.0095841, -63.6729757], [-22.0086491, -63.6724822], [-22.0071221, -63.6759200],
+            [-22.0053366, -63.6749598], [-22.0040882, -63.6743000], [-22.0034615, -63.6739835],
+            [-22.0033073, -63.6739191], [-22.0024121, -63.6760005], [-22.0015566, -63.6755982],
+            [-22.0008454, -63.6752441], [-22.0007409, -63.6753675], [-22.0006613, -63.6755821],
+            [-22.0006116, -63.6757698], [-22.0003927, -63.6762312], [-22.0003132, -63.6762258],
+            [-21.9975527, -63.6747506], [-21.9951602, -63.6734739], [-21.9950408, -63.6734202],
+            [-21.9950010, -63.6733290], [-21.9949016, -63.6732325], [-21.9947772, -63.6732164],
+            [-21.9946280, -63.6732646], [-21.9945186, -63.6732807], [-21.9943495, -63.6732700],
+            [-21.9940858, -63.6732593], [-21.9919122, -63.6731091], [-21.9909903, -63.6729417],
+            [-21.9902939, -63.6727271], [-21.9896572, -63.6724374], [-21.9894383, -63.6722765],
+            [-21.9892387, -63.6720464], [-21.9890497, -63.6719284], [-21.9884876, -63.6716817],
+            [-21.9886119, -63.6714349], [-21.9887313, -63.6711184], [-21.9887612, -63.6706785],
+            [-21.9888159, -63.6701474], [-21.9888507, -63.6697666], [-21.9876619, -63.6692945]
+        ],
+        rutaVuelta: [
+            [-21.9876619, -63.6692945], [-21.9888507, -63.6697666], [-21.9890391, -63.6699228],
+            [-21.9892778, -63.6701159], [-21.9894668, -63.6703090], [-21.9900836, -63.6704163],
+            [-21.9927398, -63.6708133], [-21.9925707, -63.6719613], [-21.9931129, -63.6720524],
+            [-21.9930134, -63.6732433], [-21.9941773, -63.6733667], [-21.9945454, -63.6735116],
+            [-21.9946349, -63.6736028], [-21.9947443, -63.6736940], [-21.9948836, -63.6736725],
+            [-21.9949731, -63.6736510], [-21.9951472, -63.6736510], [-21.9956396, -63.6738442],
+            [-21.9969577, -63.6745362], [-22.0012253, -63.6768053], [-22.0012949, -63.6764405],
+            [-22.0016083, -63.6756144], [-22.0020659, -63.6745737], [-22.0044781, -63.6758022],
+            [-22.0053534, -63.6762635], [-22.0057911, -63.6764888], [-22.0066764, -63.6769233],
+            [-22.0075667, -63.6773954], [-22.0083823, -63.6756520], [-22.0102126, -63.6765693],
+            [-22.0112023, -63.6770843], [-22.0120428, -63.6775349], [-22.0121025, -63.6775402],
+            [-22.0122019, -63.6775778], [-22.0131170, -63.6780660], [-22.0142012, -63.6785649],
+            [-22.0153302, -63.6791388], [-22.0158673, -63.6794393], [-22.0160861, -63.6795465],
+            [-22.0164143, -63.6797450], [-22.0168470, -63.6799274], [-22.0175631, -63.6802922],
+            [-22.0170459, -63.6815475], [-22.0164939, -63.6828510], [-22.0163845, -63.6831514],
+            [-22.0158225, -63.6844979], [-22.0150268, -63.6865096], [-22.0140240, -63.6859884],
+            [-22.0128403, -63.6854627], [-22.0127657, -63.6855753], [-22.0124474, -63.6863585],
+            [-22.0122932, -63.6863854], [-22.0121291, -63.6865624], [-22.0119401, -63.6868574],
+            [-22.0118307, -63.6870237], [-22.0115816, -63.6877053], [-22.0110122, -63.6875478]
+        ]
     }
 ];
 
@@ -138,7 +264,7 @@ const lineasData = [
 const microsData = [
     {
         id: 1,
-        nombre: "Linea 1 Micros",
+        nombre: "Micro 1",
         horario: "6:00 am - 8:00 pm",
         frecuencia: "15 minutos",
         tarifa: "3.50 Bs.",
@@ -329,6 +455,99 @@ const microsData = [
             [-22.048483, -63.68079], [-22.048885, -63.680919], [-22.049287, -63.681045], [-22.049329, -63.681094], 
             [-22.049296, -63.681302], [-22.049237, -63.681578], [-22.049168, -63.681889], [-22.04912, -63.682057]
         ]
+    },
+    {
+        id: 2,
+        nombre: "Micro 2",
+        horario: "6:00 am - 8:00 pm",
+        frecuencia: "15 minutos",
+        tarifa: "3.50 Bs.",
+        niños: "Menores de 4 años no pagan",
+        tipo: "micro",
+        paradasIda: [
+            "Inicio (Av. Los Andes)",
+            "Av. San Martín",
+            "Mercado Central",
+            "Av. Internacional",
+            "Fin del recorrido (Av. principal)"
+        ],
+        paradasVuelta: [
+            "Fin del recorrido (Av. principal)",
+            "Av. Internacional",
+            "Mercado Central",
+            "Av. San Martín",
+            "Inicio (Av. Los Andes)"
+        ],
+        rutaIda: [
+            [-21.9921794, -63.6840662], [-21.993316, -63.6842298], [-21.9934304, -63.6836531],
+            [-21.993505, -63.6830684], [-21.9938333, -63.6806652], [-21.9940994, -63.6783343],
+            [-21.9944003, -63.6763522], [-21.9945098, -63.675754], [-21.9946689, -63.6744934],
+            [-21.9948007, -63.6739301], [-21.994853, -63.6736861], [-21.9949425, -63.6736566],
+            [-21.9949922, -63.6735975], [-21.995037, -63.6734903], [-21.9950196, -63.6733722],
+            [-21.9949674, -63.6732971], [-21.9949276, -63.6732462], [-21.9951539, -63.6712157],
+            [-21.9956756, -63.671398], [-21.9963371, -63.6717494], [-21.9969464, -63.6720471],
+            [-21.9975258, -63.6723341], [-21.9981128, -63.6726238], [-21.9986947, -63.6728893],
+            [-21.9993637, -63.6731924], [-22.00007, -63.673533], [-22.001291, -63.6741821],
+            [-22.002062, -63.674571], [-22.0028354, -63.6749761], [-22.0023131, -63.6761804],
+            [-22.0021863, -63.6765049], [-22.00196, -63.6771647], [-22.0035466, -63.6779453],
+            [-22.0048447, -63.6785863], [-22.0066651, -63.6794795], [-22.0085326, -63.6804504],
+            [-22.0088037, -63.679855], [-22.0089927, -63.6793588], [-22.0092438, -63.678825],
+            [-22.0098531, -63.6774303], [-22.0102385, -63.6765747], [-22.0111785, -63.6770735],
+            [-22.0120489, -63.6775322], [-22.0121061, -63.6775349], [-22.0123274, -63.6776368],
+            [-22.0124517, -63.6776958], [-22.0126009, -63.677779], [-22.0128197, -63.677897],
+            [-22.0131156, -63.6780767], [-22.0141874, -63.6785568], [-22.0153263, -63.6791496],
+            [-22.0164353, -63.6797423], [-22.0175468, -63.6802842], [-22.0170495, -63.6815207],
+            [-22.0163881, -63.6831353], [-22.0175394, -63.6837388], [-22.0184669, -63.6842726],
+            [-22.0183749, -63.6845274], [-22.0193098, -63.6849485], [-22.0202348, -63.6854474],
+            [-22.0212021, -63.6859195], [-22.022132, -63.6864103], [-22.0225846, -63.6853777],
+            [-22.0228929, -63.6846159], [-22.0229178, -63.6845194], [-22.0229128, -63.6843584],
+            [-22.0228879, -63.684227], [-22.0228655, -63.6840795], [-22.0228705, -63.683932],
+            [-22.0228904, -63.6838274], [-22.0229252, -63.6836745], [-22.02296, -63.6835618],
+            [-22.0230023, -63.6834921], [-22.0230595, -63.683417], [-22.0231192, -63.6833499],
+            [-22.0232037, -63.6832936], [-22.0232907, -63.6832534], [-22.0233703, -63.6832131],
+            [-22.0234275, -63.6831863], [-22.0234946, -63.6831648], [-22.023527, -63.6830281],
+            [-22.0239621, -63.681231], [-22.0243525, -63.6797048], [-22.0253048, -63.6800025],
+            [-22.0267245, -63.680437], [-22.0276246, -63.6807079], [-22.0279031, -63.680783],
+            [-22.0285968, -63.6809923], [-22.0289275, -63.6810915], [-22.0290792, -63.6811183],
+            [-22.0308942, -63.6811425], [-22.031297, -63.6811425], [-22.0322418, -63.6812497],
+            [-22.0333333, -63.6814053], [-22.0346834, -63.6815636], [-22.0356829, -63.6816923],
+            [-22.0367047, -63.6818237], [-22.0378061, -63.6819739], [-22.0388379, -63.6820973],
+            [-22.0398623, -63.6822527], [-22.0397902, -63.6828749], [-22.0408194, -63.6830037],
+            [-22.0418288, -63.6831056], [-22.0428457, -63.683229], [-22.0438575, -63.6833792],
+            [-22.0449141, -63.6834972], [-22.0459285, -63.683626]
+        ],
+        rutaVuelta: [
+            [-22.0459285, -63.683626], [-22.0460803, -63.6824162], [-22.045076, -63.6822607],
+            [-22.0440119, -63.6821051], [-22.0429975, -63.6820085], [-22.0419534, -63.6818583],
+            [-22.040944, -63.681692], [-22.0399197, -63.6815794], [-22.0389003, -63.6814667],
+            [-22.037876, -63.6813541], [-22.036792, -63.6812146], [-22.0368604, -63.680587],
+            [-22.0348216, -63.6803241], [-22.033474, -63.6801578], [-22.0317088, -63.6800774],
+            [-22.0299396, -63.6800371], [-22.0293528, -63.6800264], [-22.0289152, -63.6799244],
+            [-22.0279356, -63.679624], [-22.0271697, -63.6794095], [-22.0261951, -63.6814801],
+            [-22.0250215, -63.6811529], [-22.0240517, -63.6808954], [-22.0230919, -63.6806486],
+            [-22.0216846, -63.6802463], [-22.0204811, -63.6799083], [-22.0192478, -63.6795704],
+            [-22.0180443, -63.6790983], [-22.0179846, -63.6790661], [-22.0168507, -63.6786102],
+            [-22.0157218, -63.6780898], [-22.0144934, -63.6776231], [-22.0133893, -63.6771832],
+            [-22.0124563, -63.6767105], [-22.011576, -63.6762224], [-22.0106758, -63.6755733],
+            [-22.0097458, -63.6750422], [-22.0088406, -63.6745755], [-22.0092882, -63.6735777],
+            [-22.009905, -63.6721722], [-22.0089451, -63.671794], [-22.0083104, -63.6732786],
+            [-22.0071242, -63.6759206], [-22.0062258, -63.6754054], [-22.0055395, -63.675046],
+            [-22.005341, -63.674961], [-22.0044457, -63.6744728], [-22.0034808, -63.67399],
+            [-22.0033142, -63.6739176], [-22.0028293, -63.675012], [-22.0023966, -63.6760339],
+            [-22.0016107, -63.6756228], [-22.0020683, -63.6745874], [-22.0025831, -63.6736165],
+            [-22.0016729, -63.6731524], [-22.0007726, -63.6727608], [-22.0002653, -63.6725007],
+            [-21.9990616, -63.6719535], [-21.9984499, -63.6716772], [-21.9978629, -63.6713956],
+            [-21.9967015, -63.6708726], [-21.9959828, -63.6705105], [-21.9951696, -63.6701376],
+            [-21.9949408, -63.6720125], [-21.994794, -63.6732222], [-21.9947393, -63.6732302],
+            [-21.994697, -63.6732624], [-21.9946597, -63.6733053], [-21.9946224, -63.673367],
+            [-21.9946025, -63.6734341], [-21.9946025, -63.6735145], [-21.9946324, -63.6735896],
+            [-21.9946747, -63.673646], [-21.9947269, -63.6736916], [-21.9946946, -63.6742924],
+            [-21.9944003, -63.6763522], [-21.9937749, -63.6762606], [-21.9931854, -63.676164],
+            [-21.9926209, -63.6760728], [-21.9920364, -63.675987], [-21.9914296, -63.6759119],
+            [-21.9911958, -63.6776983], [-21.9941206, -63.678165], [-21.9941355, -63.6781221],
+            [-21.995364, -63.6783098], [-21.996329, -63.6784386], [-21.9958299, -63.6827882],
+            [-21.9956558, -63.683955], [-21.9956135, -63.6845692], [-21.9921794, -63.6840662]
+        ]
     }
 ];
 
@@ -345,7 +564,8 @@ let microVista = 'ida';
 let origenDatos = 'trufi'; 
 let origenRecorrido = 'trufi'; 
 let watchGpsId = null; 
-let miMarcadorGps = null; 
+let miMarcadorGps = null;
+let miMarcadorGpsMicro = null;
 let ubicacionMarkerMain = null; 
 let watchMainId = null; 
 
@@ -353,7 +573,9 @@ function initMainMap() {
     if (typeof L === 'undefined') return;
     const center = [-22.015, -63.678];
     mapMainInstance = L.map('mapMain', { zoomControl: false }).setView(center, 14);
-    L.tileLayer('https://mt1.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', { maxZoom: 20, subdomains: ['mt0', 'mt1', 'mt2', 'mt3'] }).addTo(mapMainInstance);
+    L.tileLayer('https://mt{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
+        maxZoom: 20, subdomains: ['0', '1', '2', '3']
+    }).addTo(mapMainInstance);
 }
 
 function showScreen(screenId) {
@@ -377,7 +599,7 @@ function cerrarDetalle() {
 
 function cerrarDetalleMicro() {
     if (watchGpsId) { navigator.geolocation.clearWatch(watchGpsId); watchGpsId = null; }
-    miMarcadorGps = null;
+    miMarcadorGpsMicro = null;
     if (mapMicroInstance) { try { mapMicroInstance.remove(); } catch (e) {} mapMicroInstance = null; }
     showScreen('microsScreen');
 }
@@ -412,8 +634,49 @@ function renderizarMicros() {
     `).join('');
 }
 
-function filtrarLineas() { renderizarLineas(); }
-function filtrarMicros() { renderizarMicros(); }
+function filtrarLineas() {
+    const q = document.getElementById('searchLineas').value
+        .toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').trim();
+    const container = document.getElementById('lineasList');
+    const filtered = lineasData.filter(l =>
+        l.nombre.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').includes(q)
+    );
+    if (filtered.length === 0) {
+        container.innerHTML = `<div class="no-resultados"><i class="fas fa-search"></i><p>No se encontraron líneas</p></div>`;
+        return;
+    }
+    container.innerHTML = filtered.map(l => `
+        <div class="item-card" onclick="abrirDetalle(${l.id})">
+            <span class="nombre"><i class="fas fa-bus linea-icon"></i>${l.nombre}</span>
+            <div style="display:flex;align-items:center;gap:10px;">
+                <span class="badge">${l.paradasIda.length} paradas</span>
+                <span class="icono"><i class="fas fa-chevron-right"></i></span>
+            </div>
+        </div>
+    `).join('');
+}
+
+function filtrarMicros() {
+    const q = document.getElementById('searchMicros').value
+        .toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').trim();
+    const container = document.getElementById('microsList');
+    const filtered = microsData.filter(m =>
+        m.nombre.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').includes(q)
+    );
+    if (filtered.length === 0) {
+        container.innerHTML = `<div class="no-resultados"><i class="fas fa-search"></i><p>No se encontraron micros</p></div>`;
+        return;
+    }
+    container.innerHTML = filtered.map(m => `
+        <div class="item-card" onclick="abrirDetalleMicro(${m.id})">
+            <span class="nombre"><i class="fas fa-bus micro-icon"></i>${m.nombre}</span>
+            <div style="display:flex;align-items:center;gap:10px;">
+                <span class="badge micro-badge">${m.paradasIda.length} paradas</span>
+                <span class="icono"><i class="fas fa-chevron-right"></i></span>
+            </div>
+        </div>
+    `).join('');
+}
 
 function abrirDetalle(id) {
     lineaActual = lineasData.find(l => l.id === id);
@@ -422,7 +685,7 @@ function abrirDetalle(id) {
     document.getElementById('detalleTitulo').textContent = lineaActual.nombre;
     showScreen('detalleScreen');
     const iconoSync = document.getElementById('iconoVuelta');
-    if(iconoSync) iconoSync.style.color = '#c5e16a';
+    if(iconoSync) iconoSync.style.color = '#27ae60';
     setTimeout(() => { mostrarMapa(lineaActual.rutaIda, '#27ae60'); }, 150);
 }
 
@@ -433,7 +696,7 @@ function abrirDetalleMicro(id) {
     document.getElementById('detalleMicroTitulo').textContent = microActual.nombre;
     showScreen('detalleMicroScreen');
     const iconoSync = document.getElementById('iconoVueltaMicro');
-    if(iconoSync) iconoSync.style.color = '#c5e16a';
+    if(iconoSync) iconoSync.style.color = '#27ae60';
     setTimeout(() => { mostrarMapaMicro(microActual.rutaIda, '#27ae60'); }, 150);
 }
 
@@ -457,8 +720,9 @@ function mostrarDatos() {
 function mostrarRecorrido() {
     origenRecorrido = 'trufi'; 
     if (!lineaActual) return;
+    const paradas = lineaVista === 'ida' ? lineaActual.paradasIda : lineaActual.paradasVuelta;
     let html = '<div class="stops-list">';
-    lineaActual.paradasIda.forEach((parada) => {
+    paradas.forEach((parada) => {
         html += `
             <div class="stop-row">
                 <div class="stop-indicator">
@@ -471,7 +735,7 @@ function mostrarRecorrido() {
     });
     html += '</div>';
     document.getElementById('recorridoContent').innerHTML = html;
-    document.getElementById('recorridoTituloHeader').textContent = "Recorrido (Ida)";
+    document.getElementById('recorridoTituloHeader').textContent = `Recorrido (${lineaVista === 'ida' ? 'Ida' : 'Vuelta'})`;
     showScreen('recorridoScreen');
 }
 
@@ -485,7 +749,7 @@ function mostrarVuelta() {
     } else {
         lineaVista = 'ida';
         mostrarMapa(lineaActual.rutaIda, '#27ae60');
-        if (iconoSync) iconoSync.style.color = '#c5e16a'; 
+        if (iconoSync) iconoSync.style.color = '#27ae60'; 
     }
 }
 
@@ -509,8 +773,9 @@ function mostrarDatosMicro() {
 function mostrarRecorridoMicro() {
     origenRecorrido = 'micro'; 
     if (!microActual) return;
+    const paradas = microVista === 'ida' ? microActual.paradasIda : microActual.paradasVuelta;
     let html = '<div class="stops-list">';
-    microActual.paradasIda.forEach((parada) => {
+    paradas.forEach((parada) => {
         html += `
             <div class="stop-row">
                 <div class="stop-indicator">
@@ -523,7 +788,7 @@ function mostrarRecorridoMicro() {
     });
     html += '</div>';
     document.getElementById('recorridoContent').innerHTML = html;
-    document.getElementById('recorridoTituloHeader').textContent = "Recorrido del Micro (Ida)";
+    document.getElementById('recorridoTituloHeader').textContent = `Recorrido del Micro (${microVista === 'ida' ? 'Ida' : 'Vuelta'})`;
     showScreen('recorridoScreen');
 }
 
@@ -537,7 +802,7 @@ function mostrarVueltaMicro() {
     } else {
         microVista = 'ida';
         mostrarMapaMicro(microActual.rutaIda, '#27ae60');
-        if (iconoSync) iconoSync.style.color = '#c5e16a'; 
+        if (iconoSync) iconoSync.style.color = '#27ae60'; 
     }
 }
 
@@ -566,7 +831,9 @@ function mostrarMapa(coordenadas, color) {
     if (mapInstance) { try { mapInstance.remove(); } catch (e) {} mapInstance = null; }
     const center = [coordenadas.reduce((s, c) => s + c[0], 0) / coordenadas.length, coordenadas.reduce((s, c) => s + c[1], 0) / coordenadas.length];
     mapInstance = L.map('map', { zoomControl: false }).setView(center, 15);
-    L.tileLayer('https://mt1.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', { maxZoom: 20, subdomains: ['mt0', 'mt1', 'mt2', 'mt3'] }).addTo(mapInstance);
+    L.tileLayer('https://mt{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
+        maxZoom: 20, subdomains: ['0', '1', '2', '3']
+    }).addTo(mapInstance);
     const polyline = L.polyline(coordenadas, { color: color, weight: 5, opacity: 0.9 }).addTo(mapInstance);
     L.marker(coordenadas[0], { icon: L.divIcon({ html: '🟢', iconSize: [28, 28], className: 'custom-icon' }) }).addTo(mapInstance);
     L.marker(coordenadas[coordenadas.length - 1], { icon: L.divIcon({ html: '🔴', iconSize: [28, 28], className: 'custom-icon' }) }).addTo(mapInstance);
@@ -578,7 +845,9 @@ function mostrarMapaMicro(coordenadas, color) {
     if (mapMicroInstance) { try { mapMicroInstance.remove(); } catch (e) {} mapMicroInstance = null; }
     const center = [coordenadas.reduce((s, c) => s + c[0], 0) / coordenadas.length, coordenadas.reduce((s, c) => s + c[1], 0) / coordenadas.length];
     mapMicroInstance = L.map('mapMicro', { zoomControl: false }).setView(center, 15);
-    L.tileLayer('https://mt1.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', { maxZoom: 20, subdomains: ['mt0', 'mt1', 'mt2', 'mt3'] }).addTo(mapMicroInstance);
+    L.tileLayer('https://mt{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
+        maxZoom: 20, subdomains: ['0', '1', '2', '3']
+    }).addTo(mapMicroInstance);
     const polyline = L.polyline(coordenadas, { color: color, weight: 5, opacity: 0.9 }).addTo(mapMicroInstance);
     L.marker(coordenadas[0], { icon: L.divIcon({ html: '🟢', iconSize: [28, 28], className: 'custom-icon' }) }).addTo(mapMicroInstance);
     L.marker(coordenadas[coordenadas.length - 1], { icon: L.divIcon({ html: '🔴', iconSize: [28, 28], className: 'custom-icon' }) }).addTo(mapMicroInstance);
@@ -639,7 +908,33 @@ function ubicarmeLinea() {
     );
 }
 
-function ubicarmeMicro() {}
+function ubicarmeMicro() {
+    if (!navigator.geolocation || !mapMicroInstance) return;
+    const btn = document.getElementById('btnUbicarmeMicro');
+    if (!btn) return;
+    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
+    navigator.geolocation.getCurrentPosition(
+        (pos) => {
+            const ubi = [pos.coords.latitude, pos.coords.longitude];
+            if (miMarcadorGpsMicro) {
+                mapMicroInstance.removeLayer(miMarcadorGpsMicro);
+            }
+            const iconoGps = L.divIcon({
+                className: 'custom-icon',
+                html: '<div class="user-location-dot"></div>',
+                iconSize: [20, 20]
+            });
+            miMarcadorGpsMicro = L.marker(ubi, { icon: iconoGps }).addTo(mapMicroInstance);
+            mapMicroInstance.setView(ubi, 17);
+            btn.innerHTML = '<i class="fas fa-crosshairs"></i>';
+        },
+        () => {
+            alert('Error al obtener ubicación.');
+            btn.innerHTML = '<i class="fas fa-crosshairs"></i>';
+        },
+        { enableHighAccuracy: true, timeout: 10000 }
+    );
+}
 
 function abrirContacto() { showScreen('contactoScreen'); }
 function cerrarContacto() {
@@ -993,5 +1288,16 @@ document.addEventListener('DOMContentLoaded', function() {
     try { initMainMap(); } catch(e) {}
     renderizarLineas();
     renderizarMicros(); 
+
+    const inputDestino = document.getElementById('inputDestino');
+    if (inputDestino) {
+        inputDestino.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                planificarViaje('trufi');
+            }
+        });
+    }
+
     setTimeout(() => { document.getElementById('splashScreen').classList.add('fade-out'); setTimeout(() => showScreen('mainScreen'), 200); }, 800);
 });
